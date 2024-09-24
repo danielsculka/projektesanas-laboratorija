@@ -1,4 +1,4 @@
-name: CI
+name: CI-Test
 
 on:
   pull_request:
@@ -25,3 +25,7 @@ jobs:
     - name: Build
       working-directory: .build
       run: dotnet build --configuration Release --no-restore
+
+    - name: Run tests
+      working-directory: ./.build
+      run: dotnet test --no-build --verbosity normal
