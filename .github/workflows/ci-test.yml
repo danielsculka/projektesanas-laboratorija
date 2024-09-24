@@ -1,9 +1,9 @@
-name: CI
+name: CI-Test
 
 on:
   pull_request:
     branches:
-      - main  # Specify your main branch
+      - main
 
 jobs:
   build:
@@ -16,10 +16,16 @@ jobs:
     - name: Setup .NET 8
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '8.0.8'
+        dotnet-version: '8.0.x'
 
     - name: Restore dependencies
+      working-directory: .build
       run: dotnet restore
 
     - name: Build
+      working-directory: .build
       run: dotnet build --configuration Release --no-restore
+
+    - name: Run tests
+      working-directory: ./.build
+      run: dotnet test --no-build --verbosity normal
