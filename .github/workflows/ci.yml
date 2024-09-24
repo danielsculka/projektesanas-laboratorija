@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
     branches:
-      - main  # Specify your main branch
+      - main
 
 jobs:
   build:
@@ -19,8 +19,9 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore ./.build/ProLab.sln
+      working-directory: .build
+      run: dotnet restore
 
     - name: Build
-      run: dotnet build ./.build/ProLab.sln --configuration Release --no-restore
-
+      working-directory: .build
+      run: dotnet build --configuration Release --no-restore
