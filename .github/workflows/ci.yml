@@ -19,9 +19,8 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      working-directory: .build
-      run: dotnet restore
-      
+      run: dotnet restore ./.build/ProLab.sln
+
     - name: Build
-      working-directory: .build 
-      run: dotnet build --configuration Release --no-restore 
+      run: dotnet build ./.build/ProLab.sln --configuration Release --no-restore
+
