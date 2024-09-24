@@ -19,9 +19,9 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Restore dependencies
-      working-directory: ./.build
+      working-directory: .build
       run: dotnet restore
       
     - name: Build
-      working-directory: ./.build 
+      working-directory: .build 
       run: dotnet build --configuration Release --no-restore 
