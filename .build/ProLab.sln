@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A6824F0B-3BF7-4656-B9D9-B40FB3DAA0C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7B199A9A-5AA4-4F87-B59E-0BE99CD1AD69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{484875BC-EED6-4F77-BACC-C030AB7F7303}"
+	ProjectSection(SolutionItems) = preProject
+		..\.editorconfig = ..\.editorconfig
+		..\.config\docker-compose.yml = ..\.config\docker-compose.yml
+		..\ProjektesanasParskats.md = ..\ProjektesanasParskats.md
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProLab.Domain", "..\src\ProLab.Domain\ProLab.Domain.csproj", "{E8C6D752-BD77-40E6-8341-7DCC023772B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProLab.Application", "..\src\ProLab.Application\ProLab.Application.csproj", "{6B8F815A-AE54-49E1-9FFC-66DE4E9F4B20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProLab.WebUI.Server", "..\src\ProLab.WebUI.Server\ProLab.WebUI.Server.csproj", "{4230DB61-7BC1-4965-BE52-F97A3C0787FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProLab.Infrastructure", "..\src\ProLab.Infrastructure\ProLab.Infrastructure.csproj", "{924E7ACA-F88F-438C-BB6D-5547E9E69826}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8C6D752-BD77-40E6-8341-7DCC023772B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8C6D752-BD77-40E6-8341-7DCC023772B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8C6D752-BD77-40E6-8341-7DCC023772B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8C6D752-BD77-40E6-8341-7DCC023772B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B8F815A-AE54-49E1-9FFC-66DE4E9F4B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B8F815A-AE54-49E1-9FFC-66DE4E9F4B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B8F815A-AE54-49E1-9FFC-66DE4E9F4B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B8F815A-AE54-49E1-9FFC-66DE4E9F4B20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4230DB61-7BC1-4965-BE52-F97A3C0787FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4230DB61-7BC1-4965-BE52-F97A3C0787FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4230DB61-7BC1-4965-BE52-F97A3C0787FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4230DB61-7BC1-4965-BE52-F97A3C0787FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{924E7ACA-F88F-438C-BB6D-5547E9E69826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924E7ACA-F88F-438C-BB6D-5547E9E69826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{924E7ACA-F88F-438C-BB6D-5547E9E69826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924E7ACA-F88F-438C-BB6D-5547E9E69826}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E8C6D752-BD77-40E6-8341-7DCC023772B2} = {A6824F0B-3BF7-4656-B9D9-B40FB3DAA0C1}
+		{6B8F815A-AE54-49E1-9FFC-66DE4E9F4B20} = {A6824F0B-3BF7-4656-B9D9-B40FB3DAA0C1}
+		{4230DB61-7BC1-4965-BE52-F97A3C0787FB} = {A6824F0B-3BF7-4656-B9D9-B40FB3DAA0C1}
+		{924E7ACA-F88F-438C-BB6D-5547E9E69826} = {A6824F0B-3BF7-4656-B9D9-B40FB3DAA0C1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {305EA86C-E17B-4E47-957E-024BC7019F46}
+	EndGlobalSection
+EndGlobal
