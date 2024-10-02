@@ -13,7 +13,7 @@ public static class IServiceCollectionExtensions
         var connectionString = configuration.GetConnectionString("Default");
 
         _ = services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            options.UseSqlServer(connectionString, o => o.UseNetTopologySuite()));
 
         _ = services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
 
