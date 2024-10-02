@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProLab.Application;
 using ProLab.Domain;
+using ProLab.Domain.Addresses;
 using ProLab.Domain.Couriers;
 using ProLab.Domain.Users;
 
@@ -22,6 +23,7 @@ public class AppDbContext : DbContext, IAppDbContext
     }
 
     public DbSet<Courier> Couriers { get; set; }
+    public DbSet<Address> Addresses { get; set; }
     public DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => _ = optionsBuilder.UseLazyLoadingProxies();
