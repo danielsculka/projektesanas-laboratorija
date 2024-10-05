@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0" version="24.7.16">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0" version="24.7.17">
   <diagram name="Page-1" id="0fco2W5xarE3FVHo4ML2">
-    <mxGraphModel dx="1977" dy="2102" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2156" dy="2193" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -268,7 +268,7 @@
           <mxGeometry x="1305" y="568" width="170" height="22.5" as="geometry" />
         </mxCell>
         <mxCell id="BO1Knz_FsJ8SzeF2ihYr-1" value="&lt;li&gt;&lt;strong&gt;Noliktavas&lt;/strong&gt; – Savienotas ar administratoriem un sūtījumiem, tās nodrošina informāciju par pieejamiem produktiem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Administrators&lt;/strong&gt; – Centrālais elements, kas pārvalda informāciju no noliktavām, sūtījumiem, kurjeriem un maršrutiem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Kurjeri&lt;/strong&gt; – Saņem un piegādā sūtījumus, sadarbojas ar maršrutu plānošanu un administratoriem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Maršruti&lt;/strong&gt; – Izstrādā optimālus piegādes ceļus, pamatojoties uz kurjeru un sūtījumu datiem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Sūtījumi&lt;/strong&gt; – Savienoti ar noliktavām, adresēm un maršrutiem, tie atspoguļo piegādes pakalpojumus.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Adreses&lt;/strong&gt; – Norāda galamērķus sūtījumiem.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Ceļu posmi&lt;/b&gt; – ietver sevī Maršruta Id, iepriekšeja sūtijuma vaikurjera sākuma punktu, gāla punktu posmam - nākama sūtijuma ID (adresi) un JSON formātā Starppunktus, kas ir lauzašanas punkti, lai kartē attēlotos korrekti maršruts.&lt;/li&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="620" y="485" width="560" height="170" as="geometry" />
+          <mxGeometry x="1220" y="667.5" width="560" height="170" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
