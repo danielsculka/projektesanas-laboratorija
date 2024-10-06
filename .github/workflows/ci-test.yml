@@ -7,8 +7,6 @@ on:
 
 jobs:
   build:
-    name: CI-Test on ${{ github.ref_name }}
-
     runs-on: ubuntu-latest
 
     steps:
