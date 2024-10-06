@@ -1,6 +1,6 @@
 ﻿using ProLab.Infrastructure.Database;
 
-namespace ProLab.WebUI.Server.Extensions;
+namespace ProLab.Api.Extensions;
 
 public static class IHostExtensions
 {

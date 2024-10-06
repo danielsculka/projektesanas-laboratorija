@@ -15,7 +15,7 @@ public static class IServiceCollectionExtensions
         _ = services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString, o => o.UseNetTopologySuite()));
 
-        _ = services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>());
+        _ = services.AddScoped<IAppDbContext>(provider => provider.GetService<AppDbContext>()!);
 
         return services;
     }
