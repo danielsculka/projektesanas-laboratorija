@@ -1,4 +1,6 @@
 # Ievads
+## Problēmas nostādne
+## Darba un novērtēšanas mērķis
 # Līdzīgo risinājumu pārskats
 | Risinājums   | Īss apraksts   | Svarīgākās iezīmes | Ierobežojumi |
 |--------------|----------------|--------------------|--------------|
@@ -9,3 +11,12 @@
 |OptimoRoute|Mākoņrisinājums preču piegādes un servisa maršrutu optimizācijai ar reāllaika sekošanu un integrāciju.|Reāllaika sekošana, elastīgi maršrutu plāni, viegli lietojams interfeiss. Klientu paziņojumi|Katrs transportlīdzeklis var pārvadāt tikai noteiktu kravu|
 # Tehniskais risinājums
 ## Prasības
+## Algoritms
+## Konceptu modelis
+## Tehnoloģiju steks
+## Programmatūras apraksts
+# Novērtējums
+## Novērtēšanas plāns
+## Novērtēšanas rezultāti
+# Secinājumi
+
