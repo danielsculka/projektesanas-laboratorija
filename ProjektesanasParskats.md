@@ -25,6 +25,8 @@ Piegādes kompānijai ir noliktavas kurās glābājās preces. Tās preces ir ne
 - Ceļu posmi – ietver sevī Maršruta Id, iepriekšeja sūtijuma vaikurjera sākuma punktu, gāla punktu posmam - nākama sūtijuma ID (adresi) un JSON formātā Starppunktus, kas ir lauzašanas punkti, lai kartē attēlotos korrekti maršruts.
 
 ## Tehnoloģiju steks
+![Diagram](diagrams/TehnologijuSteks.svg)
+
 ## Programmatūras apraksts
 # Novērtējums
 ## Novērtēšanas plāns
