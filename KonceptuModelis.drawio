@@ -1,33 +1,22 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.17">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.8.0">
   <diagram name="Page-1" id="9qSY4dkZg2EPxvWDV6Ty">
-    <mxGraphModel dx="1613" dy="2461" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="607" dy="1907" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-3" target="dUD3Pu1SPD2YRe0nNr8I-6">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-3" target="dUD3Pu1SPD2YRe0nNr8I-6" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-3" target="dUD3Pu1SPD2YRe0nNr8I-16">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1700" y="159.5" />
-              <mxPoint x="1700" y="299.5" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-3" value="Noliktavas" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-3" value="Noliktavas" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1340" y="144.5" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=ERone;endFill=0;startArrow=ERmany;startFill=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-6" target="dUD3Pu1SPD2YRe0nNr8I-16">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-6" target="dUD3Pu1SPD2YRe0nNr8I-17" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=ERmany;startFill=0;endArrow=ERone;endFill=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-6" target="dUD3Pu1SPD2YRe0nNr8I-17">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-6" value="Sūtījumi" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-6" value="Sūtījumi" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1560" y="284.5" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.473;exitY=0.993;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-8" target="dUD3Pu1SPD2YRe0nNr8I-10">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.473;exitY=0.993;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;startArrow=ERone;startFill=0;endArrow=ERmany;endFill=0;" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-8" target="dUD3Pu1SPD2YRe0nNr8I-10" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1187" y="464.5" />
@@ -36,16 +25,16 @@
             <mxPoint x="1620" y="354.92" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-8" value="Kurjeri" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-8" value="Kurjeri" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1130" y="284.5" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-10" target="dUD3Pu1SPD2YRe0nNr8I-17">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-10" target="dUD3Pu1SPD2YRe0nNr8I-17" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-10" value="Maršruti" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-10" value="Maršruti" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1340" y="434.5" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-12" target="dUD3Pu1SPD2YRe0nNr8I-6">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-12" target="dUD3Pu1SPD2YRe0nNr8I-6" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1440" y="354.5" as="sourcePoint" />
             <mxPoint x="1540" y="354.5" as="targetPoint" />
@@ -55,10 +44,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-12" value="Administrators" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-12" value="Administrators" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1340" y="284.5" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-12" target="dUD3Pu1SPD2YRe0nNr8I-10">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-12" target="dUD3Pu1SPD2YRe0nNr8I-10" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="1400" y="394.5" />
@@ -66,10 +55,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=ERone;endFill=0;startArrow=ERmany;startFill=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-8" target="dUD3Pu1SPD2YRe0nNr8I-12">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=ERone;endFill=0;startArrow=ERmany;startFill=0;" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-8" target="dUD3Pu1SPD2YRe0nNr8I-12" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-12" target="dUD3Pu1SPD2YRe0nNr8I-3">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="dUD3Pu1SPD2YRe0nNr8I-12" target="dUD3Pu1SPD2YRe0nNr8I-3" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1400" y="164.5" as="targetPoint" />
             <Array as="points">
@@ -78,16 +67,13 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-16" value="Adreses" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1720" y="284.5" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-17" value="Ceļu posmi" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-17" value="Ceļu posmi" style="whiteSpace=wrap;html=1;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1560" y="434.5" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-18" value="&lt;li&gt;&lt;strong&gt;Noliktavas&lt;/strong&gt; – Savienotas ar administratoriem un sūtījumiem, tās nodrošina informāciju par pieejamiem produktiem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Administrators&lt;/strong&gt; – Centrālais elements, kas pārvalda informāciju no noliktavām, sūtījumiem, kurjeriem un maršrutiem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Kurjeri&lt;/strong&gt; – Saņem un piegādā sūtījumus, sadarbojas ar maršrutu plānošanu un administratoriem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Maršruti&lt;/strong&gt; – Izstrādā optimālus piegādes ceļus, pamatojoties uz kurjeru un sūtījumu datiem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Sūtījumi&lt;/strong&gt; – Savienoti ar noliktavām, adresēm un maršrutiem, tie atspoguļo piegādes pakalpojumus.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Adreses&lt;/strong&gt; – Norāda galamērķus sūtījumiem.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Ceļu posmi&lt;/b&gt; – ietver sevī Maršruta Id, iepriekšeja sūtijuma vaikurjera sākuma punktu, gāla punktu posmam - nākama sūtijuma ID (adresi) un JSON formātā Starppunktus, kas ir lauzašanas punkti, lai kartē attēlotos korrekti maršruts.&lt;/li&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-18" value="&lt;li&gt;&lt;strong&gt;Noliktavas&lt;/strong&gt; – Savienotas ar administratoriem un sūtījumiem, tās nodrošina informāciju par pieejamiem produktiem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Administrators&lt;/strong&gt; – Centrālais elements, kas pārvalda informāciju no noliktavām, sūtījumiem, kurjeriem un maršrutiem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Kurjeri&lt;/strong&gt; – Saņem un piegādā sūtījumus, sadarbojas ar maršrutu plānošanu un administratoriem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Maršruti&lt;/strong&gt; – Izstrādā optimālus piegādes ceļus, pamatojoties uz kurjeru un sūtījumu datiem.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Sūtījumi&lt;/strong&gt; – Savienoti ar noliktavām, adresēm un maršrutiem, tie atspoguļo piegādes pakalpojumus.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Ceļu posmi&lt;/b&gt; – ietver sevī Maršruta Id, iepriekšeja sūtijuma vaikurjera sākuma punktu, gāla punktu posmam - nākama sūtijuma ID (adresi) un JSON formātā Starppunktus, kas ir lauzašanas punkti, lai kartē attēlotos korrekti maršruts.&lt;/li&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1570" y="-50" width="560" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-19" value="Piegādes kompānijai ir noliktavas kurās glābājās preces. Tās preces ir nepieciešams piegādāt klientiem&amp;nbsp; ko nodrošina kurjeri. Administrātors var saorganizēt kurjeru maršrutus vienai darba dienai. Administrātors var pārvaldīt noliktavas un pievienot sūtījumus. Kā arī saņemt informāciju par kurjeru noslodzi un vai ir nepieciešamība pievienot vel kādu kurjeru maiņai." style="text;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="dUD3Pu1SPD2YRe0nNr8I-19" value="Piegādes kompānijai ir noliktavas kurās glābājās preces. Tās preces ir nepieciešams piegādāt klientiem&amp;nbsp; ko nodrošina kurjeri. Administrātors var saorganizēt kurjeru maršrutus vienai darba dienai. Administrātors var pārvaldīt noliktavas un pievienot sūtījumus. Kā arī saņemt informāciju par kurjeru noslodzi un vai ir nepieciešamība pievienot vel kādu kurjeru maiņai." style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="910" y="-30" width="560" height="70" as="geometry" />
         </mxCell>
       </root>
