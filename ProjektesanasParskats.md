@@ -2,7 +2,15 @@
 Preču piegādes maršrutēšana 
 ## Problēmas nostādne
 Loģistikas uzņēmumiem un preču piegādes pakalpojumu sniedzējiem efektīva maršrutēšana ir būtiska, lai samazinātu izdevumus, optimizētu piegādes laiku un uzlabotu klientu apmierinātību. Pārāk ilgi vai neefektīvi maršruti rada palielinātus degvielas izdevumus, resursu izšķērdēšanu un nepārskatāmību par piegāžu statusu. Optimizēta preču piegādes maršrutēšanas sistēma var palīdzēt uzņēmumam labāk izplānot piegādes maršrutus, pielāgojoties dažādiem klientu pieprasījumiem un piegādes apstākļiem.
-
+### Lietotāju stāsti
+| Nr.   | Lietotāju stāsts <lietotājs> vēlas <sasniegt mērķi>, jo <ieguvums>   | Prioritāte |
+|--------------|----------------|--------------------|
+| 1. | Administrators vēlas nodrošināt efektīvu maršrutu plānošanu, jo tas palīdz samazināt izmaksas un uzlabot piegādes kvalitāti | |
+| 2. | Administrators vēlas nodrošināt kurjeru drošību uz ceļa, jo tas samazina negadījumu risku un palielina darbinieku apmierinātību | |
+| 3. | Kurjers vēlas piekļūt ērtai navigācijas sistēmai ar maršrutiem, jo tas palīdz viņam vieglāk orientēties un izvairīties no kļūdām | |
+| 4. | Kurjers vēlas, lai maršruts tiktu plānots, ņemot vērā laika logus, jo viņš varēs optimizēt savu laiku un piegādāt pasūtījumus ātrāk | |
+| 5. | Klients vēlas izvēlēties vēlamo piegādes laiku, jo tas padara pakalpojumu ērtāku un pielāgojamāku viņa grafikam | |
+| 6. | Klients vēlas saņemt pasūtījumu atrāk, jo tas uzlabo viņa apmierinātību un lojalitāti uzņēmumam | |
 ## Darba un novērtēšanas mērķis
 ### Mērķis
 Izstrādāt algoritmisku risinājumu, kas optimizē preču piegādes maršrutus, ņemot vērā vairākus mainīgos, piemēram, piegādes punktu ģeogrāfisko atrašanās vietu, kurjeru daudzumu, transportlīdzekļu kravnesību un citu nepieciešamo loģistikas informāciju.
