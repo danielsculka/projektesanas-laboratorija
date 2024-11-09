@@ -1,6 +1,21 @@
 # Ievads
+Preču piegādes maršrutēšana 
 ## Problēmas nostādne
+Loģistikas uzņēmumiem un preču piegādes pakalpojumu sniedzējiem efektīva maršrutēšana ir būtiska, lai samazinātu izdevumus, optimizētu piegādes laiku un uzlabotu klientu apmierinātību. Pārāk ilgi vai neefektīvi maršruti rada palielinātus degvielas izdevumus, resursu izšķērdēšanu un nepārskatāmību par piegāžu statusu. Optimizēta preču piegādes maršrutēšanas sistēma var palīdzēt uzņēmumam labāk izplānot piegādes maršrutus, pielāgojoties dažādiem klientu pieprasījumiem un piegādes apstākļiem.
+
 ## Darba un novērtēšanas mērķis
+### Mērķis
+Izstrādāt algoritmisku risinājumu, kas optimizē preču piegādes maršrutus, ņemot vērā vairākus mainīgos, piemēram, piegādes punktu ģeogrāfisko atrašanās vietu, kurjeru daudzumu, transportlīdzekļu kravnesību un citu nepieciešamo loģistikas informāciju.
+### Uzdevumi
+* Maršruta plānošana: izstrādāt algoritmu, kas aprēķina optimālu piegādes maršrutu, minimizējot kopējo nobraukto attālumu.
+* Preču piegādes optimizācija atkarības no preču un kurjera sakitu: nodrošināt algoritmu, kas piešķir atbilstošem kurjeram atbilstošu preču skaitu, kuras piegādes adreses atrodas tuvāk geografiski. 
+* Piegādes grafika ievērošana: sistēmai jāspēj organizēt piegādes laikā un jāievero kurjera darba laiku.
+### Izstrādes posmi
+* Pētījuma un plānošanas posms: izpētīt piegādes maršrutēšanas algoritmus, lidzīgus risinājumus, izveidot arhitektūras plānu.
+* Algoritma izstrāde: programmēt maršrutēšanas algoritmu un testēt uz nelieliem piegādes punktu skaitiem.
+* Interfeisa izveide: izveidot lietotāja interfeisu piegādes punktu, preču, kurjera skaita ievādei un maršruta apskatei.
+* Optimizācijas un testēšanas posms: veikt maršruta algoritma optimizāciju, veikt izsmeļošu testēšanu.
+* Analīze un uzlabošana: analizēt lietošanas datus, veikt korekcijas, lai uzlabotu piegādes plānošanu.
 # Līdzīgo risinājumu pārskats
 | Risinājums   | Īss apraksts   | Svarīgākās iezīmes | Ierobežojumi |
 |--------------|----------------|--------------------|--------------|
