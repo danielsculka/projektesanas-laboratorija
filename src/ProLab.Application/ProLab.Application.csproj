@@ -15,4 +15,8 @@
     <ProjectReference Include="..\ProLab.Domain\ProLab.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Couriers\" />
+  </ItemGroup>
+
 </Project>

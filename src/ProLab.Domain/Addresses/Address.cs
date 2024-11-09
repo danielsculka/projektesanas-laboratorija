@@ -1,9 +1,11 @@
-﻿using NetTopologySuite.Geometries;
+﻿using Microsoft.EntityFrameworkCore;
+using NetTopologySuite.Geometries;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProLab.Domain.Addresses;
 
-public class Address : Entity<Guid>
+[Owned]
+public class Address
 {
     [MaxLength(150)]
     public required string Street { get; set; }

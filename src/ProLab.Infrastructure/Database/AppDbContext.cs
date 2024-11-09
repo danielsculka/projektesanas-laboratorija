@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProLab.Application;
 using ProLab.Domain;
-using ProLab.Domain.Addresses;
 using ProLab.Domain.Couriers;
+using ProLab.Domain.Orders;
+using ProLab.Domain.Routes;
 using ProLab.Domain.Users;
+using ProLab.Domain.Warehouses;
 
 namespace ProLab.Infrastructure.Database;
 
@@ -23,7 +25,9 @@ public class AppDbContext : DbContext, IAppDbContext
     }
 
     public DbSet<Courier> Couriers { get; set; }
-    public DbSet<Address> Addresses { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<Route> Routes { get; set; }
+    public DbSet<Warehouse> Warehouses { get; set; }
     public DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => _ = optionsBuilder.UseLazyLoadingProxies();
@@ -31,6 +35,14 @@ public class AppDbContext : DbContext, IAppDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         ConvertEnumToString(modelBuilder);
+
+        //modelBuilder.Entity<Order>()
+        //    .OwnsOne(o => o.Address);
+
+        //_ = modelBuilder.Entity<Order>(entity =>
+        //{
+        //    _ = entity.OwnsOne(o => o.Address);
+        //});
 
         base.OnModelCreating(modelBuilder);
     }
@@ -76,7 +88,7 @@ public class AppDbContext : DbContext, IAppDbContext
         foreach (IMutableEntityType entityType in modelBuilder.Model.GetEntityTypes())
             foreach (IMutableProperty property in entityType.GetProperties())
             {
-                Type nullableType = Nullable.GetUnderlyingType(property.ClrType);
+                Type nullableType = Nullable.GetUnderlyingType(property.ClrType)!;
 
                 if (property.ClrType.IsEnum || nullableType?.IsEnum == true)
                 {
@@ -90,7 +102,7 @@ public class AppDbContext : DbContext, IAppDbContext
 
     private void PrepareEntries()
     {
-        //DateTime now = DateTime.UtcNow;
+        DateTime now = DateTime.UtcNow;
         //Guid userId = _currentUser.Id;
 
         _ = ChangeTracker.Entries();
@@ -101,32 +113,32 @@ public class AppDbContext : DbContext, IAppDbContext
             {
                 var guidEntry = entry.Entity as Entity<Guid>;
 
-                if (guidEntry.Id == Guid.Empty)
+                if (guidEntry!.Id == Guid.Empty)
                     throw new Exception("Empty GUIDs are not allowed.");
             }
 
-            //if (entry.Entity is IAuditable)
-            //{
-            //    var auditableEntry = entry.Entity as IAuditable;
+            if (entry.Entity is IAuditable)
+            {
+                var auditableEntry = entry.Entity as IAuditable;
 
-            //    if (entry.State == EntityState.Added)
-            //    {
-            //        auditableEntry.Created = now;
-            //        auditableEntry.CreatedById = userId;
-            //        auditableEntry.Modified = now;
-            //        auditableEntry.ModifiedById = userId;
-            //    }
-            //    else if (entry.State == EntityState.Modified)
-            //    {
-            //        auditableEntry.Modified = now;
-            //        auditableEntry.ModifiedById = userId;
-            //    }
-            //    else if (entry.State == EntityState.Deleted)
-            //    {
-            //        auditableEntry.Modified = now;
-            //        auditableEntry.ModifiedById = userId;
-            //    }
-            //}
+                if (entry.State == EntityState.Added)
+                {
+                    auditableEntry!.Created = now;
+                    //auditableEntry.CreatedById = userId;
+                    auditableEntry.Modified = now;
+                    //auditableEntry.ModifiedById = userId;
+                }
+                else if (entry.State == EntityState.Modified)
+                {
+                    auditableEntry!.Modified = now;
+                    //auditableEntry.ModifiedById = userId;
+                }
+                else if (entry.State == EntityState.Deleted)
+                {
+                    auditableEntry!.Modified = now;
+                    //auditableEntry.ModifiedById = userId;
+                }
+            }
         }
     }
 }
