@@ -53,6 +53,47 @@ Piegādes kompānijai ir noliktavas kurās glābājās preces. Tās preces ir ne
 ## Programmatūras apraksts
 # Novērtējums
 ## Novērtēšanas plāns
+### Eksperimenta mērķis
+Novērtēt skaitļošanas laiku atkarībā no pasūtījumu grūtības un kurjeru skaita.
+
+### Ieejas parametri
+- Preču daudzums (PD)
+- Kurjeru skaits (KS)
+- Vidējais pasūtījumu attālums (VPA)
+
+### Novērtēšanas mēri
+- Skaitļošanas laiks (W)
+
+### Eksperimentu plāns
+| Nr. | PD    | KS  | VPA (km) | W (ms) |
+|-----|-------|------|----------|--------|
+| 1   | 10    | 5    | 5        |        |
+| 2   | 100   | 5    | 5        |        |
+| 3   | 1000  | 5    | 5        |        |
+| 4   | 10    | 10   | 5        |        |
+| 5   | 100   | 10   | 5        |        |
+| 6   | 1000  | 10   | 5        |        |
+| 7   | 10    | 20   | 5        |        |
+| 8   | 100   | 20   | 5        |        |
+| 9   | 1000  | 20   | 5        |        |
+| 10  | 10    | 5    | 15       |        |
+| 11  | 100   | 5    | 15       |        |
+| 12  | 1000  | 5    | 15       |        |
+| 13  | 10    | 10   | 15       |        |
+| 14  | 100   | 10   | 15       |        |
+| 15  | 1000  | 10   | 15       |        |
+| 16  | 10    | 20   | 15       |        |
+| 17  | 100   | 20   | 15       |        |
+| 18  | 1000  | 20   | 15       |        |
+| 19  | 10    | 5    | 30       |        |
+| 20  | 100   | 5    | 30       |        |
+| 21  | 1000  | 5    | 30       |        |
+| 22  | 10    | 10   | 30       |        |
+| 23  | 100   | 10   | 30       |        |
+| 24  | 1000  | 10   | 30       |        |
+| 25  | 10    | 20   | 30       |        |
+| 26  | 100   | 20   | 30       |        |
+| 27  | 1000  | 20   | 30       |        |
 ## Novērtēšanas rezultāti
 # Secinājumi
 
