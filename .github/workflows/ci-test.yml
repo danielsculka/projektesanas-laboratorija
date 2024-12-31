@@ -15,10 +15,10 @@ jobs:
       with:
         clean: false
 
-    - name: Setup .NET 8.x SDK
+    - name: Setup .NET 9.x SDK
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '8.x'
+        dotnet-version: '9.x'
 
     - name: Restore dependencies
       working-directory: .build
