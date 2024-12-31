@@ -3,25 +3,22 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using ProLab.Infrastructure.Database;
 
 #nullable disable
 
-namespace ProLab.Infrastructure.Migrations
+namespace ProLab.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241109180345_Init")]
-    partial class Init
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Proxies:ChangeTracking", false)
                 .HasAnnotation("Proxies:CheckEquality", false)
                 .HasAnnotation("Proxies:LazyLoading", true)
@@ -31,9 +28,11 @@ namespace ProLab.Infrastructure.Migrations
 
             modelBuilder.Entity("ProLab.Domain.Couriers.Courier", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -58,9 +57,11 @@ namespace ProLab.Infrastructure.Migrations
 
             modelBuilder.Entity("ProLab.Domain.Orders.Order", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -73,8 +74,8 @@ namespace ProLab.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<Guid>("WarehouseId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("WarehouseId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -85,50 +86,59 @@ namespace ProLab.Infrastructure.Migrations
 
             modelBuilder.Entity("ProLab.Domain.Routes.Route", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("CourierId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CourierId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("RouteSetId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CourierId");
 
-                    b.ToTable("Routes");
+                    b.HasIndex("RouteSetId");
+
+                    b.ToTable("Routes", (string)null);
                 });
 
             modelBuilder.Entity("ProLab.Domain.Routes.RouteSection", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("FirstOrderId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("FirstOrderId")
+                        .HasColumnType("int");
 
                     b.Property<string>("IntermediatePoints")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LastOrderId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("LastOrderId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("RouteId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("RouteId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -138,7 +148,31 @@ namespace ProLab.Infrastructure.Migrations
 
                     b.HasIndex("RouteId");
 
-                    b.ToTable("RouteSection");
+                    b.ToTable("RouteSections", (string)null);
+                });
+
+            modelBuilder.Entity("ProLab.Domain.Routes.RouteSet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Modified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RouteSets");
                 });
 
             modelBuilder.Entity("ProLab.Domain.Users.User", b =>
@@ -169,9 +203,11 @@ namespace ProLab.Infrastructure.Migrations
 
             modelBuilder.Entity("ProLab.Domain.Warehouses.Warehouse", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -199,8 +235,8 @@ namespace ProLab.Infrastructure.Migrations
 
                     b.OwnsOne("ProLab.Domain.Addresses.Address", "Address", b1 =>
                         {
-                            b1.Property<Guid>("OrderId")
-                                .HasColumnType("uniqueidentifier");
+                            b1.Property<int>("OrderId")
+                                .HasColumnType("int");
 
                             b1.Property<string>("City")
                                 .HasMaxLength(75)
@@ -250,7 +286,15 @@ namespace ProLab.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ProLab.Domain.Routes.RouteSet", "RouteSet")
+                        .WithMany("Routes")
+                        .HasForeignKey("RouteSetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Courier");
+
+                    b.Navigation("RouteSet");
                 });
 
             modelBuilder.Entity("ProLab.Domain.Routes.RouteSection", b =>
@@ -261,9 +305,7 @@ namespace ProLab.Infrastructure.Migrations
 
                     b.HasOne("ProLab.Domain.Orders.Order", "LastOrder")
                         .WithMany()
-                        .HasForeignKey("LastOrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LastOrderId");
 
                     b.HasOne("ProLab.Domain.Routes.Route", "Route")
                         .WithMany("Sections")
@@ -282,8 +324,8 @@ namespace ProLab.Infrastructure.Migrations
                 {
                     b.OwnsOne("ProLab.Domain.Addresses.Address", "Address", b1 =>
                         {
-                            b1.Property<Guid>("WarehouseId")
-                                .HasColumnType("uniqueidentifier");
+                            b1.Property<int>("WarehouseId")
+                                .HasColumnType("int");
 
                             b1.Property<string>("City")
                                 .HasMaxLength(75)
@@ -331,6 +373,11 @@ namespace ProLab.Infrastructure.Migrations
             modelBuilder.Entity("ProLab.Domain.Routes.Route", b =>
                 {
                     b.Navigation("Sections");
+                });
+
+            modelBuilder.Entity("ProLab.Domain.Routes.RouteSet", b =>
+                {
+                    b.Navigation("Routes");
                 });
 
             modelBuilder.Entity("ProLab.Domain.Warehouses.Warehouse", b =>

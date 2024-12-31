@@ -3,7 +3,7 @@ using NetTopologySuite.Geometries;
 
 #nullable disable
 
-namespace ProLab.Infrastructure.Migrations;
+namespace ProLab.Infrastructure.Database.Migrations;
 
 /// <inheritdoc />
 public partial class Init : Migration
@@ -15,7 +15,8 @@ public partial class Init : Migration
             name: "Couriers",
             columns: table => new
             {
-                Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                Id = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
                 FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                 LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                 Created = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -24,6 +25,21 @@ public partial class Init : Migration
             constraints: table =>
             {
                 _ = table.PrimaryKey("PK_Couriers", x => x.Id);
+            });
+
+        _ = migrationBuilder.CreateTable(
+            name: "RouteSets",
+            columns: table => new
+            {
+                Id = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                Modified = table.Column<DateTime>(type: "datetime2", nullable: false)
+            },
+            constraints: table =>
+            {
+                _ = table.PrimaryKey("PK_RouteSets", x => x.Id);
             });
 
         _ = migrationBuilder.CreateTable(
@@ -45,7 +61,8 @@ public partial class Init : Migration
             name: "Warehouses",
             columns: table => new
             {
-                Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                Id = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
                 Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                 Address_Street = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                 Address_City = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: true),
@@ -65,8 +82,10 @@ public partial class Init : Migration
             name: "Routes",
             columns: table => new
             {
-                Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                CourierId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                Id = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                CourierId = table.Column<int>(type: "int", nullable: false),
+                RouteSetId = table.Column<int>(type: "int", nullable: false),
                 Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                 Modified = table.Column<DateTime>(type: "datetime2", nullable: false)
             },
@@ -79,13 +98,20 @@ public partial class Init : Migration
                     principalTable: "Couriers",
                     principalColumn: "Id",
                     onDelete: ReferentialAction.Cascade);
+                _ = table.ForeignKey(
+                    name: "FK_Routes_RouteSets_RouteSetId",
+                    column: x => x.RouteSetId,
+                    principalTable: "RouteSets",
+                    principalColumn: "Id",
+                    onDelete: ReferentialAction.Cascade);
             });
 
         _ = migrationBuilder.CreateTable(
             name: "Orders",
             columns: table => new
             {
-                Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                Id = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
                 Number = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                 Address_Street = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                 Address_City = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: true),
@@ -93,7 +119,7 @@ public partial class Init : Migration
                 Address_Parish = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: true),
                 Address_PostalCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                 Address_Location = table.Column<Point>(type: "geography", nullable: false),
-                WarehouseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                WarehouseId = table.Column<int>(type: "int", nullable: false),
                 Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                 Modified = table.Column<DateTime>(type: "datetime2", nullable: false)
             },
@@ -109,33 +135,33 @@ public partial class Init : Migration
             });
 
         _ = migrationBuilder.CreateTable(
-            name: "RouteSection",
+            name: "RouteSections",
             columns: table => new
             {
-                Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                RouteId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                FirstOrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                LastOrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                Id = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                RouteId = table.Column<int>(type: "int", nullable: false),
+                FirstOrderId = table.Column<int>(type: "int", nullable: true),
+                LastOrderId = table.Column<int>(type: "int", nullable: true),
                 IntermediatePoints = table.Column<string>(type: "nvarchar(max)", nullable: false),
                 Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                 Modified = table.Column<DateTime>(type: "datetime2", nullable: false)
             },
             constraints: table =>
             {
-                _ = table.PrimaryKey("PK_RouteSection", x => x.Id);
+                _ = table.PrimaryKey("PK_RouteSections", x => x.Id);
                 _ = table.ForeignKey(
-                    name: "FK_RouteSection_Orders_FirstOrderId",
+                    name: "FK_RouteSections_Orders_FirstOrderId",
                     column: x => x.FirstOrderId,
                     principalTable: "Orders",
                     principalColumn: "Id");
                 _ = table.ForeignKey(
-                    name: "FK_RouteSection_Orders_LastOrderId",
+                    name: "FK_RouteSections_Orders_LastOrderId",
                     column: x => x.LastOrderId,
                     principalTable: "Orders",
-                    principalColumn: "Id",
-                    onDelete: ReferentialAction.Cascade);
+                    principalColumn: "Id");
                 _ = table.ForeignKey(
-                    name: "FK_RouteSection_Routes_RouteId",
+                    name: "FK_RouteSections_Routes_RouteId",
                     column: x => x.RouteId,
                     principalTable: "Routes",
                     principalColumn: "Id",
@@ -153,18 +179,23 @@ public partial class Init : Migration
             column: "CourierId");
 
         _ = migrationBuilder.CreateIndex(
-            name: "IX_RouteSection_FirstOrderId",
-            table: "RouteSection",
+            name: "IX_Routes_RouteSetId",
+            table: "Routes",
+            column: "RouteSetId");
+
+        _ = migrationBuilder.CreateIndex(
+            name: "IX_RouteSections_FirstOrderId",
+            table: "RouteSections",
             column: "FirstOrderId");
 
         _ = migrationBuilder.CreateIndex(
-            name: "IX_RouteSection_LastOrderId",
-            table: "RouteSection",
+            name: "IX_RouteSections_LastOrderId",
+            table: "RouteSections",
             column: "LastOrderId");
 
         _ = migrationBuilder.CreateIndex(
-            name: "IX_RouteSection_RouteId",
-            table: "RouteSection",
+            name: "IX_RouteSections_RouteId",
+            table: "RouteSections",
             column: "RouteId");
     }
 
@@ -172,7 +203,7 @@ public partial class Init : Migration
     protected override void Down(MigrationBuilder migrationBuilder)
     {
         _ = migrationBuilder.DropTable(
-            name: "RouteSection");
+            name: "RouteSections");
 
         _ = migrationBuilder.DropTable(
             name: "Users");
@@ -188,5 +219,8 @@ public partial class Init : Migration
 
         _ = migrationBuilder.DropTable(
             name: "Couriers");
+
+        _ = migrationBuilder.DropTable(
+            name: "RouteSets");
     }
 }

@@ -5,8 +5,6 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A6824F0B-3BF7-4656-B9D9-B40FB3DAA0C1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7B199A9A-5AA4-4F87-B59E-0BE99CD1AD69}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{484875BC-EED6-4F77-BACC-C030AB7F7303}"
 	ProjectSection(SolutionItems) = preProject
 		..\.editorconfig = ..\.editorconfig
@@ -24,8 +22,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProLab.Api", "..\src\ProLab.Api\ProLab.Api.csproj", "{BCBF9871-A077-4B6C-A167-A8B77CED024B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProLab.App", "..\src\ProLab.App\ProLab.App.csproj", "{26EB159A-D9C1-4B45-A323-CA44554433E6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProLab.Shared.Models", "..\src\ProLab.Shared.Models\ProLab.Shared.Models.csproj", "{A7C2AF11-FA2E-404A-AC49-80DD32EAC10F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{8B3441CB-A479-4F6A-A652-D4EB7A0CF5CF}"
 EndProject
@@ -55,10 +51,6 @@ Global
 		{26EB159A-D9C1-4B45-A323-CA44554433E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26EB159A-D9C1-4B45-A323-CA44554433E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26EB159A-D9C1-4B45-A323-CA44554433E6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7C2AF11-FA2E-404A-AC49-80DD32EAC10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7C2AF11-FA2E-404A-AC49-80DD32EAC10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7C2AF11-FA2E-404A-AC49-80DD32EAC10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7C2AF11-FA2E-404A-AC49-80DD32EAC10F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,7 +61,6 @@ Global
 		{924E7ACA-F88F-438C-BB6D-5547E9E69826} = {A6824F0B-3BF7-4656-B9D9-B40FB3DAA0C1}
 		{BCBF9871-A077-4B6C-A167-A8B77CED024B} = {8B3441CB-A479-4F6A-A652-D4EB7A0CF5CF}
 		{26EB159A-D9C1-4B45-A323-CA44554433E6} = {8B3441CB-A479-4F6A-A652-D4EB7A0CF5CF}
-		{A7C2AF11-FA2E-404A-AC49-80DD32EAC10F} = {8B3441CB-A479-4F6A-A652-D4EB7A0CF5CF}
 		{8B3441CB-A479-4F6A-A652-D4EB7A0CF5CF} = {A6824F0B-3BF7-4656-B9D9-B40FB3DAA0C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

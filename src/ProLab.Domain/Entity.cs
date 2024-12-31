@@ -2,10 +2,10 @@
 
 public abstract class Entity<T> : IEntity<T>, IAuditable
 {
-    public required T Id { get; set; }
+    public T Id { get; set; }
 
-    public required DateTime Created { get; set; } = DateTime.UtcNow;
-    public required DateTime Modified { get; set; } = DateTime.UtcNow;
+    public DateTime Created { get; set; } = DateTime.UtcNow;
+    public DateTime Modified { get; set; } = DateTime.UtcNow;
 
     //public Guid CreatedById { get; set; }
     //public virtual required User CreatedBy { get; set; }

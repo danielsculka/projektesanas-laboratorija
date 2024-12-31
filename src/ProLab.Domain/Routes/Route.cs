@@ -2,10 +2,13 @@
 
 namespace ProLab.Domain.Routes;
 
-public class Route : Entity<Guid>
+public class Route : Entity<int>
 {
-    public Guid CourierId { get; set; }
-    public virtual required Courier Courier { get; set; }
+    public int CourierId { get; set; }
+    public virtual Courier Courier { get; set; }
+
+    public int RouteSetId { get; set; }
+    public virtual RouteSet RouteSet { get; set; }
 
     public virtual ICollection<RouteSection> Sections { get; set; } = new List<RouteSection>();
 }

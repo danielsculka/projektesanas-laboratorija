@@ -26,7 +26,7 @@ public class AppDbContext : DbContext, IAppDbContext
 
     public DbSet<Courier> Couriers { get; set; }
     public DbSet<Order> Orders { get; set; }
-    public DbSet<Route> Routes { get; set; }
+    public DbSet<RouteSet> RouteSets { get; set; }
     public DbSet<Warehouse> Warehouses { get; set; }
     public DbSet<User> Users { get; set; }
 
@@ -36,13 +36,13 @@ public class AppDbContext : DbContext, IAppDbContext
     {
         ConvertEnumToString(modelBuilder);
 
-        //modelBuilder.Entity<Order>()
-        //    .OwnsOne(o => o.Address);
+        _ = modelBuilder.Entity<Route>(entity =>
+            _ = entity.ToTable("Routes")
+        );
 
-        //_ = modelBuilder.Entity<Order>(entity =>
-        //{
-        //    _ = entity.OwnsOne(o => o.Address);
-        //});
+        _ = modelBuilder.Entity<RouteSection>(entity =>
+            _ = entity.ToTable("RouteSections")
+        );
 
         base.OnModelCreating(modelBuilder);
     }

@@ -4,6 +4,7 @@ using ProLab.Domain.Orders;
 using ProLab.Domain.Routes;
 using ProLab.Domain.Users;
 using ProLab.Domain.Warehouses;
+
 namespace ProLab.Application;
 
 public interface IAppDbContext
@@ -13,7 +14,7 @@ public interface IAppDbContext
 
     DbSet<Courier> Couriers { get; }
     DbSet<Order> Orders { get; }
-    DbSet<Route> Routes { get; }
+    DbSet<RouteSet> RouteSets { get; }
     DbSet<Warehouse> Warehouses { get; }
     DbSet<User> Users { get; }
 }

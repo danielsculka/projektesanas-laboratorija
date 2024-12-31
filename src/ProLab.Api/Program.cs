@@ -14,6 +14,6 @@ public class Program
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
+            .SerilogConfiguration()
             .ConfigureWebHostDefaults(webBuilder => _ = webBuilder.UseStartup<Startup>());
-
 }

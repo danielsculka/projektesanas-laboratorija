@@ -4,12 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProLab.Domain.Warehouses;
 
-public class Warehouse : Entity<Guid>
+public class Warehouse : Entity<int>
 {
+    [Required]
     [MaxLength(50)]
-    public required string Name { get; set; }
+    public string Name { get; set; }
 
-    public required Address Address { get; set; }
+    [Required]
+    public Address Address { get; set; }
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 }

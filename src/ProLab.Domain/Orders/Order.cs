@@ -4,13 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProLab.Domain.Orders;
 
-public class Order : Entity<Guid>
+public class Order : Entity<int>
 {
+    [Required]
     [MaxLength(50)]
-    public required string Number { get; set; }
+    public string Number { get; set; }
 
-    public required Address Address { get; set; }
+    [Required]
+    public Address Address { get; set; }
 
-    public Guid WarehouseId { get; set; }
-    public virtual required Warehouse Warehouse { get; set; }
+    public int WarehouseId { get; set; }
+    public virtual Warehouse Warehouse { get; set; }
 }

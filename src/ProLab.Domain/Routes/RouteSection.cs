@@ -1,17 +1,19 @@
 ﻿using ProLab.Domain.Orders;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProLab.Domain.Routes;
 
-public class RouteSection : Entity<Guid>
+public class RouteSection : Entity<int>
 {
-    public Guid RouteId { get; set; }
-    public virtual required Route Route { get; set; }
+    public int RouteId { get; set; }
+    public virtual Route Route { get; set; }
 
-    public Guid? FirstOrderId { get; set; }
+    public int? FirstOrderId { get; set; }
     public virtual Order FirstOrder { get; set; }
 
-    public Guid LastOrderId { get; set; }
-    public virtual required Order LastOrder { get; set; }
+    public int? LastOrderId { get; set; }
+    public virtual Order LastOrder { get; set; }
 
-    public required string IntermediatePoints { get; set; }
+    [Required]
+    public string IntermediatePoints { get; set; }
 }
