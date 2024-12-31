@@ -1,4 +1,7 @@
-﻿using ProLab.Application.Extensions;
+﻿using FastEndpoints;
+using FastEndpoints.Swagger;
+using ProLab.Api.Core;
+using ProLab.Application.Extensions;
 using ProLab.Infrastructure.Extensions;
 
 namespace ProLab.Api;
@@ -16,28 +19,8 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        _ = services.AddControllers();
-
-        _ = services.AddEndpointsApiExplorer();
-        _ = services.AddSwaggerGen();
-
-        //_ = services.AddAuthentication(options =>
-        //{
-        //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        //}).AddJwtBearer(options =>
-        //{
-        //    options.RequireHttpsMetadata = false;
-        //    options.SaveToken = true;
-        //    options.TokenValidationParameters = new TokenValidationParameters
-        //    {
-        //        ValidateIssuerSigningKey = true,
-        //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Auth:TokenSecurityKey"]!)),
-        //        ValidateIssuer = false,
-        //        ValidateAudience = false,
-        //        ClockSkew = TimeSpan.Zero
-        //    };
-        //});
+        _ = services.AddFastEndpoints();
+        _ = services.SwaggerDocument();
 
         _ = services.AddApplication();
         _ = services.AddInfrastructure(Configuration);
@@ -47,15 +30,22 @@ public class Startup
     {
         if (env.IsDevelopment())
         {
-            _ = app.UseSwagger();
-            _ = app.UseSwaggerUI();
+            _ = app.UseSwaggerGen();
         }
+
+        _ = app.UseMiddleware<GlobalExceptionMiddleware>();
 
         _ = app.UseHttpsRedirection();
 
-        //_ = app.UseAuthorization();
-
-        //app.MapControllers();
+        _ = app.UseRouting();
+        _ = app.UseEndpoints(endpoints =>
+        {
+            _ = endpoints.MapFastEndpoints(c =>
+            {
+                c.Endpoints.RoutePrefix = "api";
+                c.Errors.UseProblemDetails();
+            });
+        });
     }
 }
 
