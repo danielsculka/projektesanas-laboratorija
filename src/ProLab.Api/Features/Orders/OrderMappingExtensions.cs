@@ -15,6 +15,8 @@ internal static class OrderMappingExtensions
         {
             Number = request.Number,
             Address = request.Address,
+            StartDate = request.StartDate,
+            EndDate = request.EndDate,
             WarehouseId = request.WarehouseId
         };
     }
@@ -25,6 +27,8 @@ internal static class OrderMappingExtensions
         {
             Number = request.Number,
             Address = request.Address,
+            StartDate = request.StartDate,
+            EndDate = request.EndDate,
             WarehouseId = request.WarehouseId
         };
     }

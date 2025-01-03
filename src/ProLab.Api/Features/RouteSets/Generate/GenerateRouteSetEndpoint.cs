@@ -1,28 +1,28 @@
 ﻿using FastEndpoints;
 using FluentResults;
 using ProLab.Api.Extensions;
-using ProLab.Application.Routes;
+using ProLab.Application.RouteSets;
 
-namespace ProLab.Api.Features.Routes.Generate;
+namespace ProLab.Api.Features.RouteSets.Generate;
 
 public class GenerateRouteSetEndpoint : Endpoint<GenerateRouteSetRequest>
 {
-    private readonly IRouteService _routeService;
+    private readonly IRouteSetService _routeService;
 
-    public GenerateRouteSetEndpoint(IRouteService routeService)
+    public GenerateRouteSetEndpoint(IRouteSetService routeService)
     {
         _routeService = routeService;
     }
 
     public override void Configure()
     {
-        Post("/generateSet");
-        Group<RouteGroup>();
+        Post("/generate");
+        Group<RouteSetGroup>();
     }
 
     public override async Task HandleAsync(GenerateRouteSetRequest request, CancellationToken cancellationToken)
     {
-        Result result = await _routeService.GenerateSetAsync(request.ToCommand(), cancellationToken);
+        Result result = await _routeService.GenerateAsync(request.ToCommand(), cancellationToken);
 
         await this.SendResultAsync(result, cancellationToken);
     }
