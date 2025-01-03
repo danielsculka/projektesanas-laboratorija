@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using FastEndpoints.Swagger;
 
 namespace ProLab.Api.Features.RouteSets;
 
@@ -9,7 +10,7 @@ public class RouteSetGroup : Group
         Configure("routeSets", ep =>
         {
             ep.AllowAnonymous();
-            ep.Description(d => d.WithTags("RouteSets"));
+            ep.Description(d => d.AutoTagOverride("Route sets"));
         });
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using FastEndpoints.Swagger;
 
 namespace ProLab.Api.Features.Orders;
 
@@ -9,7 +10,7 @@ public class OrderGroup : Group
         Configure("orders", ep =>
         {
             ep.AllowAnonymous();
-            ep.Description(d => d.WithTags("Orders"));
+            ep.Description(d => d.AutoTagOverride("Orders"));
         });
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FastEndpoints;
+using FastEndpoints.Swagger;
 
 namespace ProLab.Api.Features.Couriers;
 
@@ -9,7 +10,7 @@ public class CourierGroup : Group
         Configure("couriers", ep =>
         {
             ep.AllowAnonymous();
-            ep.Description(d => d.WithTags("Couriers"));
+            ep.Description(d => d.AutoTagOverride("Couriers"));
         });
     }
 }

@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "ProLab",
+    "Projects": [
+      {
+        "Path": "..\\src\\ProLab.Api\\ProLab.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "ProLab.Api"
+      },
+      {
+        "Path": "..\\src\\ProLab.App\\ProLab.App.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]
