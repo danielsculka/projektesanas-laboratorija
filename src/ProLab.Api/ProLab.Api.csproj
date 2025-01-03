@@ -19,5 +19,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\ProLab.Application\ProLab.Application.csproj" />
     <ProjectReference Include="..\..\src\ProLab.Infrastructure\ProLab.Infrastructure.csproj" />
+    <ProjectReference Include="..\ProLab.Shared\ProLab.Shared.csproj" />
   </ItemGroup>
 </Project>

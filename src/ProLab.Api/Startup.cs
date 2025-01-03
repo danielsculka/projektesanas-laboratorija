@@ -20,17 +20,39 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         _ = services.AddFastEndpoints();
-        _ = services.SwaggerDocument();
+        _ = services.SwaggerDocument(options =>
+        {
+            options.ShortSchemaNames = true;
+            options.DocumentSettings = settings =>
+            {
+                settings.Title = "API";
+                settings.Version = "V1";
+            };
+        });
 
         _ = services.AddApplication();
         _ = services.AddInfrastructure(Configuration);
+
+        _ = services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(policy =>
+            {
+                _ = policy
+                    .WithOrigins(Configuration["App:Url"]!)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+        });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         if (env.IsDevelopment())
         {
-            _ = app.UseSwaggerGen();
+            _ = app.UseSwaggerGen(uiConfig: config =>
+            {
+                config.Path = Configuration["Swagger:Path"]!;
+            });
         }
 
         _ = app.UseMiddleware<GlobalExceptionMiddleware>();
@@ -38,12 +60,16 @@ public class Startup
         _ = app.UseHttpsRedirection();
 
         _ = app.UseRouting();
+
+        _ = app.UseCors();
+
         _ = app.UseEndpoints(endpoints =>
         {
-            _ = endpoints.MapFastEndpoints(c =>
+            _ = endpoints.MapFastEndpoints(config =>
             {
-                c.Endpoints.RoutePrefix = "api";
-                c.Errors.UseProblemDetails();
+                config.Endpoints.RoutePrefix = "api";
+                config.Endpoints.ShortNames = true;
+                config.Errors.UseProblemDetails();
             });
         });
     }

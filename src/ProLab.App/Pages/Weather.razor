@@ -1,4 +1,5 @@
 ﻿@page "/weather"
+@using ProLab.Shared.Couriers.Response
 @inject HttpClient Http
 
 <PageTitle>Weather</PageTitle>
@@ -7,7 +8,7 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
+@if (response == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -16,20 +17,18 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var forecast in response.Items)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@forecast.Id</td>
+                    <td>@forecast.FirstName</td>
+                    <td>@forecast.LastName</td>
                 </tr>
             }
         </tbody>
@@ -37,21 +36,10 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private GetCourierListResponse? response;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-    }
-
-    public class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        response = await Http.GetFromJsonAsync<GetCourierListResponse>("api/couriers");
     }
 }

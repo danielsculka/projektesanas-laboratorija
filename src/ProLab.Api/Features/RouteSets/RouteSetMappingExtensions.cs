@@ -1,5 +1,5 @@
-﻿using ProLab.Api.Features.RouteSets.Generate;
-using ProLab.Application.RouteSets.Commands;
+﻿using ProLab.Application.RouteSets.Commands;
+using ProLab.Shared.RouteSets;
 
 namespace ProLab.Api.Features.RouteSets;
 
