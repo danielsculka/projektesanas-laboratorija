@@ -1,9 +1,9 @@
 ﻿using FluentResults;
-using ProLab.Application.Routes.Commands;
+using ProLab.Application.RouteSets.Commands;
 
-namespace ProLab.Application.Routes;
+namespace ProLab.Application.RouteSets;
 
-public interface IRouteService
+public interface IRouteSetService
 {
     /// <summary>
     /// Generate a route set.
@@ -11,5 +11,5 @@ public interface IRouteService
     /// <param name="command">Route set generation data.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns></returns>
-    Task<Result> GenerateSetAsync(GenerateRouteSetCommand command, CancellationToken cancellationToken);
+    Task<Result> GenerateAsync(GenerateRouteSetCommand command, CancellationToken cancellationToken);
 }

@@ -11,6 +11,8 @@ internal static class OrderMapper
     public static Order ToEntity(this CreateOrderCommand command, Order entity)
     {
         entity.Number = command.Number;
+        entity.StartDate = command.StartDate;
+        entity.EndDate = command.EndDate;
         entity.WarehouseId = command.WarehouseId;
 
         _ = command.Address.ToEntity(entity.Address);
@@ -21,6 +23,8 @@ internal static class OrderMapper
     public static Order ToEntity(this UpdateOrderCommand command, Order entity)
     {
         entity.Number = command.Number;
+        entity.StartDate = command.StartDate;
+        entity.EndDate = command.EndDate;
         entity.WarehouseId = command.WarehouseId;
 
         _ = command.Address.ToEntity(entity.Address);
@@ -34,7 +38,9 @@ internal static class OrderMapper
         {
             Id = order.Id,
             Number = order.Number,
-            Address = order.Address.FromEntity()
+            Address = order.Address.FromEntity(),
+            StartDate = order.StartDate,
+            EndDate = order.EndDate
         };
     }
 
@@ -44,7 +50,9 @@ internal static class OrderMapper
         {
             Id = order.Id,
             Number = order.Number,
-            Address = order.Address.FromEntity()
+            Address = order.Address.FromEntity(),
+            StartDate = order.StartDate,
+            EndDate = order.EndDate
         };
     }
 }
