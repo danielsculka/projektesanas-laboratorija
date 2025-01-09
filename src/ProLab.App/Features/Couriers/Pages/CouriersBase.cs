@@ -3,6 +3,9 @@ using ProLab.Shared.Common;
 using ProLab.Shared.Couriers.Request;
 using ProLab.Shared.Couriers.Response;
 using Radzen;
+using Radzen.Blazor;
+using ProLab.App.Features.Couriers.CourierForms;
+using ProLab.Shared.Couriers.Response;
 
 namespace ProLab.App.Features.Couriers.Pages;
 
@@ -10,6 +13,9 @@ public class CouriersBase : ComponentBase
 {
     [Inject]
     public ICourierService CourierService { get; set; }
+
+    [Inject]
+    public DialogService DialogService { get; set; }
 
     public bool IsLoading = false;
 
@@ -39,4 +45,46 @@ public class CouriersBase : ComponentBase
 
         IsLoading = false;
     }
+
+    public async Task OnAddClick()
+    {
+        var newCourier = new GetCourierListResponse.ItemData();
+
+        CreateCourierRequest result = await DialogService.OpenAsync<CourierForm>("Add courier", new Dictionary<string, object>
+    {
+        { "Courier", newCourier }
+    });
+
+        if (result != null)
+        {
+            CourierService.CreateAsync(result);
+        }
+
+    }
+
+    public async Task OnEditClick(GetCourierListResponse.ItemData courier)
+    {
+        UpdateCourierRequest result = await DialogService.OpenAsync<CourierForm>("Edit courier", new Dictionary<string, object>
+    {
+        { "Courier", courier }
+    });
+
+        if (result != null)
+        {
+            CourierService.UpdateAsync(courier.Id, result);
+        }
+
+    }
+
+    public async Task OnDeleteClick(GetCourierListResponse.ItemData courier)
+    {
+        var confirmed = await DialogService.Confirm("Are you sure?", "Delete courier " + courier.Id, new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
+
+        if (confirmed == true)
+        {
+            CourierService.DeleteAsync(courier.Id);
+        }
+
+    }
 }
+

@@ -2,6 +2,8 @@
 @inherits CouriersBase
 
 @using ProLab.Shared.Couriers.Response
+@using Radzen
+@using Radzen.Blazor
 
 <h3>Couriers</h3>
 
@@ -17,5 +19,12 @@
         <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.Id)" Title="ID" />
         <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.FirstName)" Title="First name" />
         <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.LastName)" Title="Last Name" />
+        <RadzenDataGridColumn Title="Actions">
+            <Template Context="item">
+                <RadzenButton Text="Edit" Icon="edit" Click="@(args => OnEditClick(item))" Style="margin-right: 5px;" />
+                <RadzenButton Text="Delete" Icon="delete" Click="@(args => OnDeleteClick(item))" ButtonStyle="ButtonStyle.Danger" />
+            </Template>
+        </RadzenDataGridColumn>
     </Columns>
 </RadzenDataGrid>
+<RadzenButton Text="Add" Click=@OnAddClick />

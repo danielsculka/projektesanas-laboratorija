@@ -29,4 +29,52 @@ public class CourierService : ICourierService
             throw;
         }
     }
+
+    public async Task<int> CreateAsync(CreateCourierRequest request)
+    {
+        try
+        {
+            string url = c_baseUr;
+
+            var result = await _httpClient.PostAsJsonAsync(url, request);
+
+            return await result.Content.ReadFromJsonAsync<int>();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<int> UpdateAsync(int id, UpdateCourierRequest request)
+    {
+        try
+        {
+            string url = $"{c_baseUr}/{id}";
+
+            var result = await _httpClient.PutAsJsonAsync(url, request);
+
+            return await result.Content.ReadFromJsonAsync<int>();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+
+    public async Task<int> DeleteAsync(int id)
+    {
+        try
+        {
+            string url = $"{c_baseUr}/{id}";
+
+            var result = await _httpClient.DeleteAsync(url);
+
+            return await result.Content.ReadFromJsonAsync<int>();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
 }
