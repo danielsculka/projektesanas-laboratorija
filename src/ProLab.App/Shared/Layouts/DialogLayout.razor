@@ -1,0 +1,15 @@
+﻿@inherits LayoutComponentBase
+
+<RadzenStack Orientation="Orientation.Vertical" Gap="2rem">
+    <RadzenColumn>
+        @Body
+    </RadzenColumn>
+
+    <RadzenStack Orientation="Orientation.Horizontal" Gap="1rem">
+        @Actions
+    </RadzenStack>
+</RadzenStack>
+
+@code {
+    [Parameter] public RenderFragment Actions { get; set; }
+}

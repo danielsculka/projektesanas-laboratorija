@@ -14,6 +14,6 @@
     <ProjectReference Include="..\ProLab.Shared\ProLab.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Couriers\Components\" />
+    <Folder Include="Shared\Components\" />
   </ItemGroup>
 </Project>

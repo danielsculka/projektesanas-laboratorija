@@ -1,0 +1,28 @@
+﻿@using ProLab.Shared.Couriers.Response
+@using ProLab.Shared.Couriers.Request
+@using Microsoft.AspNetCore.Components.Web
+
+@inherits CourierUpdateDialogBase
+
+<DialogLayout>
+	<Body>
+		<FormLayout>
+			<Body>
+				<RadzenColumn>
+					<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">First name</RadzenText>
+					<RadzenTextBox @bind-Value="Courier.FirstName" class="rz-w-100" />
+				</RadzenColumn>
+
+				<RadzenColumn>
+					<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Last name</RadzenText>
+					<RadzenTextBox @bind-Value="Courier.LastName" class="rz-w-100" />
+				</RadzenColumn>
+			</Body>
+		</FormLayout>
+	</Body>
+
+	<Actions>
+		<RadzenButton Text="Update" Click="Update" Variant="Variant.Flat" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+		<RadzenButton Text="Cancel" Click="Cancel" Variant="Variant.Flat" ButtonStyle="ButtonStyle.Base" class="rz-ripple" />
+	</Actions>
+</DialogLayout>
