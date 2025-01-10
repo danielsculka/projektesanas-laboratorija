@@ -1,0 +1,30 @@
+﻿@using ProLab.App.Shared.Layouts
+@using ProLab.Shared.Warehouses.Response
+@using ProLab.Shared.Warehouses.Requests
+@using Microsoft.AspNetCore.Components.Web
+@using Radzen.Blazor
+
+@inherits WarehouseCreateDialogBase
+
+<DialogLayout>
+	<Body>
+		<FormLayout>
+			<Body>
+				<RadzenColumn>
+					<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Name</RadzenText>
+					<RadzenTextBox @bind-Value="Warehouse.Name" class="rz-w-100" />
+				</RadzenColumn>
+
+				<RadzenColumn>
+					<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Adress</RadzenText>
+					<RadzenTextBox @bind-Value="Warehouse.Address.Street" class="rz-w-100" />
+				</RadzenColumn>
+			</Body>
+		</FormLayout>
+	</Body>
+
+	<Actions>
+		<RadzenButton Text="Create" Click="Create" Variant="Variant.Flat" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
+		<RadzenButton Text="Cancel" Click="Cancel" Variant="Variant.Flat" ButtonStyle="ButtonStyle.Base" class="rz-ripple" />
+	</Actions>
+</DialogLayout>
