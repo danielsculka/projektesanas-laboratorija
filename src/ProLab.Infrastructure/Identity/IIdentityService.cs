@@ -1,7 +1,15 @@
-﻿namespace ProLab.Infrastructure.Identity;
+﻿using FluentResults;
+using ProLab.Application.Auth.Commands;
+using ProLab.Domain.Users;
+
+namespace ProLab.Infrastructure.Identity;
 
 public interface IIdentityService
 {
+    Task<Result> Register(CreateUserCommand command, CancellationToken cancellationToken = default);
+
+    Task<Result<User>> Login(CreateLoginCommand command, CancellationToken cancellationToken = default);
+
     ///// <summary>
     ///// Get user logins.
     ///// </summary>

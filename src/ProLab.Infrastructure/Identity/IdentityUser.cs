@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProLab.Infrastructure.Identity;
 
-public class IdentityUserLogin : Entity<Guid>
+public class IdentityUser : Entity<Guid>
 {
 
     [MaxLength(100)]
@@ -16,6 +16,4 @@ public class IdentityUserLogin : Entity<Guid>
 
     public Guid UserId { get; set; }
     public virtual User User { get; set; }
-
-    //public virtual ICollection<IdentityRefreshToken> RefreshTokens { get; protected set; } = new List<IdentityRefreshToken>();
 }

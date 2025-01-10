@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ProLab.Application;
 using ProLab.Application.OpenRoute;
 using ProLab.Infrastructure.Database;
+using ProLab.Infrastructure.Identity;
 using ProLab.Infrastructure.OpenRoute;
 
 namespace ProLab.Infrastructure.Extensions;
@@ -29,6 +30,8 @@ public static class IServiceCollectionExtensions
 
         _ = services.AddHttpClient<IOpenRouteClient, OpenRouteClient>();
         _ = services.AddScoped<IOpenRouteService, OpenRouteService>();
+        _ = services.AddScoped<IIdentityService, IdentityService>();
+        _ = services.AddScoped<IPasswordService, PasswordService>();
 
         return services;
     }

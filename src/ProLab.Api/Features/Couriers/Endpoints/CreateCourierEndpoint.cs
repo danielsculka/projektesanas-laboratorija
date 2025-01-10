@@ -1,11 +1,13 @@
 ﻿using FastEndpoints;
 using FluentResults;
+using Microsoft.AspNetCore.Authorization;
 using ProLab.Api.Extensions;
 using ProLab.Application.Couriers;
 using ProLab.Shared.Couriers.Request;
 
 namespace ProLab.Api.Features.Couriers.Endpoints;
 
+[Authorize]
 public class CreateCourierEndpoint : Endpoint<CreateCourierRequest, int>
 {
     private readonly ICourierService _courierService;
