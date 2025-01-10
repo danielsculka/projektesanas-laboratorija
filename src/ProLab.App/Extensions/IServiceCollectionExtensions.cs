@@ -1,7 +1,9 @@
 ﻿using FisSst.BlazorMaps;
 using FisSst.BlazorMaps.DependencyInjection;
 using ProLab.App.Features.Couriers;
+using ProLab.App.Features.Orders;
 using ProLab.App.Features.RouteSets;
+using ProLab.App.Features.Warehouses;
 using Radzen;
 
 namespace ProLab.App.Extensions;
@@ -26,6 +28,8 @@ public static class IServiceCollectionExtensions
 
         _ = services.AddScoped<ICourierService, CourierService>();
         _ = services.AddScoped<IRouteSetService, RouteSetService>();
+        _ = services.AddScoped<IWarehouseService, WarehouseService>();
+        _ = services.AddScoped<IOrderService, OrderService>();
 
         _ = services.AddRadzenComponents();
         _ = services.AddBlazorLeafletMaps();

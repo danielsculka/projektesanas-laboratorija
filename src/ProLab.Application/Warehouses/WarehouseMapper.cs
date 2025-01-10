@@ -1,6 +1,7 @@
 ﻿using ProLab.Application.Addresses;
 using ProLab.Application.Warehouses.Commands;
 using ProLab.Application.Warehouses.Results;
+using ProLab.Domain.Addresses;
 using ProLab.Domain.Warehouses;
 using System.Linq.Expressions;
 
@@ -12,7 +13,7 @@ internal static class WarehouseMapper
     {
         entity.Name = command.Name;
 
-        _ = command.Address.ToEntity(entity.Address);
+        entity.Address = command.Address.ToEntity(new Address());
 
         return entity;
     }

@@ -8,9 +8,9 @@ public class GetOrderListResponse : PagedListResponse<GetOrderListResponse.ItemD
     public class ItemData
     {
         public int Id { get; set; }
-        public string Number { get; set; }
-        public AddressData Address { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public required string Number { get; set; }
+        public required AddressData Address { get; set; }
+        public TimeOnly StartTime { get; set; }
+        public TimeOnly EndTime { get; set; }
     }
 }

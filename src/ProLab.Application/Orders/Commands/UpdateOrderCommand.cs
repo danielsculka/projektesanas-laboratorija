@@ -4,9 +4,9 @@ namespace ProLab.Application.Orders.Commands;
 
 public class UpdateOrderCommand
 {
-    public string Number { get; set; }
-    public AddressData Address { get; set; }
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+    public required string Number { get; set; }
+    public required AddressData Address { get; set; }
+    public TimeOnly StartTime { get; set; }
+    public TimeOnly EndTime { get; set; }
     public int WarehouseId { get; set; }
 }

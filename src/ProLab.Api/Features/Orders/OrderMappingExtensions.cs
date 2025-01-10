@@ -17,8 +17,8 @@ internal static class OrderMappingExtensions
         {
             Number = request.Number,
             Address = request.Address.ToData(),
-            StartDate = request.StartDate,
-            EndDate = request.EndDate,
+            StartTime = request.StartTime,
+            EndTime = request.EndTime,
             WarehouseId = request.WarehouseId
         };
     }
@@ -29,8 +29,8 @@ internal static class OrderMappingExtensions
         {
             Number = request.Number,
             Address = request.Address.ToData(),
-            StartDate = request.StartDate,
-            EndDate = request.EndDate,
+            StartTime = request.StartTime,
+            EndTime = request.EndTime,
             WarehouseId = request.WarehouseId
         };
     }
@@ -59,8 +59,8 @@ internal static class OrderMappingExtensions
             Id = result.Id,
             Number = result.Number,
             Address = result.Address.ToData(),
-            StartDate = result.StartDate,
-            EndDate = result.EndDate
+            StartTime = result.StartTime,
+            EndTime = result.EndTime
         };
     }
 
@@ -73,8 +73,8 @@ internal static class OrderMappingExtensions
                 Id = item.Id,
                 Number = item.Number,
                 Address = item.Address.ToData(),
-                StartDate = item.StartDate,
-                EndDate = item.EndDate
+                StartTime = item.StartTime,
+                EndTime = item.EndTime
             }),
             TotalCount = result.TotalCount,
             PageSize = result.PageSize,

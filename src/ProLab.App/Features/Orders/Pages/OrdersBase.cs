@@ -1,26 +1,26 @@
 ﻿using Microsoft.AspNetCore.Components;
-using ProLab.App.Features.Couriers.Dialogs;
+using ProLab.App.Features.Orders.Dialogs;
 using ProLab.Shared.Common;
-using ProLab.Shared.Couriers.Request;
-using ProLab.Shared.Couriers.Response;
+using ProLab.Shared.Orders.Requests;
+using ProLab.Shared.Orders.Response;
 using Radzen;
 using Radzen.Blazor;
 
-namespace ProLab.App.Features.Couriers.Pages;
+namespace ProLab.App.Features.Orders.Pages;
 
-public class CouriersBase : ComponentBase
+public class OrdersBase : ComponentBase
 {
     [Inject]
-    public required ICourierService CourierService { get; set; }
+    public required IOrderService OrderService { get; set; }
 
     [Inject]
     public required DialogService DialogService { get; set; }
 
-    protected RadzenDataGrid<GetCourierListResponse.ItemData> Grid;
+    protected RadzenDataGrid<GetOrderListResponse.ItemData> Grid;
 
     public bool IsLoading = false;
 
-    public IEnumerable<GetCourierListResponse.ItemData> Items;
+    public IEnumerable<GetOrderListResponse.ItemData> Items;
     public int Count = 0;
     public int PageSize = 5;
 
@@ -30,16 +30,16 @@ public class CouriersBase : ComponentBase
 
         await Task.Yield();
 
-        var request = new GetCourierListRequest
+        var request = new GetOrderListRequest
         {
             Paging = new PagingData
             {
-                CurrentPage = args.Skip.HasValue ? (args.Skip.Value / PageSize) + 1 : 1,
+                CurrentPage = args.Skip.HasValue ? args.Skip.Value / PageSize + 1 : 1,
                 PageSize = PageSize
             }
         };
 
-        GetCourierListResponse pagedList = await CourierService.GetListAsync(request);
+        GetOrderListResponse pagedList = await OrderService.GetListAsync(request);
 
         Items = pagedList.Items;
         Count = pagedList.TotalCount;
@@ -49,34 +49,30 @@ public class CouriersBase : ComponentBase
 
     public async Task OnAdd()
     {
-        bool? result = await DialogService.OpenAsync<CourierCreateDialog>("Create courier");
+        bool? result = await DialogService.OpenAsync<OrderCreateDialog>("Create order");
 
         if (result.HasValue && result.Value)
-        {
             await Grid.RefreshDataAsync();
-        }
     }
 
-    public async Task OnEdit(GetCourierListResponse.ItemData courier)
+    public async Task OnEdit(GetOrderListResponse.ItemData order)
     {
-        bool? result = await DialogService.OpenAsync<CourierUpdateDialog>(
-            "Update courier",
+        bool? result = await DialogService.OpenAsync<OrderUpdateDialog>(
+            "Update order",
             new Dictionary<string, object>
             {
-                { "CourierId", courier.Id }
+                { "OrderId", order.Id }
             });
 
         if (result.HasValue && result.Value)
-        {
             await Grid.RefreshDataAsync();
-        }
     }
 
-    public async Task OnDelete(GetCourierListResponse.ItemData courier)
+    public async Task OnDelete(GetOrderListResponse.ItemData order)
     {
         var result = await DialogService.Confirm(
             "Are you sure?",
-            "Delete courier",
+            "Delete order",
             new ConfirmOptions()
             {
                 OkButtonText = "Yes",
@@ -85,7 +81,7 @@ public class CouriersBase : ComponentBase
 
         if (result.HasValue && result.Value)
         {
-            await CourierService.DeleteAsync(courier.Id);
+            await OrderService.DeleteAsync(order.Id);
 
             await Grid.RefreshDataAsync();
         }

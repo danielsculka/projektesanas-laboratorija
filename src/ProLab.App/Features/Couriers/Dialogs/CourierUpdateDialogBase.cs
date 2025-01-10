@@ -34,9 +34,9 @@ public class CourierUpdateDialogBase : ComponentBase
         DialogService.Close(false);
     }
 
-    protected void Update()
+    protected async Task Update()
     {
-        _ = CourierService.UpdateAsync(CourierId, Courier);
+        await CourierService.UpdateAsync(CourierId, Courier);
 
         DialogService.Close(true);
     }

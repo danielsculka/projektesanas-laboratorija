@@ -50,7 +50,6 @@ public class RouteSetService : IRouteSetService
                 while (unassignedOrders.Count != 0)
                 {
                     Order? nearestOrder = null;
-                    double minDistance = double.MaxValue;
                     Result<OpenRouteDirectionsResult> routeResult;
                     OpenRouteDirectionsResult route;
 
@@ -62,13 +61,13 @@ public class RouteSetService : IRouteSetService
                         {
                             route = routeResult.Value;
 
-                            DateTime arrivalDate = currentDate.AddSeconds(route.Duration);
+                            //DateTime arrivalDate = currentDate.AddSeconds(route.Duration);
 
-                            if (arrivalDate >= order.StartDate && arrivalDate <= order.EndDate && route.Distance < minDistance)
-                            {
-                                minDistance = route.Distance;
-                                nearestOrder = order;
-                            }
+                            //if (arrivalDate >= order.StartTime && arrivalDate <= order.EndTime && route.Distance < minDistance)
+                            //{
+                            //    minDistance = route.Distance;
+                            //    nearestOrder = order;
+                            //}
                         }
                     }
 

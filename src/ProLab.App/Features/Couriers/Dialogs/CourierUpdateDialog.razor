@@ -4,25 +4,46 @@
 
 @inherits CourierUpdateDialogBase
 
-<DialogLayout>
-	<Body>
-		<FormLayout>
-			<Body>
-				<RadzenColumn>
-					<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">First name</RadzenText>
-					<RadzenTextBox @bind-Value="Courier.FirstName" class="rz-w-100" />
-				</RadzenColumn>
+<RadzenTemplateForm TItem="UpdateCourierRequest" Data=@Courier Submit=@Update>
+	<DialogLayout>
+		<Body>
+			<FormLayout>
+				<Body>
+					<RadzenFormField Text="FirstName" Variant="Variant.Flat" class="rz-w-100">
+						<ChildContent>
+							<RadzenTextBox Name="FirstName" @bind-Value=@Courier.FirstName />
+						</ChildContent>
+						<Helper>
+							<RadzenRequiredValidator Component="FirstName" Text="First name is required." />
+						</Helper>
+					</RadzenFormField>
 
-				<RadzenColumn>
-					<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Last name</RadzenText>
-					<RadzenTextBox @bind-Value="Courier.LastName" class="rz-w-100" />
-				</RadzenColumn>
-			</Body>
-		</FormLayout>
-	</Body>
+					<RadzenFormField Text="LastName" Variant="Variant.Flat" class="rz-w-100">
+						<ChildContent>
+							<RadzenTextBox Name="LastName" @bind-Value=@Courier.LastName />
+						</ChildContent>
+						<Helper>
+							<RadzenRequiredValidator Component="LastName" Text="Last name is required." />
+						</Helper>
+					</RadzenFormField>
+				</Body>
+			</FormLayout>
+		</Body>
 
-	<Actions>
-		<RadzenButton Text="Update" Click="Update" Variant="Variant.Flat" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
-		<RadzenButton Text="Cancel" Click="Cancel" Variant="Variant.Flat" ButtonStyle="ButtonStyle.Base" class="rz-ripple" />
-	</Actions>
-</DialogLayout>
+		<Actions>
+			<RadzenButton 
+				Text="Update"
+				ButtonType="ButtonType.Submit"
+				Variant="Variant.Flat"
+				ButtonStyle="ButtonStyle.Primary"
+				class="rz-ripple" />
+
+			<RadzenButton 
+				Text="Cancel"
+				Variant="Variant.Flat"
+				ButtonStyle="ButtonStyle.Base"
+				Click="Cancel"
+				class="rz-ripple" />
+		</Actions>
+	</DialogLayout>
+</RadzenTemplateForm>

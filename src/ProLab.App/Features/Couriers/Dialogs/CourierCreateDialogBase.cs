@@ -19,9 +19,9 @@ public class CourierCreateDialogBase : ComponentBase
         DialogService.Close(false);
     }
 
-    protected void Create()
+    protected async Task Create()
     {
-        _ = CourierService.CreateAsync(Courier);
+        _ = await CourierService.CreateAsync(Courier);
 
         DialogService.Close(true);
     }

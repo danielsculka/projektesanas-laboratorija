@@ -112,3 +112,8 @@ code {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+.rz-data-grid.has-action-column thead tr th:nth-last-child(1) .rz-column-title-content {
+    margin-left: auto;
+    padding-right: 1rem;
+}

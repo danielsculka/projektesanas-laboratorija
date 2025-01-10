@@ -15,9 +15,15 @@
     <ProjectReference Include="..\ProLab.Shared\ProLab.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Shared\Components\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Update="Features\Orders\Dialogs\OrderCreateDialog.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Features\Orders\Dialogs\OrderUpdateDialog.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+    <Content Update="Shared\Components\AddressForm.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <Content Update="wwwroot\appsettings.Development.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

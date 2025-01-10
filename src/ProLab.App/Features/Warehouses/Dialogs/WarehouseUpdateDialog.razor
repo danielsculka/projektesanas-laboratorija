@@ -6,25 +6,41 @@
 
 @inherits WarehouseUpdateDialogBase
 
-<DialogLayout>
-	<Body>
-		<FormLayout>
-			<Body>
-				<RadzenColumn>
-					<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Name</RadzenText>
-					<RadzenTextBox @bind-Value="Warehouse.Name" class="rz-w-100" />
-				</RadzenColumn>
+<RadzenTemplateForm TItem="UpdateWarehouseRequest" Data=@Warehouse Submit=@Update>
+	<DialogLayout>
+		<Body>
+			<FormLayout>
+				<Body>
+					<RadzenFormField Text="Name" Variant="Variant.Flat" class="rz-w-100">
+						<ChildContent>
+							<RadzenTextBox Name="Name" @bind-Value=@Warehouse.Name />
+						</ChildContent>
+						<Helper>
+							<RadzenRequiredValidator Component="Name" Text="Name is required." />
+						</Helper>
+					</RadzenFormField>
 
-				<RadzenColumn>
-					<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Adress</RadzenText>
-					<RadzenTextBox @bind-Value="Warehouse.Address.Street" class="rz-w-100" />
-				</RadzenColumn>
-			</Body>
-		</FormLayout>
-	</Body>
+					<RadzenColumn>
+						<AddressForm @bind-Address="@Warehouse.Address" />
+					</RadzenColumn>
+				</Body>
+			</FormLayout>
+		</Body>
 
-	<Actions>
-		<RadzenButton Text="Update" Click="Update" Variant="Variant.Flat" ButtonStyle="ButtonStyle.Primary" class="rz-ripple" />
-		<RadzenButton Text="Cancel" Click="Cancel" Variant="Variant.Flat" ButtonStyle="ButtonStyle.Base" class="rz-ripple" />
-	</Actions>
-</DialogLayout>
+		<Actions>
+			<RadzenButton 
+				Text="Update"
+				ButtonType="ButtonType.Submit"
+				Variant="Variant.Flat"
+				ButtonStyle="ButtonStyle.Primary"
+				class="rz-ripple" />
+
+			<RadzenButton 
+				Text="Cancel"
+				Variant="Variant.Flat"
+				ButtonStyle="ButtonStyle.Base"
+				Click="Cancel"
+				class="rz-ripple" />
+		</Actions>
+	</DialogLayout>
+</RadzenTemplateForm>

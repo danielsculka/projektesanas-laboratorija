@@ -19,9 +19,9 @@ public class WarehouseCreateDialogBase : ComponentBase
         DialogService.Close(false);
     }
 
-    protected void Create()
+    protected async Task Create()
     {
-        _ = WarehouseService.CreateAsync(Warehouse);
+        _ = await WarehouseService.CreateAsync(Warehouse);
 
         DialogService.Close(true);
     }

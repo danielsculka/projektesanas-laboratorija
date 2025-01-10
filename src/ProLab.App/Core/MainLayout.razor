@@ -13,18 +13,15 @@
     <RadzenSidebar Responsive="false" Style="width: max-content">
         <RadzenPanelMenu DisplayStyle="@(sidebarExpanded ? MenuItemDisplayStyle.IconAndText : MenuItemDisplayStyle.Icon)" ShowArrow="false">
             <RadzenPanelMenuItem Text="Routes" Icon="map" Path="/" />
-            <RadzenPanelMenuItem Text="Couriers" Icon="accessible" Path="/couriers" />
-            <RadzenPanelMenuItem Text="Warehouse" Icon="get_app" Path="/warehouses"/>
+            <RadzenPanelMenuItem Text="Couriers" Icon="local_shipping" Path="/couriers" />
+            <RadzenPanelMenuItem Text="Warehouses" Icon="warehouse" Path="/warehouses" />
+            <RadzenPanelMenuItem Text="Orders" Icon="orders" Path="/orders" />
         </RadzenPanelMenu>
     </RadzenSidebar>
 
-    <RadzenBody class="rz-p-8 rz-min-h-100">
+    <RadzenBody class="rz-p-8 rz-min-h-80">
         @Body
     </RadzenBody>
-
-    <RadzenFooter>
-        Footer
-    </RadzenFooter>
 </RadzenLayout>
 
 @code {

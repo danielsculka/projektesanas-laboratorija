@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using ProLab.Shared.Common;
 using ProLab.Shared.Warehouses.Requests;
 using ProLab.Shared.Warehouses.Response;
 using Radzen;
@@ -26,15 +25,7 @@ public class WarehouseUpdateDialogBase : ComponentBase
         Warehouse = new UpdateWarehouseRequest
         {
             Name = warehouse.Name,
-            Address = new AddressData
-            {
-                Street = warehouse.Address.Street,
-                City = warehouse.Address.City,
-                District = warehouse.Address.District,
-                Parish = warehouse.Address.Parish,
-                PostalCode = warehouse.Address.PostalCode,
-                Location = warehouse.Address.Location
-            }
+            Address = warehouse.Address
         };
     }
 
@@ -43,9 +34,9 @@ public class WarehouseUpdateDialogBase : ComponentBase
         DialogService.Close(false);
     }
 
-    protected void Update()
+    protected async Task Update()
     {
-        _ = WarehouseService.UpdateAsync(WarehouseId, Warehouse);
+        await WarehouseService.UpdateAsync(WarehouseId, Warehouse);
 
         DialogService.Close(true);
     }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using ProLab.App.Features.Warehouses;
 using ProLab.App.Features.Warehouses.Dialogs;
 using ProLab.Shared.Common;
 using ProLab.Shared.Warehouses.Requests;
@@ -7,7 +6,7 @@ using ProLab.Shared.Warehouses.Response;
 using Radzen;
 using Radzen.Blazor;
 
-namespace ProLab.App.Features.Couriers.Pages;
+namespace ProLab.App.Features.Warehouses.Pages;
 
 public class WarehousesBase : ComponentBase
 {
@@ -35,7 +34,7 @@ public class WarehousesBase : ComponentBase
         {
             Paging = new PagingData
             {
-                CurrentPage = args.Skip.HasValue ? (args.Skip.Value / PageSize) + 1 : 1,
+                CurrentPage = args.Skip.HasValue ? args.Skip.Value / PageSize + 1 : 1,
                 PageSize = PageSize
             }
         };
@@ -50,34 +49,30 @@ public class WarehousesBase : ComponentBase
 
     public async Task OnAdd()
     {
-        bool? result = await DialogService.OpenAsync<WarehouseCreateDialog>("Create Warehouse");
+        bool? result = await DialogService.OpenAsync<WarehouseCreateDialog>("Create warehouse");
 
         if (result.HasValue && result.Value)
-        {
             await Grid.RefreshDataAsync();
-        }
     }
 
     public async Task OnEdit(GetWarehouseListResponse.ItemData warehouse)
     {
         bool? result = await DialogService.OpenAsync<WarehouseUpdateDialog>(
-            "Update courier",
+            "Update warehouse",
             new Dictionary<string, object>
             {
-                { "CourierId", warehouse.Id }
+                { "WarehouseId", warehouse.Id }
             });
 
         if (result.HasValue && result.Value)
-        {
             await Grid.RefreshDataAsync();
-        }
     }
 
-    public async Task OnDelete(GetWarehouseListResponse.ItemData courier)
+    public async Task OnDelete(GetWarehouseListResponse.ItemData warehouse)
     {
         var result = await DialogService.Confirm(
             "Are you sure?",
-            "Delete courier",
+            "Delete warehouse",
             new ConfirmOptions()
             {
                 OkButtonText = "Yes",
@@ -86,7 +81,7 @@ public class WarehousesBase : ComponentBase
 
         if (result.HasValue && result.Value)
         {
-            _ = WarehouseService.DeleteAsync(courier.Id);
+            await WarehouseService.DeleteAsync(warehouse.Id);
 
             await Grid.RefreshDataAsync();
         }
