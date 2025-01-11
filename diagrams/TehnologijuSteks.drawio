@@ -1,44 +1,53 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.8.0">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="26.0.5">
   <diagram name="Page-1" id="6Qpehkt9wiD5aw7x05cO">
-    <mxGraphModel dx="-191" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="-266" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-1" value="OS: Ubuntu" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-1" value="OS: Ubuntu" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="1780" y="565" width="300" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-2" value="Datubāze: SQL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-2" value="Datubāze: SQL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
           <mxGeometry x="1780" y="445" width="300" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-3" value="Tīmekļa serveris: Nginx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-3" value="Tīmekļa serveris: Nginx" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="1780" y="505" width="300" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-4" value="Konteinerizācija: Docker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-4" value="Konteinerizācija: Docker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
           <mxGeometry x="1780" y="625" width="300" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-5" value="Programmēšanas valoda: C#" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-5" value="Programmēšanas valoda: C#" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="1780" y="385" width="300" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-6" value="Satvars: .NET Core" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-6" value="Satvars: .NET Core" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
           <mxGeometry x="1780" y="325" width="300" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-7" value="Virtualizācija: Azure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-7" value="Virtualizācija: Azure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
           <mxGeometry x="1780" y="686" width="300" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-8" value="Servera puses tehnoloģijas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=0" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-8" value="Servera puses tehnoloģijas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=0" parent="1" vertex="1">
           <mxGeometry x="1820" y="230" width="220" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-9" value="Klienta puses tehnoloģijas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-9" value="Klienta puses tehnoloģijas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="2250" y="230" width="190" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-10" value="Satvars: Blazor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-10" value="Satvars: Blazor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
           <mxGeometry x="2195" y="264" width="300" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-11" value="Programmēšanas valoda: C#" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-11" value="Programmēšanas valoda: C#" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
           <mxGeometry x="2195" y="325" width="300" height="55" as="geometry" />
         </mxCell>
-        <mxCell id="Iqhli9ytjHp4ELT-kDA0-12" value="Objektu-relāciju modeļa kartēšanas satvars:&amp;nbsp;&lt;div&gt;Entity Framework Core&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="Iqhli9ytjHp4ELT-kDA0-12" value="Objektu-relāciju modeļa kartēšanas satvars:&amp;nbsp;&lt;div&gt;Entity Framework Core&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="1780" y="264" width="300" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="Fqm-5FKiJBGQsolp3Etm-1" value="Žurnalēšanas tehnoloģijas" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="2245" y="440" width="190" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Fqm-5FKiJBGQsolp3Etm-2" value="Uzraudzības platforma: Grafana" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="2190" y="474" width="300" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="Fqm-5FKiJBGQsolp3Etm-3" value="Apkopošanas sistēma: Loki" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="2190" y="535" width="300" height="55" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
