@@ -36,6 +36,13 @@ Izstrādāt algoritmisku risinājumu, kas optimizē preču piegādes maršrutus,
 ## Prasības
 ## Algoritms
 ### Apraksts
+Šis algoritms ir izstrādāts, lai optimizētu piegādes operācijas vairākiem noliktavām, piešķirot piegādes maršrutus kurjeriem, ievērojot konkrētus laika ierobežojumus: Pasutijuma laika logi un kurjeru darba laiks. Algoritms izmanto Openrouteservice API, lai aprēķinātu maršrutus.Šo algoritmu var izmantot loģistikas un piegādes pārvaldības sistēmās.
+Algoritms darbojas šādi: tiek inicializētas noliktavu koordinātas un piegādes punktu atrašanās vietas katrai noliktavai. Tiek noteikts kurjeru darba dienas sākuma un beigu laiks. Katrs noliktava tiek apstrādāta neatkarīgi, un piegādes punkti tiek piešķirti kurjeriem iteratīvā procesā, kas tiek vadīts ar noteiktiem ierobežojumiem un prioritātēm. Galvenais mērķis ir piešķirt uzdevumus kurjeriem tādā veidā, lai pēc iespējas vairāk piegāžu tiktu veikti laicīgi, minimizējot attālumu un laiku.
+#### Algoritmi un pieejas, ko izmanto algoritms:
+-Ceļojošā pārdevēja problēma (Traveling Salesman Problem): Algoritms identificē tuvāko punktu, lai minimizētu attālumu un ceļošanas laiku.
+-Greedy algoritms: Tiek izvēlēts tuvākais pieejamais punkts, kas atbilst laika ierobežojumiem.
+-Grafu teorija un maršrutu optimizācija: Izmantojot Openrouteservice API, tiek aprēķināti ceļa garumi un laiki starp piegādes punktiem.
+-Laika ierobežojuma pārbaude (Time Constraint Validation): Tiek nodrošināts, ka kurjers var veikt piegādi un atgriezties noliktavā pirms darba dienas beigām.
 ### Pseidokods
 ```
 BEGIN PROGRAM
