@@ -10,7 +10,7 @@ Loģistikas uzņēmumiem un preču piegādes pakalpojumu sniedzējiem efektīva 
 | 3. | Kurjers vēlas piekļūt ērtai navigācijas sistēmai ar maršrutiem, jo tas palīdz viņam vieglāk orientēties un izvairīties no kļūdām | |
 | 4. | Kurjers vēlas, lai maršruts tiktu plānots, ņemot vērā laika logus, jo viņš varēs optimizēt savu laiku un piegādāt pasūtījumus ātrāk | |
 | 5. | Klients vēlas izvēlēties vēlamo piegādes laiku, jo tas padara pakalpojumu ērtāku un pielāgojamāku viņa grafikam | |
-| 6. | Klients vēlas saņemt pasūtījumu atrāk, jo tas uzlabo viņa apmierinātību un lojalitāti uzņēmumam | |
+
 ## Darba un novērtēšanas mērķis
 ### Mērķis
 Izstrādāt algoritmisku risinājumu, kas optimizē preču piegādes maršrutus, ņemot vērā vairākus mainīgos, piemēram, piegādes punktu ģeogrāfisko atrašanās vietu, kurjeru daudzumu, transportlīdzekļu kravnesību un citu nepieciešamo loģistikas informāciju.
