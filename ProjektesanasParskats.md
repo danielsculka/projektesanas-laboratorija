@@ -35,6 +35,8 @@ Izstrādāt algoritmisku risinājumu, kas optimizē preču piegādes maršrutus,
 # Tehniskais risinājums
 ## Prasības
 ## Algoritms
+### Apraksts
+### Pseidokods
 BEGIN PROGRAM
   Inicializēt noliktavu atrašanās vietas
   Inicializēt piegādes punktus katrai noliktavai
