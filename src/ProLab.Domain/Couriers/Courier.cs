@@ -13,5 +13,7 @@ public class Courier : Entity<int>
     [MaxLength(30)]
     public string LastName { get; set; }
 
+    public bool IsActive { get; set; }
+
     public virtual ICollection<Route> Routes { get; set; } = new List<Route>();
 }

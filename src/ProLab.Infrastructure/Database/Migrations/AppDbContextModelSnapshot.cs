@@ -42,6 +42,9 @@ namespace ProLab.Infrastructure.Database.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -66,8 +69,11 @@ namespace ProLab.Infrastructure.Database.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<TimeOnly>("EndTime")
+                        .HasColumnType("time");
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
@@ -77,8 +83,8 @@ namespace ProLab.Infrastructure.Database.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeOnly>("StartTime")
+                        .HasColumnType("time");
 
                     b.Property<int>("WarehouseId")
                         .HasColumnType("int");
@@ -130,15 +136,12 @@ namespace ProLab.Infrastructure.Database.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FirstOrderId")
+                    b.Property<int?>("FromOrderId")
                         .HasColumnType("int");
 
                     b.Property<string>("IntermediatePoints")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("LastOrderId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
@@ -146,13 +149,16 @@ namespace ProLab.Infrastructure.Database.Migrations
                     b.Property<int>("RouteId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ToOrderId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("FirstOrderId");
-
-                    b.HasIndex("LastOrderId");
+                    b.HasIndex("FromOrderId");
 
                     b.HasIndex("RouteId");
+
+                    b.HasIndex("ToOrderId");
 
                     b.ToTable("RouteSections", (string)null);
                 });
@@ -168,6 +174,12 @@ namespace ProLab.Infrastructure.Database.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<TimeOnly>("EndTime")
+                        .HasColumnType("time");
+
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
@@ -175,6 +187,9 @@ namespace ProLab.Infrastructure.Database.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<TimeOnly>("StartTime")
+                        .HasColumnType("time");
 
                     b.HasKey("Id");
 
@@ -305,13 +320,9 @@ namespace ProLab.Infrastructure.Database.Migrations
 
             modelBuilder.Entity("ProLab.Domain.Routes.RouteSection", b =>
                 {
-                    b.HasOne("ProLab.Domain.Orders.Order", "FirstOrder")
+                    b.HasOne("ProLab.Domain.Orders.Order", "FromOrder")
                         .WithMany()
-                        .HasForeignKey("FirstOrderId");
-
-                    b.HasOne("ProLab.Domain.Orders.Order", "LastOrder")
-                        .WithMany()
-                        .HasForeignKey("LastOrderId");
+                        .HasForeignKey("FromOrderId");
 
                     b.HasOne("ProLab.Domain.Routes.Route", "Route")
                         .WithMany("Sections")
@@ -319,11 +330,15 @@ namespace ProLab.Infrastructure.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("FirstOrder");
+                    b.HasOne("ProLab.Domain.Orders.Order", "ToOrder")
+                        .WithMany()
+                        .HasForeignKey("ToOrderId");
 
-                    b.Navigation("LastOrder");
+                    b.Navigation("FromOrder");
 
                     b.Navigation("Route");
+
+                    b.Navigation("ToOrder");
                 });
 
             modelBuilder.Entity("ProLab.Domain.Warehouses.Warehouse", b =>

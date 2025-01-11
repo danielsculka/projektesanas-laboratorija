@@ -9,72 +9,45 @@ public class CourierService : ICourierService
 {
     private readonly HttpClient _httpClient;
 
-    private const string c_baseUr = "api/couriers";
+    private const string c_baseUrl = "api/couriers";
 
     public CourierService(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }
 
-    public async Task<GetCourierListResponse?> GetListAsync(GetCourierListRequest? request = null)
-    {
-        try
-        {
-            string url = c_baseUr.ApplyQuery(request);
-
-            return await _httpClient.GetFromJsonAsync<GetCourierListResponse>(url);
-        }
-        catch (Exception)
-        {
-            throw;
-        }
-    }
-
     public async Task<int> CreateAsync(CreateCourierRequest request)
     {
-        try
-        {
-            string url = c_baseUr;
+        HttpResponseMessage result = await _httpClient.PostAsJsonAsync(c_baseUrl, request);
 
-            var result = await _httpClient.PostAsJsonAsync(url, request);
-
-            return await result.Content.ReadFromJsonAsync<int>();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
+        return await result.Content.ReadFromJsonAsync<int>();
     }
 
-    public async Task<int> UpdateAsync(int id, UpdateCourierRequest request)
+    public async Task DeleteAsync(int id)
     {
-        try
-        {
-            string url = $"{c_baseUr}/{id}";
+        string url = $"{c_baseUrl}/{id}";
 
-            var result = await _httpClient.PutAsJsonAsync(url, request);
-
-            return await result.Content.ReadFromJsonAsync<int>();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
+        _ = await _httpClient.DeleteAsync(url);
     }
 
-    public async Task<int> DeleteAsync(int id)
+    public async Task<GetCourierResponse> GetByIdAsync(int id)
     {
-        try
-        {
-            string url = $"{c_baseUr}/{id}";
+        string url = $"{c_baseUrl}/{id}";
 
-            var result = await _httpClient.DeleteAsync(url);
+        return await _httpClient.GetFromJsonAsync<GetCourierResponse>(url);
+    }
 
-            return await result.Content.ReadFromJsonAsync<int>();
-        }
-        catch (Exception)
-        {
-            throw;
-        }
+    public async Task<GetCourierListResponse> GetListAsync(GetCourierListRequest? request = null)
+    {
+        string url = c_baseUrl.ApplyQuery(request);
+
+        return await _httpClient.GetFromJsonAsync<GetCourierListResponse>(url);
+    }
+
+    public async Task UpdateAsync(int id, UpdateCourierRequest request)
+    {
+        string url = $"{c_baseUrl}/{id}";
+
+        _ = await _httpClient.PutAsJsonAsync(url, request);
     }
 }

@@ -1,27 +1,28 @@
 ﻿using Microsoft.AspNetCore.Components;
+using ProLab.App.Features.Couriers.Dialogs;
 using ProLab.Shared.Common;
 using ProLab.Shared.Couriers.Request;
 using ProLab.Shared.Couriers.Response;
 using Radzen;
 using Radzen.Blazor;
-using ProLab.App.Features.Couriers.CourierForms;
-using ProLab.Shared.Couriers.Response;
 
 namespace ProLab.App.Features.Couriers.Pages;
 
 public class CouriersBase : ComponentBase
 {
     [Inject]
-    public ICourierService CourierService { get; set; }
+    public required ICourierService CourierService { get; set; }
 
     [Inject]
-    public DialogService DialogService { get; set; }
+    public required DialogService DialogService { get; set; }
+
+    protected RadzenDataGrid<GetCourierListResponse.ItemData> Grid;
 
     public bool IsLoading = false;
 
     public IEnumerable<GetCourierListResponse.ItemData> Items;
     public int Count = 0;
-    public int PageSize = 5;
+    public int PageSize = 10;
 
     public async Task LoadData(LoadDataArgs args)
     {
@@ -38,7 +39,7 @@ public class CouriersBase : ComponentBase
             }
         };
 
-        var pagedList = await CourierService.GetListAsync(request);
+        GetCourierListResponse pagedList = await CourierService.GetListAsync(request);
 
         Items = pagedList.Items;
         Count = pagedList.TotalCount;
@@ -46,45 +47,48 @@ public class CouriersBase : ComponentBase
         IsLoading = false;
     }
 
-    public async Task OnAddClick()
+    public async Task OnAdd()
     {
-        var newCourier = new GetCourierListResponse.ItemData();
+        bool? result = await DialogService.OpenAsync<CourierCreateDialog>("Create courier");
 
-        CreateCourierRequest result = await DialogService.OpenAsync<CourierForm>("Add courier", new Dictionary<string, object>
-    {
-        { "Courier", newCourier }
-    });
-
-        if (result != null)
+        if (result.HasValue && result.Value)
         {
-            CourierService.CreateAsync(result);
+            await Grid.RefreshDataAsync();
         }
-
     }
 
-    public async Task OnEditClick(GetCourierListResponse.ItemData courier)
+    public async Task OnEdit(GetCourierListResponse.ItemData courier)
     {
-        UpdateCourierRequest result = await DialogService.OpenAsync<CourierForm>("Edit courier", new Dictionary<string, object>
-    {
-        { "Courier", courier }
-    });
+        bool? result = await DialogService.OpenAsync<CourierUpdateDialog>(
+            "Update courier",
+            new Dictionary<string, object>
+            {
+                { "CourierId", courier.Id }
+            });
 
-        if (result != null)
+        if (result.HasValue && result.Value)
         {
-            CourierService.UpdateAsync(courier.Id, result);
+            await Grid.RefreshDataAsync();
         }
-
     }
 
-    public async Task OnDeleteClick(GetCourierListResponse.ItemData courier)
+    public async Task OnDelete(GetCourierListResponse.ItemData courier)
     {
-        var confirmed = await DialogService.Confirm("Are you sure?", "Delete courier " + courier.Id, new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
+        var result = await DialogService.Confirm(
+            "Are you sure?",
+            "Delete courier",
+            new ConfirmOptions()
+            {
+                OkButtonText = "Yes",
+                CancelButtonText = "No"
+            });
 
-        if (confirmed == true)
+        if (result.HasValue && result.Value)
         {
-            CourierService.DeleteAsync(courier.Id);
-        }
+            await CourierService.DeleteAsync(courier.Id);
 
+            await Grid.RefreshDataAsync();
+        }
     }
 }
 

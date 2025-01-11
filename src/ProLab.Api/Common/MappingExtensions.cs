@@ -1,4 +1,5 @@
-﻿using ProLab.Application.Common.Query;
+﻿using NetTopologySuite.Geometries;
+using ProLab.Application.Common.Query;
 using ProLab.Shared.Common;
 
 namespace ProLab.Api.Common;
@@ -23,7 +24,10 @@ internal static class MappingExtensions
             District = data.District,
             Parish = data.Parish,
             PostalCode = data.PostalCode,
-            Location = data.Location
+            Location = new Point(new Coordinate(data.Location.Longitude, data.Location.Latitude))
+            {
+                SRID = 4326
+            }
         };
     }
 
@@ -36,7 +40,11 @@ internal static class MappingExtensions
             District = data.District,
             Parish = data.Parish,
             PostalCode = data.PostalCode,
-            Location = data.Location
+            Location = new CoordinateData
+            {
+                Longitude = data.Location.X,
+                Latitude = data.Location.Y
+            }
         };
     }
 }

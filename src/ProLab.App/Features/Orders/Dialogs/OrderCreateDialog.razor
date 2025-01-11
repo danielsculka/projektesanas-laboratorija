@@ -1,0 +1,86 @@
+﻿@using ProLab.App.Features.Warehouses.Components
+@using ProLab.App.Shared.Layouts
+@using ProLab.Shared.Orders.Response
+@using ProLab.Shared.Orders.Requests
+@using Microsoft.AspNetCore.Components.Web
+@using Radzen.Blazor
+
+@inherits OrderCreateDialogBase
+
+<RadzenTemplateForm TItem="CreateOrderRequest" Data=@Order Submit=@Create>
+	<DialogLayout>
+		<Body>
+			<FormLayout>
+				<Body>
+					<RadzenFormField Text="Number" Variant="Variant.Flat" class="rz-w-100">
+						<ChildContent>
+							<RadzenTextBox Name="Number" @bind-Value=@Order.Number />
+						</ChildContent>
+						<Helper>
+							<RadzenRequiredValidator Component="Number" Text="Number is required." />
+						</Helper>
+					</RadzenFormField>
+
+					<RadzenRow>
+						<RadzenColumn>
+							<RadzenFormField Text="Date" Variant="Variant.Flat" class="rz-w-100">
+								<ChildContent>
+									<RadzenDatePicker Name="Date" DateFormat="dd.MM.yyyy" @bind-Value=@Order.Date />
+								</ChildContent>
+								<Helper>
+									<RadzenRequiredValidator Component="Date" Text="Date is required." />
+								</Helper>
+							</RadzenFormField>
+						</RadzenColumn>
+
+						<RadzenColumn>
+							<RadzenFormField Text="StartTime" Variant="Variant.Flat" class="rz-w-100">
+								<ChildContent>
+									<RadzenDatePicker Name="StartTime" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" @bind-Value=@Order.StartTime />
+								</ChildContent>
+								<Helper>
+									<RadzenRequiredValidator Component="StartTime" Text="Start time is required." />
+								</Helper>
+							</RadzenFormField>
+						</RadzenColumn>
+
+						<RadzenColumn>
+							<RadzenFormField Text="EndTime" Variant="Variant.Flat" class="rz-w-100">
+								<ChildContent>
+									<RadzenDatePicker Name="EndTime" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" @bind-Value=@Order.EndTime />
+								</ChildContent>
+								<Helper>
+									<RadzenRequiredValidator Component="EndTime" Text="End time is required." />
+								</Helper>
+							</RadzenFormField>
+						</RadzenColumn>
+					</RadzenRow>
+
+					<RadzenColumn>
+						<AddressForm @bind-Address=@Order.Address />
+					</RadzenColumn>
+
+					<RadzenColumn>
+						<WarehouseListBox @bind-WarehouseId=@Order.WarehouseId />
+					</RadzenColumn>
+				</Body>
+			</FormLayout>
+		</Body>
+
+		<Actions>
+			<RadzenButton 
+				Text="Create" 
+				ButtonType="ButtonType.Submit" 
+				Variant="Variant.Flat" 
+				ButtonStyle="ButtonStyle.Primary" 
+				class="rz-ripple" />
+
+			<RadzenButton 
+				Text="Cancel"
+				Variant="Variant.Flat" 
+				ButtonStyle="ButtonStyle.Base"
+				Click="Cancel"
+				class="rz-ripple" />
+		</Actions>
+	</DialogLayout>
+</RadzenTemplateForm>

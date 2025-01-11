@@ -1,0 +1,54 @@
+﻿@using ProLab.Shared.Couriers.Response
+@using ProLab.Shared.Couriers.Request
+@using Microsoft.AspNetCore.Components.Web
+
+@inherits CourierCreateDialogBase
+
+<RadzenTemplateForm TItem="CreateCourierRequest" Data=@Courier Submit=@Create>
+	<DialogLayout>
+		<Body>
+			<FormLayout>
+				<Body>
+					<RadzenFormField Text="FirstName" Variant="Variant.Flat" class="rz-w-100">
+						<ChildContent>
+							<RadzenTextBox Name="FirstName" @bind-Value=@Courier.FirstName />
+						</ChildContent>
+						<Helper>
+							<RadzenRequiredValidator Component="FirstName" Text="First name is required." />
+						</Helper>
+					</RadzenFormField>
+
+					<RadzenFormField Text="LastName" Variant="Variant.Flat" class="rz-w-100">
+						<ChildContent>
+							<RadzenTextBox Name="LastName" @bind-Value=@Courier.LastName />
+						</ChildContent>
+						<Helper>
+							<RadzenRequiredValidator Component="LastName" Text="Last name is required." />
+						</Helper>
+					</RadzenFormField>
+
+					<RadzenColumn>
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Is active</RadzenText>
+						<RadzenSwitch @bind-Value=@Courier.IsActive />
+					</RadzenColumn>
+				</Body>
+			</FormLayout>
+		</Body>
+
+		<Actions>
+			<RadzenButton 
+				Text="Create"
+				ButtonType="ButtonType.Submit"
+				Variant="Variant.Flat"
+				ButtonStyle="ButtonStyle.Primary"
+				class="rz-ripple" />
+
+			<RadzenButton 
+				Text="Cancel"
+				Variant="Variant.Flat"
+				ButtonStyle="ButtonStyle.Base"
+				Click="Cancel"
+				class="rz-ripple" />
+		</Actions>
+	</DialogLayout>
+</RadzenTemplateForm>

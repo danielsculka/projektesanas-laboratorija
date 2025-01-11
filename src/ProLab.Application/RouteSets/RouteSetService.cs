@@ -2,10 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NetTopologySuite.Geometries;
+using ProLab.Application.Common.Query;
+using ProLab.Application.Extensions;
 using ProLab.Application.OpenRoute;
 using ProLab.Application.OpenRoute.Results;
 using ProLab.Application.RouteSets.Commands;
+using ProLab.Application.RouteSets.Results;
 using ProLab.Domain.Orders;
+using ProLab.Domain.Routes;
 using ProLab.Domain.Warehouses;
 
 namespace ProLab.Application.RouteSets;
@@ -30,7 +34,7 @@ public class RouteSetService : IRouteSetService
             .ToArrayAsync(cancellationToken);
 
         int totalCouriersNeeded = 0;
-        DateTime currentDate = command.StartDate;
+        DateOnly currentDate = command.Date;
         var results = new Dictionary<int, List<RouteAssignment>>();
 
         foreach (Warehouse warehouse in warehouses)
@@ -50,7 +54,6 @@ public class RouteSetService : IRouteSetService
                 while (unassignedOrders.Count != 0)
                 {
                     Order? nearestOrder = null;
-                    double minDistance = double.MaxValue;
                     Result<OpenRouteDirectionsResult> routeResult;
                     OpenRouteDirectionsResult route;
 
@@ -62,13 +65,13 @@ public class RouteSetService : IRouteSetService
                         {
                             route = routeResult.Value;
 
-                            DateTime arrivalDate = currentDate.AddSeconds(route.Duration);
+                            //DateTime arrivalDate = currentDate.AddSeconds(route.Duration);
 
-                            if (arrivalDate >= order.StartDate && arrivalDate <= order.EndDate && route.Distance < minDistance)
-                            {
-                                minDistance = route.Distance;
-                                nearestOrder = order;
-                            }
+                            //if (arrivalDate >= order.StartTime && arrivalDate <= order.EndTime && route.Distance < minDistance)
+                            //{
+                            //    minDistance = route.Distance;
+                            //    nearestOrder = order;
+                            //}
                         }
                     }
 
@@ -82,7 +85,7 @@ public class RouteSetService : IRouteSetService
 
                     route = routeResult.Value;
 
-                    currentDate = currentDate.AddSeconds(route.Duration);
+                    //currentDate = currentDate.AddSeconds(route.Duration);
                     totalDistance += route.Distance;
                     totalTime += route.Duration;
 
@@ -107,6 +110,32 @@ public class RouteSetService : IRouteSetService
         }
 
         return Result.Ok();
+    }
+
+    public async Task<Result<RouteSetListResult>> GetAsync(QueryParameters<RouteSet> parameters, CancellationToken cancellationToken)
+    {
+        _logger.LogDebug("Retrieving route sets.");
+
+        IQueryable<RouteSet> query = _db.RouteSets
+            .AsNoTracking()
+            .ApplyFilter(parameters.Filter);
+
+        int totalCount = await query.CountAsync(cancellationToken);
+
+        RouteSetListResult.ItemData[] items = await query
+            .ApplySorting(parameters.Sorting)
+            .ApplyPaging(parameters.Paging)
+            .Select(RouteSetMapper.ProjectList())
+            .ToArrayAsync(cancellationToken);
+
+        _logger.LogInformation("Retrieved {count} route sets.", items.Length);
+
+        return new RouteSetListResult(
+            items,
+            totalCount,
+            parameters.Paging?.PageSize,
+            parameters.Paging?.CurrentPage
+            );
     }
 
     class RouteAssignment

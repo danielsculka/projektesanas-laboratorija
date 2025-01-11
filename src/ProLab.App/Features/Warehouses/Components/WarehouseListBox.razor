@@ -1,0 +1,25 @@
+﻿@using ProLab.Shared.Warehouses.Response
+
+@inherits WarehouseListBoxBase
+
+<RadzenFieldset>
+	<HeaderTemplate>
+		Warehouse
+	</HeaderTemplate>
+
+	<ChildContent>
+		<RadzenColumn class="rz-w-100">
+			<RadzenListBox 
+				@ref=ListBox
+				AllowFiltering="true"
+				LoadData=@LoadData
+				Data=@Items
+				TextProperty="@nameof(GetWarehouseListResponse.ItemData.Name)"
+				ValueProperty="@nameof(GetWarehouseListResponse.ItemData.Id)"
+				Style="max-height: 200px"
+				class="rz-w-100"
+				@bind-Value=WarehouseId
+				Change="OnChange" />
+		</RadzenColumn>
+	</ChildContent>
+</RadzenFieldset>

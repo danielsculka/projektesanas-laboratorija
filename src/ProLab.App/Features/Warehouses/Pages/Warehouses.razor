@@ -1,0 +1,46 @@
+﻿@page "/warehouses"
+@inherits WarehousesBase
+
+@using Radzen
+@using Radzen.Blazor
+@using ProLab.Shared.Warehouses.Response
+
+<RadzenText TextStyle="TextStyle.DisplayH3">Warehouses</RadzenText>
+
+<RadzenRow Gap="1rem">
+    <RadzenDataGrid @ref="Grid"
+            IsLoading=@IsLoading 
+            Count="@Count" 
+            Data="@Items" 
+            LoadData="@LoadData" 
+            AllowPaging="true" 
+            PageSize="@PageSize" 
+            PagerHorizontalAlign="HorizontalAlign.Center"
+            ExpandMode="DataGridExpandMode.Single"
+            class="has-action-column">
+        <EmptyTemplate>
+            <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.P" TextAlign="TextAlign.Center" class="rz-m-8">No records to display.</RadzenText>
+        </EmptyTemplate>
+
+        <Columns>
+            <RadzenDataGridColumn Property="@nameof(GetWarehouseListResponse.ItemData.Id)" Title="ID" />
+            <RadzenDataGridColumn Property="@nameof(GetWarehouseListResponse.ItemData.Name)" Title="Name" />
+            <RadzenDataGridColumn Property="@nameof(GetWarehouseListResponse.ItemData.Address)" Title="Adress" />
+        
+            <RadzenDataGridColumn>
+                <HeaderTemplate>
+                    <RadzenRow JustifyContent="JustifyContent.End" class="rz-w-100">
+                        <RadzenButton Variant="Variant.Flat" Icon="add" Click=@OnAdd />
+                    </RadzenRow>
+                </HeaderTemplate>
+
+                <Template Context="item">
+                    <RadzenRow JustifyContent="JustifyContent.End">
+                        <RadzenButton Variant="Variant.Flat" Icon="edit" Click="@(args => OnEdit(item))" />
+                        <RadzenButton Variant="Variant.Flat" ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => OnDelete(item))" />
+                    </RadzenRow>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</RadzenRow>

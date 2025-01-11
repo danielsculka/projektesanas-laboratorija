@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using ProLab.Shared.RouteSets;
+@using ProLab.Shared.RouteSets.Requests
+
+@inherits RouteSetGenerateDialogBase
+
+<RadzenTemplateForm TItem="GenerateRouteSetRequest" Data=@RouteSet Submit=@Generate>
+	<DialogLayout>
+		<Body>
+			<FormLayout>
+				<Body>
+					<RadzenFormField Text="Name" Variant="Variant.Flat" class="rz-w-100">
+						<ChildContent>
+							<RadzenTextBox Name="Name" @bind-Value=@RouteSet.Name />
+						</ChildContent>
+						<Helper>
+							<RadzenRequiredValidator Component="Name" Text="Name is required." />
+						</Helper>
+					</RadzenFormField>
+
+					<RadzenRow>
+						<RadzenColumn>
+							<RadzenFormField Text="Date" Variant="Variant.Flat" class="rz-w-100">
+								<ChildContent>
+									<RadzenDatePicker Name="Date" DateFormat="dd.MM.yyyy" @bind-Value=@RouteSet.Date />
+								</ChildContent>
+								<Helper>
+									<RadzenRequiredValidator Component="Date" Text="Date is required." />
+								</Helper>
+							</RadzenFormField>
+						</RadzenColumn>
+
+						<RadzenColumn>
+							<RadzenFormField Text="StartTime" Variant="Variant.Flat" class="rz-w-100">
+								<ChildContent>
+									<RadzenDatePicker Name="StartTime" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" @bind-Value=@RouteSet.StartTime />
+								</ChildContent>
+								<Helper>
+									<RadzenRequiredValidator Component="StartTime" Text="Start time is required." />
+								</Helper>
+							</RadzenFormField>
+						</RadzenColumn>
+
+						<RadzenColumn>
+							<RadzenFormField Text="EndTime" Variant="Variant.Flat" class="rz-w-100">
+								<ChildContent>
+									<RadzenDatePicker Name="EndTime" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" @bind-Value=@RouteSet.EndTime />
+								</ChildContent>
+								<Helper>
+									<RadzenRequiredValidator Component="EndTime" Text="End time is required." />
+								</Helper>
+							</RadzenFormField>
+						</RadzenColumn>
+					</RadzenRow>
+				</Body>
+			</FormLayout>
+		</Body>
+
+		<Actions>
+			<RadzenButton Text="Generate"
+				ButtonType="ButtonType.Submit"
+				Variant="Variant.Flat"
+				ButtonStyle="ButtonStyle.Primary"
+				class="rz-ripple" />
+
+			<RadzenButton 
+				Text="Cancel"
+				Variant="Variant.Flat"
+				ButtonStyle="ButtonStyle.Base"
+				Click="Cancel"
+				class="rz-ripple" />
+		</Actions>
+	</DialogLayout>
+</RadzenTemplateForm>

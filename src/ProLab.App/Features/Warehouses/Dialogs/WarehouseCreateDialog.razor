@@ -1,0 +1,46 @@
+﻿@using ProLab.App.Shared.Layouts
+@using ProLab.Shared.Warehouses.Response
+@using ProLab.Shared.Warehouses.Requests
+@using Microsoft.AspNetCore.Components.Web
+@using Radzen.Blazor
+
+@inherits WarehouseCreateDialogBase
+
+<RadzenTemplateForm TItem="CreateWarehouseRequest" Data=@Warehouse Submit=@Create>
+	<DialogLayout>
+		<Body>
+			<FormLayout>
+				<Body>
+					<RadzenFormField Text="Name" Variant="Variant.Flat" class="rz-w-100">
+						<ChildContent>
+							<RadzenTextBox Name="Name" @bind-Value=@Warehouse.Name />
+						</ChildContent>
+						<Helper>
+							<RadzenRequiredValidator Component="Name" Text="Name is required." />
+						</Helper>
+					</RadzenFormField>
+
+					<RadzenColumn>
+						<AddressForm @bind-Address=@Warehouse.Address />
+					</RadzenColumn>
+				</Body>
+			</FormLayout>
+		</Body>
+
+		<Actions>
+			<RadzenButton 
+				Text="Create" 
+				ButtonType="ButtonType.Submit" 
+				Variant="Variant.Flat" 
+				ButtonStyle="ButtonStyle.Primary" 
+				class="rz-ripple" />
+
+			<RadzenButton 
+				Text="Cancel"
+				Variant="Variant.Flat" 
+				ButtonStyle="ButtonStyle.Base"
+				Click="Cancel"
+				class="rz-ripple" />
+		</Actions>
+	</DialogLayout>
+</RadzenTemplateForm>

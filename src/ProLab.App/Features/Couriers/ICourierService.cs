@@ -5,8 +5,13 @@ namespace ProLab.App.Features.Couriers;
 
 public interface ICourierService
 {
-    Task<GetCourierListResponse?> GetListAsync(GetCourierListRequest? request = null);
     Task<int> CreateAsync(CreateCourierRequest request);
-    Task<int> UpdateAsync(int id, UpdateCourierRequest request);
-    Task<int> DeleteAsync(int id);
+
+    Task DeleteAsync(int id);
+
+    Task<GetCourierResponse> GetByIdAsync(int id);
+
+    Task<GetCourierListResponse> GetListAsync(GetCourierListRequest? request = null);
+
+    Task UpdateAsync(int id, UpdateCourierRequest request);
 }

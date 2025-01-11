@@ -15,7 +15,15 @@ public class OrderListResult : PagedListResult<OrderListResult.ItemData>
         public int Id { get; set; }
         public string Number { get; set; }
         public AddressData Address { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateOnly Date { get; set; }
+        public TimeOnly StartTime { get; set; }
+        public TimeOnly EndTime { get; set; }
+        public WarehouseData Warehouse { get; set; }
+
+        public class WarehouseData
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
     }
 }

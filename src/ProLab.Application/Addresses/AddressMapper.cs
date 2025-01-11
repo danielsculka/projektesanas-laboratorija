@@ -1,5 +1,4 @@
-﻿using NetTopologySuite.Geometries;
-using ProLab.Application.Addresses.Models;
+﻿using ProLab.Application.Addresses.Models;
 using ProLab.Domain.Addresses;
 
 namespace ProLab.Application.Addresses;
@@ -13,7 +12,7 @@ internal static class AddressMapper
         entity.District = data.District;
         entity.Parish = data.Parish;
         entity.PostalCode = data.PostalCode;
-        entity.Location = new Point(data.Location);
+        entity.Location = data.Location;
 
         return entity;
     }
@@ -27,7 +26,7 @@ internal static class AddressMapper
             District = entity.District,
             Parish = entity.Parish,
             PostalCode = entity.PostalCode,
-            Location = entity.Location.Coordinate,
+            Location = entity.Location,
         };
     }
 }

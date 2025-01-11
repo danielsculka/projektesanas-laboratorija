@@ -1,30 +1,45 @@
 ﻿@page "/couriers"
 @inherits CouriersBase
 
-@using ProLab.Shared.Couriers.Response
 @using Radzen
 @using Radzen.Blazor
+@using ProLab.Shared.Couriers.Response
 
-<h3>Couriers</h3>
+<RadzenText TextStyle="TextStyle.DisplayH3">Couriers</RadzenText>
 
-<RadzenDataGrid 
-        IsLoading=@IsLoading 
-        Count="@Count" 
-        Data="@Items" 
-        LoadData="@LoadData" 
-        AllowPaging="true" 
-        PageSize="@PageSize" 
-        PagerHorizontalAlign="HorizontalAlign.Center">
-    <Columns>
-        <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.Id)" Title="ID" />
-        <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.FirstName)" Title="First name" />
-        <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.LastName)" Title="Last Name" />
-        <RadzenDataGridColumn Title="Actions">
-            <Template Context="item">
-                <RadzenButton Text="Edit" Icon="edit" Click="@(args => OnEditClick(item))" Style="margin-right: 5px;" />
-                <RadzenButton Text="Delete" Icon="delete" Click="@(args => OnDeleteClick(item))" ButtonStyle="ButtonStyle.Danger" />
-            </Template>
-        </RadzenDataGridColumn>
-    </Columns>
-</RadzenDataGrid>
-<RadzenButton Text="Add" Click=@OnAddClick />
+<RadzenRow Gap="1rem">
+    <RadzenDataGrid @ref="Grid"
+            IsLoading=@IsLoading 
+            Count="@Count" 
+            Data="@Items" 
+            LoadData="@LoadData" 
+            AllowPaging="true" 
+            PageSize="@PageSize" 
+            PagerHorizontalAlign="HorizontalAlign.Center"
+            class="has-action-column">
+        <EmptyTemplate>
+            <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.P" TextAlign="TextAlign.Center" class="rz-m-8">No records to display.</RadzenText>
+        </EmptyTemplate>
+        <Columns>
+            <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.Id)" Title="ID" />
+            <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.FirstName)" Title="First name" />
+            <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.LastName)" Title="Last Name" />
+            <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.IsActive)" Title="Is active" />
+        
+            <RadzenDataGridColumn>
+                <HeaderTemplate>
+                    <RadzenRow JustifyContent="JustifyContent.End">
+                        <RadzenButton Variant="Variant.Flat" Icon="add" Click=@OnAdd />
+                    </RadzenRow>
+                </HeaderTemplate>
+
+                <Template Context="item">
+                    <RadzenRow JustifyContent="JustifyContent.End">
+                        <RadzenButton Variant="Variant.Flat" Icon="edit" Click="@(args => OnEdit(item))" />
+                        <RadzenButton Variant="Variant.Flat" ButtonStyle="ButtonStyle.Danger" Icon="delete" Click="@(args => OnDelete(item))" />
+                    </RadzenRow>
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</RadzenRow>

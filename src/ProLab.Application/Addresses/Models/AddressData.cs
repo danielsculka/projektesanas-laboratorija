@@ -9,5 +9,5 @@ public class AddressData
     public string? District { get; set; }
     public string? Parish { get; set; }
     public string PostalCode { get; set; }
-    public Coordinate Location { get; set; }
+    public Point Location { get; set; }
 }

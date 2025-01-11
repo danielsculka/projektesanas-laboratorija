@@ -13,8 +13,9 @@ public class Order : Entity<int>
     [Required]
     public Address Address { get; set; }
 
-    public DateTime StartDate { get; set; }
-    public DateTime EndDate { get; set; }
+    public DateOnly Date { get; set; }
+    public TimeOnly StartTime { get; set; }
+    public TimeOnly EndTime { get; set; }
 
     public int WarehouseId { get; set; }
     public virtual Warehouse Warehouse { get; set; }

@@ -1,6 +1,7 @@
 ﻿using ProLab.Application.Addresses;
 using ProLab.Application.Orders.Commands;
 using ProLab.Application.Orders.Results;
+using ProLab.Domain.Addresses;
 using ProLab.Domain.Orders;
 using System.Linq.Expressions;
 
@@ -11,11 +12,12 @@ internal static class OrderMapper
     public static Order ToEntity(this CreateOrderCommand command, Order entity)
     {
         entity.Number = command.Number;
-        entity.StartDate = command.StartDate;
-        entity.EndDate = command.EndDate;
+        entity.Date = command.Date;
+        entity.StartTime = command.StartTime;
+        entity.EndTime = command.EndTime;
         entity.WarehouseId = command.WarehouseId;
 
-        _ = command.Address.ToEntity(entity.Address);
+        entity.Address = command.Address.ToEntity(new Address());
 
         return entity;
     }
@@ -23,8 +25,9 @@ internal static class OrderMapper
     public static Order ToEntity(this UpdateOrderCommand command, Order entity)
     {
         entity.Number = command.Number;
-        entity.StartDate = command.StartDate;
-        entity.EndDate = command.EndDate;
+        entity.Date = command.Date;
+        entity.StartTime = command.StartTime;
+        entity.EndTime = command.EndTime;
         entity.WarehouseId = command.WarehouseId;
 
         _ = command.Address.ToEntity(entity.Address);
@@ -39,8 +42,10 @@ internal static class OrderMapper
             Id = order.Id,
             Number = order.Number,
             Address = order.Address.FromEntity(),
-            StartDate = order.StartDate,
-            EndDate = order.EndDate
+            Date = order.Date,
+            StartTime = order.StartTime,
+            EndTime = order.EndTime,
+            WarehouseId = order.WarehouseId
         };
     }
 
@@ -51,8 +56,14 @@ internal static class OrderMapper
             Id = order.Id,
             Number = order.Number,
             Address = order.Address.FromEntity(),
-            StartDate = order.StartDate,
-            EndDate = order.EndDate
+            Date = order.Date,
+            StartTime = order.StartTime,
+            EndTime = order.EndTime,
+            Warehouse = new OrderListResult.ItemData.WarehouseData
+            {
+                Id = order.Warehouse.Id,
+                Name = order.Warehouse.Name
+            }
         };
     }
 }
