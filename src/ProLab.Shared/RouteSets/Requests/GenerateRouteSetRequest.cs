@@ -1,4 +1,4 @@
-﻿namespace ProLab.Shared.RouteSets;
+﻿namespace ProLab.Shared.RouteSets.Requests;
 
 public class GenerateRouteSetRequest
 {

@@ -27,9 +27,9 @@
             <RadzenDataGridColumn Property="@nameof(GetOrderListResponse.ItemData.Warehouse)" Title="Warehouse" />
             <RadzenDataGridColumn Property="@nameof(GetOrderListResponse.ItemData.Number)" Title="Number" />
             <RadzenDataGridColumn Property="@nameof(GetOrderListResponse.ItemData.Address)" Title="Adress" />
-            <RadzenDataGridColumn Property="@nameof(GetOrderListResponse.ItemData.Date)" Title="Date" />
-            <RadzenDataGridColumn Property="@nameof(GetOrderListResponse.ItemData.StartTime)" Title="Start time" />
-            <RadzenDataGridColumn Property="@nameof(GetOrderListResponse.ItemData.EndTime)" Title="End time" />
+            <RadzenDataGridColumn Property="@nameof(GetOrderListResponse.ItemData.Date)" Title="Date" FormatString="{0:dd.MM.yyyy}" />
+            <RadzenDataGridColumn Property="@nameof(GetOrderListResponse.ItemData.StartTime)" Title="Start time" FormatString="{0:HH:mm}" />
+            <RadzenDataGridColumn Property="@nameof(GetOrderListResponse.ItemData.EndTime)" Title="End time" FormatString="{0:HH:mm}" />
         
             <RadzenDataGridColumn>
                 <HeaderTemplate>

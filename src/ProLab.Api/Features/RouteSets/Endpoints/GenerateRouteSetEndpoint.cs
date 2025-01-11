@@ -2,7 +2,7 @@
 using FluentResults;
 using ProLab.Api.Extensions;
 using ProLab.Application.RouteSets;
-using ProLab.Shared.RouteSets;
+using ProLab.Shared.RouteSets.Requests;
 
 namespace ProLab.Api.Features.RouteSets.Endpoints;
 

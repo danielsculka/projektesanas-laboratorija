@@ -3,7 +3,7 @@
 
 @using Radzen
 @using Radzen.Blazor
-@using ProLab.Shared.Couriers.Response
+@using ProLab.Shared.RouteSets.Response
 
 <PageTitle>Routes</PageTitle>
 
@@ -18,25 +18,27 @@
         <RadzenStack Gap="1rem">
             <RadzenButton Variant="Variant.Flat" Text="Generate" Icon="add" Click=@OnGenerate />
 
-            <RadzenDataGrid @ref="Grid"
-                            TItem="GetCourierListResponse.ItemData"
-                            IsLoading=@IsLoading
-                            Count="@Count"
-                            Data="@Items"
-                            LoadData="@LoadData"
-                            AllowPaging="true"
-                            PageSize="@PageSize"
-                            PagerHorizontalAlign="HorizontalAlign.Center"
-                            SelectionMode="DataGridSelectionMode.Single"
-                            RowSelect="@(args => OnRowSelect(args))">
+            <RadzenDataGrid 
+                    @ref="Grid"
+                    TItem="GetRouteSetListResponse.ItemData"
+                    IsLoading=@IsLoading
+                    Count="@Count"
+                    Data="@Items"
+                    LoadData="@LoadData"
+                    AllowPaging="true"
+                    PageSize="@PageSize"
+                    PagerHorizontalAlign="HorizontalAlign.Center"
+                    SelectionMode="DataGridSelectionMode.Single"
+                    RowSelect="@(args => OnRowSelect(args))">
                 <EmptyTemplate>
                     <RadzenText TextStyle="TextStyle.Body1" TagName="TagName.P" TextAlign="TextAlign.Center" class="rz-m-8">No records to display.</RadzenText>
                 </EmptyTemplate>
 
                 <Columns>
-                    <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.Id)" Title="ID" />
-                    <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.FirstName)" Title="First name" />
-                    <RadzenDataGridColumn Property="@nameof(GetCourierListResponse.ItemData.LastName)" Title="Last Name" />
+                    <RadzenDataGridColumn Property="@nameof(GetRouteSetListResponse.ItemData.Name)" Title="Name" />
+                    <RadzenDataGridColumn Property="@nameof(GetRouteSetListResponse.ItemData.Date)" Title="Date" FormatString="{0:dd.MM.yyyy}" />
+                    <RadzenDataGridColumn Property="@nameof(GetRouteSetListResponse.ItemData.StartTime)" Title="Start time" FormatString="{0:HH:mm}" />
+                    <RadzenDataGridColumn Property="@nameof(GetRouteSetListResponse.ItemData.EndTime)" Title="End time" FormatString="{0:HH:mm}" />
                 </Columns>
             </RadzenDataGrid>
         </RadzenStack>

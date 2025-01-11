@@ -25,7 +25,8 @@ public class CourierUpdateDialogBase : ComponentBase
         Courier = new UpdateCourierRequest
         {
             FirstName = courier.FirstName,
-            LastName = courier.LastName
+            LastName = courier.LastName,
+            IsActive = courier.IsActive
         };
     }
 

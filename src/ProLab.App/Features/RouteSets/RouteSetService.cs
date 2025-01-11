@@ -1,4 +1,6 @@
-﻿using ProLab.Shared.RouteSets;
+﻿using ProLab.App.Extensions;
+using ProLab.Shared.RouteSets.Requests;
+using ProLab.Shared.RouteSets.Response;
 using System.Net.Http.Json;
 
 namespace ProLab.App.Features.RouteSets;
@@ -19,5 +21,12 @@ public class RouteSetService : IRouteSetService
         string url = $"{c_baseUrl}/generate";
 
         _ = await _httpClient.PostAsJsonAsync(url, request);
+    }
+
+    public async Task<GetRouteSetListResponse> GetListAsync(GetRouteSetListRequest? request = null)
+    {
+        string url = c_baseUrl.ApplyQuery(request);
+
+        return await _httpClient.GetFromJsonAsync<GetRouteSetListResponse>(url);
     }
 }

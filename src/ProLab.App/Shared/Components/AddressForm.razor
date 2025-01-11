@@ -1,77 +1,87 @@
 ﻿@inherits AddressFormBase
 
-<FormLayout>
-	<Body>
-		<RadzenFormField Text="Street" Variant="Variant.Flat" class="rz-w-100">
-			<ChildContent>
-				<RadzenTextBox Name="Street" @bind-Value=@Address.Street />
-			</ChildContent>
-			<Helper>
-				<RadzenRequiredValidator Component="Street" Text="Street is required." />
-			</Helper>
-		</RadzenFormField>
+<RadzenFieldset>
+	<HeaderTemplate>
+		Address
+	</HeaderTemplate>
 
-		<RadzenRow>
-			<RadzenColumn Size="6">
-				<RadzenFormField Text="City" Variant="Variant.Flat" class="rz-w-100">
-					<ChildContent>
-						<RadzenTextBox Name="City" @bind-Value=@Address.City />
-					</ChildContent>
-				</RadzenFormField>
-			</RadzenColumn>
+	<ChildContent>
+		<FormLayout>
+			<Body>
+				<RadzenRow>
+					<RadzenColumn>
+						<RadzenFormField Text="Street" Variant="Variant.Flat" class="rz-w-100">
+							<ChildContent>
+								<RadzenTextBox Name="Street" @bind-Value=@Address.Street />
+							</ChildContent>
+							<Helper>
+								<RadzenRequiredValidator Component="Street" Text="Street is required." />
+							</Helper>
+						</RadzenFormField>
+					</RadzenColumn>
 
-			<RadzenColumn Size="6">
-				<RadzenFormField Text="District" Variant="Variant.Flat" class="rz-w-100">
-					<ChildContent>
-						<RadzenTextBox Name="District" @bind-Value=@Address.District />
-					</ChildContent>
-				</RadzenFormField>
-			</RadzenColumn>
-		</RadzenRow>
+					<RadzenColumn>
+						<RadzenFormField Text="Postal code" Variant="Variant.Flat" class="rz-w-100">
+							<ChildContent>
+								<RadzenTextBox Name="PostalCode" @bind-Value=@Address.PostalCode />
+							</ChildContent>
+							<Helper>
+								<RadzenRequiredValidator Component="PostalCode" Text="Postal code is required." />
+							</Helper>
+						</RadzenFormField>
+					</RadzenColumn>
+				</RadzenRow>
 
-		<RadzenRow>
-			<RadzenColumn Size="6">
-				<RadzenFormField Text="Parish" Variant="Variant.Flat" class="rz-w-100">
-					<ChildContent>
-						<RadzenTextBox Name="Parish" @bind-Value=@Address.Parish />
-					</ChildContent>
-				</RadzenFormField>
-			</RadzenColumn>
+				<RadzenRow>
+					<RadzenColumn>
+						<RadzenFormField Text="City" Variant="Variant.Flat" class="rz-w-100">
+							<ChildContent>
+								<RadzenTextBox Name="City" @bind-Value=@Address.City />
+							</ChildContent>
+						</RadzenFormField>
+					</RadzenColumn>
 
-			<RadzenColumn Size="6">
-				<RadzenFormField Text="Postal code" Variant="Variant.Flat" class="rz-w-100">
-					<ChildContent>
-						<RadzenTextBox Name="PostalCode" @bind-Value=@Address.PostalCode />
-					</ChildContent>
-					<Helper>
-						<RadzenRequiredValidator Component="PostalCode" Text="Postal code is required." />
-					</Helper>
-				</RadzenFormField>
-			</RadzenColumn>
-		</RadzenRow>
+					<RadzenColumn>
+						<RadzenFormField Text="District" Variant="Variant.Flat" class="rz-w-100">
+							<ChildContent>
+								<RadzenTextBox Name="District" @bind-Value=@Address.District />
+							</ChildContent>
+						</RadzenFormField>
+					</RadzenColumn>
 
-		<RadzenRow>
-			<RadzenColumn Size="6">
-				<RadzenFormField Text="Latitude" Variant="Variant.Flat" class="rz-w-100">
-					<ChildContent>
-						<RadzenNumeric Name="Latitude" ShowUpDown="false" TValue="double" @bind-Value="Address.Location.Latitude" />
-					</ChildContent>
-					<Helper>
-						<RadzenRequiredValidator Component="Latitude" Text="Latitude is required." />
-					</Helper>
-				</RadzenFormField>
-			</RadzenColumn>
+					<RadzenColumn>
+						<RadzenFormField Text="Parish" Variant="Variant.Flat" class="rz-w-100">
+							<ChildContent>
+								<RadzenTextBox Name="Parish" @bind-Value=@Address.Parish />
+							</ChildContent>
+						</RadzenFormField>
+					</RadzenColumn>
+				</RadzenRow>
 
-			<RadzenColumn Size="6">
-				<RadzenFormField Text="Longitude" Variant="Variant.Flat" class="rz-w-100">
-					<ChildContent>
-						<RadzenNumeric Name="Longitude" ShowUpDown="false" TValue="double" @bind-Value="Address.Location.Longitude" />
-					</ChildContent>
-					<Helper>
-						<RadzenRequiredValidator Component="Longitude" Text="Longitude is required." />
-					</Helper>
-				</RadzenFormField>
-			</RadzenColumn>
-		</RadzenRow>
-	</Body>
-</FormLayout>
+				<RadzenRow>
+					<RadzenColumn>
+						<RadzenFormField Text="Latitude" Variant="Variant.Flat" class="rz-w-100">
+							<ChildContent>
+								<RadzenNumeric Name="Latitude" ShowUpDown="false" TValue="double" @bind-Value="Address.Location.Latitude" />
+							</ChildContent>
+							<Helper>
+								<RadzenRequiredValidator Component="Latitude" Text="Latitude is required." />
+							</Helper>
+						</RadzenFormField>
+					</RadzenColumn>
+
+					<RadzenColumn>
+						<RadzenFormField Text="Longitude" Variant="Variant.Flat" class="rz-w-100">
+							<ChildContent>
+								<RadzenNumeric Name="Longitude" ShowUpDown="false" TValue="double" @bind-Value="Address.Location.Longitude" />
+							</ChildContent>
+							<Helper>
+								<RadzenRequiredValidator Component="Longitude" Text="Longitude is required." />
+							</Helper>
+						</RadzenFormField>
+					</RadzenColumn>
+				</RadzenRow>
+			</Body>
+		</FormLayout>
+	</ChildContent>
+</RadzenFieldset>

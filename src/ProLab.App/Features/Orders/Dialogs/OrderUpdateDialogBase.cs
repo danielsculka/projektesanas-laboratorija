@@ -18,6 +18,7 @@ public class OrderUpdateDialogBase : ComponentBase
 
     public UpdateOrderRequest Order { get; set; } = new UpdateOrderRequest
     {
+        Date = DateOnly.FromDateTime(DateTime.Now),
         StartTime = new TimeOnly(8, 0),
         EndTime = new TimeOnly(12, 0)
     };
@@ -30,6 +31,7 @@ public class OrderUpdateDialogBase : ComponentBase
         {
             Number = order.Number,
             Address = order.Address,
+            Date = order.Date,
             StartTime = order.StartTime,
             EndTime = order.EndTime,
             WarehouseId = order.WarehouseId

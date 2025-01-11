@@ -2,10 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using NetTopologySuite.Geometries;
+using ProLab.Application.Common.Query;
+using ProLab.Application.Extensions;
 using ProLab.Application.OpenRoute;
 using ProLab.Application.OpenRoute.Results;
 using ProLab.Application.RouteSets.Commands;
+using ProLab.Application.RouteSets.Results;
 using ProLab.Domain.Orders;
+using ProLab.Domain.Routes;
 using ProLab.Domain.Warehouses;
 
 namespace ProLab.Application.RouteSets;
@@ -106,6 +110,32 @@ public class RouteSetService : IRouteSetService
         }
 
         return Result.Ok();
+    }
+
+    public async Task<Result<RouteSetListResult>> GetAsync(QueryParameters<RouteSet> parameters, CancellationToken cancellationToken)
+    {
+        _logger.LogDebug("Retrieving route sets.");
+
+        IQueryable<RouteSet> query = _db.RouteSets
+            .AsNoTracking()
+            .ApplyFilter(parameters.Filter);
+
+        int totalCount = await query.CountAsync(cancellationToken);
+
+        RouteSetListResult.ItemData[] items = await query
+            .ApplySorting(parameters.Sorting)
+            .ApplyPaging(parameters.Paging)
+            .Select(RouteSetMapper.ProjectList())
+            .ToArrayAsync(cancellationToken);
+
+        _logger.LogInformation("Retrieved {count} route sets.", items.Length);
+
+        return new RouteSetListResult(
+            items,
+            totalCount,
+            parameters.Paging?.PageSize,
+            parameters.Paging?.CurrentPage
+            );
     }
 
     class RouteAssignment

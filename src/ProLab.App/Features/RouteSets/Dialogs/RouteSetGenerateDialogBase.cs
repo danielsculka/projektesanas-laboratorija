@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using ProLab.Shared.RouteSets;
+using ProLab.Shared.RouteSets.Requests;
 using Radzen;
 
 namespace ProLab.App.Features.RouteSets.Dialogs;
@@ -16,7 +16,7 @@ public class RouteSetGenerateDialogBase : ComponentBase
     {
         Date = DateOnly.FromDateTime(DateTime.Now),
         StartTime = new TimeOnly(8, 0),
-        EndTime = new TimeOnly(17, 0),
+        EndTime = new TimeOnly(17, 0)
     };
 
     protected void Cancel()

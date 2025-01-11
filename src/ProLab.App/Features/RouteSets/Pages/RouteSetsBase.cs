@@ -1,10 +1,9 @@
 ﻿using FisSst.BlazorMaps;
 using Microsoft.AspNetCore.Components;
-using ProLab.App.Features.Couriers;
 using ProLab.App.Features.RouteSets.Dialogs;
 using ProLab.Shared.Common;
-using ProLab.Shared.Couriers.Request;
-using ProLab.Shared.Couriers.Response;
+using ProLab.Shared.RouteSets.Requests;
+using ProLab.Shared.RouteSets.Response;
 using Radzen;
 using Radzen.Blazor;
 
@@ -19,9 +18,6 @@ public class RouteSetsBase : ComponentBase
     public required IRouteSetService RouteSetService { get; set; }
 
     [Inject]
-    public required ICourierService CourierService { get; set; }
-
-    [Inject]
     public required MapOptions DefaultMapOptions { get; set; }
     //[Inject]
     //private IMarkerFactory MarkerFactory { get; init; }
@@ -29,13 +25,13 @@ public class RouteSetsBase : ComponentBase
     //private IPolygonFactory PolygonFactory { get; init; }
 
     public Map Map;
-    public RadzenDataGrid<GetCourierListResponse.ItemData> Grid;
 
-    public GetCourierListResponse.ItemData SelectedItem;
+    public RadzenDataGrid<GetRouteSetListResponse.ItemData> Grid;
+    public GetRouteSetListResponse.ItemData SelectedItem;
 
     public bool IsLoading = false;
 
-    public IEnumerable<GetCourierListResponse.ItemData> Items;
+    public IEnumerable<GetRouteSetListResponse.ItemData> Items;
     public int Count = 0;
     public int PageSize = 10;
 
@@ -45,7 +41,7 @@ public class RouteSetsBase : ComponentBase
 
         await Task.Yield();
 
-        var request = new GetCourierListRequest
+        var request = new GetRouteSetListRequest
         {
             Paging = new PagingData
             {
@@ -54,7 +50,7 @@ public class RouteSetsBase : ComponentBase
             }
         };
 
-        GetCourierListResponse pagedList = await CourierService.GetListAsync(request);
+        GetRouteSetListResponse pagedList = await RouteSetService.GetListAsync(request);
 
         Items = pagedList.Items;
         Count = pagedList.TotalCount;
@@ -73,9 +69,9 @@ public class RouteSetsBase : ComponentBase
             await Grid.RefreshDataAsync();
     }
 
-    public void OnRowSelect(GetCourierListResponse.ItemData item)
+    public void OnRowSelect(GetRouteSetListResponse.ItemData item)
     {
-        //SelectedItem = item;
+        SelectedItem = item;
 
         //// TODO: Create seperate map service that would have methods that allow to add polygons and delete them easelly
 

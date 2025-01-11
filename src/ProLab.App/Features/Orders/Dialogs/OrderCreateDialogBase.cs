@@ -14,6 +14,7 @@ public class OrderCreateDialogBase : ComponentBase
 
     public CreateOrderRequest Order { get; set; } = new CreateOrderRequest
     {
+        Date = DateOnly.FromDateTime(DateTime.Now),
         StartTime = new TimeOnly(8, 0),
         EndTime = new TimeOnly(12, 0)
     };
