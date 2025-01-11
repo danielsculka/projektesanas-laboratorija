@@ -10,8 +10,9 @@ internal static class RouteSetMappingExtensions
         return new GenerateRouteSetCommand
         {
             Name = request.Name,
-            StartDate = request.StartDate,
-            EndDate = request.EndDate
+            Date = request.Date,
+            StartTime = request.StartTime,
+            EndTime = request.EndTime
         };
     }
 }

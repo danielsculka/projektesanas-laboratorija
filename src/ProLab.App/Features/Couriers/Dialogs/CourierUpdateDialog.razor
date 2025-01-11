@@ -26,6 +26,11 @@
 							<RadzenRequiredValidator Component="LastName" Text="Last name is required." />
 						</Helper>
 					</RadzenFormField>
+
+					<RadzenColumn>
+						<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Is active</RadzenText>
+						<RadzenSwitch @bind-Value=@Courier.IsActive />
+					</RadzenColumn>
 				</Body>
 			</FormLayout>
 		</Body>

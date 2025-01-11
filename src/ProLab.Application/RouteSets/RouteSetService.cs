@@ -30,7 +30,7 @@ public class RouteSetService : IRouteSetService
             .ToArrayAsync(cancellationToken);
 
         int totalCouriersNeeded = 0;
-        DateTime currentDate = command.StartDate;
+        DateOnly currentDate = command.Date;
         var results = new Dictionary<int, List<RouteAssignment>>();
 
         foreach (Warehouse warehouse in warehouses)
@@ -81,7 +81,7 @@ public class RouteSetService : IRouteSetService
 
                     route = routeResult.Value;
 
-                    currentDate = currentDate.AddSeconds(route.Duration);
+                    //currentDate = currentDate.AddSeconds(route.Duration);
                     totalDistance += route.Distance;
                     totalTime += route.Duration;
 

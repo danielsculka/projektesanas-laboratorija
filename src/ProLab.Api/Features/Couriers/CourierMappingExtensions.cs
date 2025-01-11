@@ -17,6 +17,7 @@ internal static class CourierMappingExtensions
         {
             FirstName = request.FirstName,
             LastName = request.LastName,
+            IsActive = request.IsActive
         };
     }
 
@@ -26,6 +27,7 @@ internal static class CourierMappingExtensions
         {
             FirstName = request.FirstName,
             LastName = request.LastName,
+            IsActive = request.IsActive
         };
     }
 
@@ -52,7 +54,8 @@ internal static class CourierMappingExtensions
         {
             Id = result.Id,
             FirstName = result.FirstName,
-            LastName = result.LastName
+            LastName = result.LastName,
+            IsActive = result.IsActive
         };
     }
 
@@ -64,7 +67,8 @@ internal static class CourierMappingExtensions
             {
                 Id = item.Id,
                 FirstName = item.FirstName,
-                LastName = item.LastName
+                LastName = item.LastName,
+                IsActive = item.IsActive
             }),
             TotalCount = result.TotalCount,
             PageSize = result.PageSize,

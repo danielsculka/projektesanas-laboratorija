@@ -1,6 +1,7 @@
 ﻿using FisSst.BlazorMaps;
 using Microsoft.AspNetCore.Components;
 using ProLab.App.Features.Couriers;
+using ProLab.App.Features.RouteSets.Dialogs;
 using ProLab.Shared.Common;
 using ProLab.Shared.Couriers.Request;
 using ProLab.Shared.Couriers.Response;
@@ -12,6 +13,9 @@ namespace ProLab.App.Features.RouteSets.Pages;
 public class RouteSetsBase : ComponentBase
 {
     [Inject]
+    public required DialogService DialogService { get; set; }
+
+    [Inject]
     public required IRouteSetService RouteSetService { get; set; }
 
     [Inject]
@@ -19,10 +23,10 @@ public class RouteSetsBase : ComponentBase
 
     [Inject]
     public required MapOptions DefaultMapOptions { get; set; }
-    [Inject]
-    private IMarkerFactory MarkerFactory { get; init; }
-    [Inject]
-    private IPolygonFactory PolygonFactory { get; init; }
+    //[Inject]
+    //private IMarkerFactory MarkerFactory { get; init; }
+    //[Inject]
+    //private IPolygonFactory PolygonFactory { get; init; }
 
     public Map Map;
     public RadzenDataGrid<GetCourierListResponse.ItemData> Grid;
@@ -33,7 +37,7 @@ public class RouteSetsBase : ComponentBase
 
     public IEnumerable<GetCourierListResponse.ItemData> Items;
     public int Count = 0;
-    public int PageSize = 5;
+    public int PageSize = 10;
 
     public async Task LoadData(LoadDataArgs args)
     {
@@ -61,17 +65,25 @@ public class RouteSetsBase : ComponentBase
         IsLoading = false;
     }
 
-    public async Task OnRowSelect(GetCourierListResponse.ItemData item)
+    public async Task OnGenerate()
     {
-        SelectedItem = item;
+        bool? result = await DialogService.OpenAsync<RouteSetGenerateDialog>("Generate routes");
 
-        // TODO: Create seperate map service that would have methods that allow to add polygons and delete them easelly
+        if (result.HasValue && result.Value)
+            await Grid.RefreshDataAsync();
+    }
 
-        LatLng FirstLatLng = new LatLng(50.2905456, 18.634743);
-        LatLng SecondLatLng = new LatLng(50.287532, 18.615791);
-        LatLng ThirdLatLng = new LatLng(50.295247, 18.579297);
+    public void OnRowSelect(GetCourierListResponse.ItemData item)
+    {
+        //SelectedItem = item;
 
-        _ = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, Map);
+        //// TODO: Create seperate map service that would have methods that allow to add polygons and delete them easelly
+
+        //LatLng FirstLatLng = new LatLng(50.2905456, 18.634743);
+        //LatLng SecondLatLng = new LatLng(50.287532, 18.615791);
+        //LatLng ThirdLatLng = new LatLng(50.295247, 18.579297);
+
+        //_ = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, Map);
     }
 }
 

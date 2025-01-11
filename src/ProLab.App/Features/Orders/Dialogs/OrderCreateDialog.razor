@@ -23,6 +23,17 @@
 
 					<RadzenRow>
 						<RadzenColumn>
+							<RadzenFormField Text="Date" Variant="Variant.Flat" class="rz-w-100">
+								<ChildContent>
+									<RadzenDatePicker Name="Date" DateFormat="dd.MM.yyyy" @bind-Value=@Order.Date />
+								</ChildContent>
+								<Helper>
+									<RadzenRequiredValidator Component="Date" Text="Date is required." />
+								</Helper>
+							</RadzenFormField>
+						</RadzenColumn>
+
+						<RadzenColumn>
 							<RadzenFormField Text="StartTime" Variant="Variant.Flat" class="rz-w-100">
 								<ChildContent>
 									<RadzenDatePicker Name="StartTime" ShowTime="true" TimeOnly="true" DateFormat="HH:mm" @bind-Value=@Order.StartTime />

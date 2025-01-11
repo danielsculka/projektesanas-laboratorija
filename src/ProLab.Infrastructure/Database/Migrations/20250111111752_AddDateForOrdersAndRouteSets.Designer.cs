@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using ProLab.Infrastructure.Database;
@@ -12,9 +13,11 @@ using ProLab.Infrastructure.Database;
 namespace ProLab.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250111111752_AddDateForOrdersAndRouteSets")]
+    partial class AddDateForOrdersAndRouteSets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,9 +44,6 @@ namespace ProLab.Infrastructure.Database.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -136,12 +136,15 @@ namespace ProLab.Infrastructure.Database.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("FromOrderId")
+                    b.Property<int?>("FirstOrderId")
                         .HasColumnType("int");
 
                     b.Property<string>("IntermediatePoints")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("LastOrderId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
@@ -149,16 +152,13 @@ namespace ProLab.Infrastructure.Database.Migrations
                     b.Property<int>("RouteId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ToOrderId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("FromOrderId");
+                    b.HasIndex("FirstOrderId");
+
+                    b.HasIndex("LastOrderId");
 
                     b.HasIndex("RouteId");
-
-                    b.HasIndex("ToOrderId");
 
                     b.ToTable("RouteSections", (string)null);
                 });
@@ -320,9 +320,13 @@ namespace ProLab.Infrastructure.Database.Migrations
 
             modelBuilder.Entity("ProLab.Domain.Routes.RouteSection", b =>
                 {
-                    b.HasOne("ProLab.Domain.Orders.Order", "FromOrder")
+                    b.HasOne("ProLab.Domain.Orders.Order", "FirstOrder")
                         .WithMany()
-                        .HasForeignKey("FromOrderId");
+                        .HasForeignKey("FirstOrderId");
+
+                    b.HasOne("ProLab.Domain.Orders.Order", "LastOrder")
+                        .WithMany()
+                        .HasForeignKey("LastOrderId");
 
                     b.HasOne("ProLab.Domain.Routes.Route", "Route")
                         .WithMany("Sections")
@@ -330,15 +334,11 @@ namespace ProLab.Infrastructure.Database.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ProLab.Domain.Orders.Order", "ToOrder")
-                        .WithMany()
-                        .HasForeignKey("ToOrderId");
+                    b.Navigation("FirstOrder");
 
-                    b.Navigation("FromOrder");
+                    b.Navigation("LastOrder");
 
                     b.Navigation("Route");
-
-                    b.Navigation("ToOrder");
                 });
 
             modelBuilder.Entity("ProLab.Domain.Warehouses.Warehouse", b =>

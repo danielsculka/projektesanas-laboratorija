@@ -11,6 +11,7 @@ internal static class CourierMapper
     {
         entity.FirstName = command.FirstName;
         entity.LastName = command.LastName;
+        entity.IsActive = command.IsActive;
 
         return entity;
     }
@@ -19,6 +20,7 @@ internal static class CourierMapper
     {
         entity.FirstName = command.FirstName;
         entity.LastName = command.LastName;
+        entity.IsActive = command.IsActive;
 
         return entity;
     }
@@ -29,7 +31,8 @@ internal static class CourierMapper
         {
             Id = courier.Id,
             FirstName = courier.FirstName,
-            LastName = courier.LastName
+            LastName = courier.LastName,
+            IsActive = courier.IsActive
         };
     }
 
@@ -39,7 +42,8 @@ internal static class CourierMapper
         {
             Id = courier.Id,
             FirstName = courier.FirstName,
-            LastName = courier.LastName
+            LastName = courier.LastName,
+            IsActive = courier.IsActive
         };
     }
 }

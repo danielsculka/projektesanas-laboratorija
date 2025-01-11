@@ -17,6 +17,7 @@ internal static class OrderMappingExtensions
         {
             Number = request.Number,
             Address = request.Address.ToData(),
+            Date = request.Date,
             StartTime = request.StartTime,
             EndTime = request.EndTime,
             WarehouseId = request.WarehouseId
@@ -29,6 +30,7 @@ internal static class OrderMappingExtensions
         {
             Number = request.Number,
             Address = request.Address.ToData(),
+            Date = request.Date,
             StartTime = request.StartTime,
             EndTime = request.EndTime,
             WarehouseId = request.WarehouseId
@@ -59,6 +61,7 @@ internal static class OrderMappingExtensions
             Id = result.Id,
             Number = result.Number,
             Address = result.Address.ToData(),
+            Date = result.Date,
             StartTime = result.StartTime,
             EndTime = result.EndTime,
             WarehouseId = result.WarehouseId
@@ -74,6 +77,7 @@ internal static class OrderMappingExtensions
                 Id = item.Id,
                 Number = item.Number,
                 Address = item.Address.ToData(),
+                Date = item.Date,
                 StartTime = item.StartTime,
                 EndTime = item.EndTime,
                 Warehouse = new GetOrderListResponse.ItemData.WarehouseData
