@@ -12,5 +12,14 @@ public class GetOrderListResponse : PagedListResponse<GetOrderListResponse.ItemD
         public required AddressData Address { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
+        public required WarehouseData Warehouse { get; set; }
+
+        public class WarehouseData
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+
+            public override string ToString() => Name;
+        }
     }
 }

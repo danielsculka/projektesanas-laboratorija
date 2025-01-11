@@ -60,7 +60,8 @@ internal static class OrderMappingExtensions
             Number = result.Number,
             Address = result.Address.ToData(),
             StartTime = result.StartTime,
-            EndTime = result.EndTime
+            EndTime = result.EndTime,
+            WarehouseId = result.WarehouseId
         };
     }
 
@@ -74,7 +75,12 @@ internal static class OrderMappingExtensions
                 Number = item.Number,
                 Address = item.Address.ToData(),
                 StartTime = item.StartTime,
-                EndTime = item.EndTime
+                EndTime = item.EndTime,
+                Warehouse = new GetOrderListResponse.ItemData.WarehouseData
+                {
+                    Id = item.Warehouse.Id,
+                    Name = item.Warehouse.Name
+                }
             }),
             TotalCount = result.TotalCount,
             PageSize = result.PageSize,

@@ -22,7 +22,7 @@ public class WarehousesBase : ComponentBase
 
     public IEnumerable<GetWarehouseListResponse.ItemData> Items;
     public int Count = 0;
-    public int PageSize = 5;
+    public int PageSize = 10;
 
     public async Task LoadData(LoadDataArgs args)
     {

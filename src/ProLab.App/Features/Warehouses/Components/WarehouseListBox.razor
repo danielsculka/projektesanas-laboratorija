@@ -1,0 +1,19 @@
+﻿@using ProLab.Shared.Warehouses.Response
+
+@inherits WarehouseListBoxBase
+
+<RadzenColumn class="rz-w-100">
+	<RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Warehouse</RadzenText>
+
+	<RadzenListBox 
+		@ref=ListBox
+		AllowFiltering="true"
+		LoadData=@LoadData
+		Data=@Items
+		TextProperty="@nameof(GetWarehouseListResponse.ItemData.Name)"
+		ValueProperty="@nameof(GetWarehouseListResponse.ItemData.Id)"
+		Style="max-height: 200px"
+		class="rz-w-100"
+		@bind-Value=WarehouseId
+		Change="OnChange" />
+</RadzenColumn>

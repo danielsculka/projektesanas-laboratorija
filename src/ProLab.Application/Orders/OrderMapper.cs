@@ -41,7 +41,8 @@ internal static class OrderMapper
             Number = order.Number,
             Address = order.Address.FromEntity(),
             StartTime = order.StartTime,
-            EndTime = order.EndTime
+            EndTime = order.EndTime,
+            WarehouseId = order.WarehouseId
         };
     }
 
@@ -53,7 +54,12 @@ internal static class OrderMapper
             Number = order.Number,
             Address = order.Address.FromEntity(),
             StartTime = order.StartTime,
-            EndTime = order.EndTime
+            EndTime = order.EndTime,
+            Warehouse = new OrderListResult.ItemData.WarehouseData
+            {
+                Id = order.Warehouse.Id,
+                Name = order.Warehouse.Name
+            }
         };
     }
 }

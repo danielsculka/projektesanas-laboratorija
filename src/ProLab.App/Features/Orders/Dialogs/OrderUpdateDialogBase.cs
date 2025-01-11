@@ -31,7 +31,8 @@ public class OrderUpdateDialogBase : ComponentBase
             Number = order.Number,
             Address = order.Address,
             StartTime = order.StartTime,
-            EndTime = order.EndTime
+            EndTime = order.EndTime,
+            WarehouseId = order.WarehouseId
         };
     }
 

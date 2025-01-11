@@ -1,4 +1,5 @@
-﻿@using ProLab.App.Shared.Layouts
+﻿@using ProLab.App.Features.Warehouses.Components
+@using ProLab.App.Shared.Layouts
 @using ProLab.Shared.Orders.Response
 @using ProLab.Shared.Orders.Requests
 @using Microsoft.AspNetCore.Components.Web
@@ -19,12 +20,6 @@
 							<RadzenRequiredValidator Component="Number" Text="Number is required." />
 						</Helper>
 					</RadzenFormField>
-
-					<RadzenColumn>
-						<AddressForm @bind-Address=@Order.Address />
-					</RadzenColumn>
-
-					@* TODO: Create compontent where can be selected warehouse  *@
 
 					<RadzenRow>
 						<RadzenColumn>
@@ -49,6 +44,14 @@
 							</RadzenFormField>
 						</RadzenColumn>
 					</RadzenRow>
+
+					<RadzenColumn>
+						<AddressForm @bind-Address=@Order.Address />
+					</RadzenColumn>
+
+					<RadzenColumn>
+						<WarehouseListBox @bind-WarehouseId=@Order.WarehouseId />
+					</RadzenColumn>
 				</Body>
 			</FormLayout>
 		</Body>
