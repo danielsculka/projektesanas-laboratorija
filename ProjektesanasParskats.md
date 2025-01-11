@@ -37,7 +37,9 @@ Izstrādāt algoritmisku risinājumu, kas optimizē preču piegādes maršrutus,
 ## Algoritms
 ### Apraksts
 Šis algoritms ir izstrādāts, lai optimizētu piegādes operācijas vairākiem noliktavām, piešķirot piegādes maršrutus kurjeriem, ievērojot konkrētus laika ierobežojumus: Pasutijuma laika logi un kurjeru darba laiks. Algoritms izmanto Openrouteservice API, lai aprēķinātu maršrutus. Šo algoritmu var izmantot loģistikas un piegādes pārvaldības sistēmās.
+
 Algoritms darbojas šādi: tiek inicializētas noliktavu koordinātas un piegādes punktu atrašanās vietas katrai noliktavai. Tiek noteikts kurjeru darba dienas sākuma un beigu laiks. Izstrādātais algoritms piegāžu adrešu sadalei ir veidots tā, lai maksimāli efektīvi izmantotu katra kurjera kapacitāti. Katra noliktava tiek apstrādāta neatkarīgi – sākot ar pirmo noliktavu, piegādes adreses tiek piešķirtas kurjeriem, maksimāli noslogojot katru no tiem. Piegādes adreses tiek piešķirtas secīgi – vispirms vienam kurjeram līdz viņa pieļaujamā noslodze ir sasniegta, pēc tam piešķiršana turpinās nākamajam kurjeram.
+
 Ja visi pasūtījumi tiek veiksmīgi iekļauti maršrutā, programma izvada maršrutus un tiem atbilstoši piešķirtos kurjerus, nodrošinot, ka katrs pasūtījums tiek piegādāts savlaicīgi. Tomēr, ja neizdodas iekļaut visus pasūtījumus maršrutā, piemēram, laika ierobežojumu dēļ, programma saglabā jau izveidotos maršrutus un norāda pasūtījumus, kuri palikuši neiekļauti. Galvenais mērķis ir piešķirt uzdevumus kurjeriem tādā veidā, lai pēc iespējas vairāk piegāžu tiktu veikti laicīgi, minimizējot attālumu un laiku.
 
 Algoritmi un pieejas, ko izmanto algoritms:
@@ -135,4 +137,12 @@ Novērtēt skaitļošanas laiku atkarībā no pasūtījumu grūtības un kurjeru
 
 ## Novērtēšanas rezultāti
 # Secinājumi
+Izstrādātais algoritms ļauj ievērojami uzlabot preču piegādes maršrutēšanu, ņemot vērā svarīgākos loģistikas aspektus, piemēram, piegādes punktu ģeogrāfisko atrašanās vietu, kurjeru skaitu un pasūtījumu piegādes laika logus. Algoritms palīdz samazināt degvielas patēriņu, optimizēt piegādes laiku un nodrošināt augstu klientu apmierinātību, pielāgojoties piegādes apstākļiem.  
+Algoritms izmanto Openrouteservice API, kas ļauj aprēķināt ceļa garumus un laikus starp piegādes punktiem. Tas ļauj plānot maršrutus ar augstu precizitāti un pielāgot tos atbilstoši uzņēmuma vajadzībām.
+Sistēma nodrošina ērtu interfeisu, kur administrators var ....
+
+Algoritmam piemīt ierobežojumi. Tas darbojas, maksimāli noslogojot kurjerus secīgi – sākot ar pirmo un turpinot ar nākamo, līdz visi pasūtījumi ir sadalīti. Šāda pieeja rada nevienmērīgu darba slodzes sadalījumu.
+
+Ieteikumi turpmākajam darbam: Turpmākajā izstrādē būtu ieteicams ieviest iespēju dinamiski mainīt maršrutus, reaģējot uz ceļu apstākļiem vai izmaiņām piegādes laika logu prasībās. ??Tāpat varētu tikt izstrādāta integrācija ar reāllaika datiem par satiksmes apstākļiem, kas vēl vairāk uzlabotu maršruta precizitāti.??
+
 
