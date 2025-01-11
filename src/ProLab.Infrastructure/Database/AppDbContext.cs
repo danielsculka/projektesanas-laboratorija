@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -9,6 +10,7 @@ using ProLab.Domain.Orders;
 using ProLab.Domain.Routes;
 using ProLab.Domain.Users;
 using ProLab.Domain.Warehouses;
+using ProLab.Infrastructure.Identity;
 
 namespace ProLab.Infrastructure.Database;
 
@@ -29,6 +31,7 @@ public class AppDbContext : DbContext, IAppDbContext
     public DbSet<RouteSet> RouteSets { get; set; }
     public DbSet<Warehouse> Warehouses { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<IdentityUserLogin> IdentityUserLogins { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => _ = optionsBuilder.UseLazyLoadingProxies();
 

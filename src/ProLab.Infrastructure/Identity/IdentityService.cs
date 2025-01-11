@@ -1,7 +1,67 @@
-﻿namespace ProLab.Infrastructure.Identity;
+﻿using FluentResults;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using ProLab.Application.Auth;
+using ProLab.Application;
+using ProLab.Application.Auth.Commands;
+using ProLab.Application.Orders;
+using ProLab.Domain.Users;
+
+namespace ProLab.Infrastructure.Identity;
 
 public class IdentityService : IIdentityService
 {
+    private readonly IAppDbContext _db;
+    private readonly ILogger<AuthService> _logger;
+    private readonly IPasswordService _passwordService;
+    private readonly JwtOptions _options;
+
+    public IdentityService(IAppDbContext db,
+        ILogger<AuthService> logger,
+        IPasswordService passwordService,
+        IOptions<JwtOptions> options)
+    {
+        _db = db;
+        _logger = logger;
+        _passwordService = passwordService;
+        _options = options.Value;
+    }
+    public async Task<Result> Register(CreateUserCommand command, CancellationToken cancellationToken = default)
+    {
+        _logger.LogDebug("Creating a new user.");
+
+        User user = command.ToEntity(new User(command.UserName));
+
+        var userExist = _db.Users.Any(u => u.Name == user.Name);
+
+        if (userExist)
+            return Result.Fail(AuthErrors.AlreadyExists);
+
+        _ = _db.Users.Add(user);
+        _ = await _db.SaveChangesAsync(cancellationToken);
+
+        _logger.LogInformation("Created a new user with ID: {id}", user.Id);
+
+        return Result.Ok();
+    }
+
+    public async Task<Result<User>> Login(CreateLoginCommand command, CancellationToken cancellationToken = default)
+    {
+        _logger.LogDebug("Login attempt by {command.Name}");
+
+        User login = command.ToEntity(new User(command.UserName));
+
+        User user = _db.Users.Where(u => u.Name == command.UserName).FirstOrDefault();
+
+        if (user == null)
+            return Result.Fail(AuthErrors.NotFound);
+
+        if (!_passwordService.Verify(login.PasswordHash, user.PasswordHash))
+            return Result.Fail(AuthErrors.ValidationException);
+
+        return Result.Ok(user);
+    }
+
     //private readonly IIdentityDbContext _db;
     //private readonly IIdentityValidator _validator;
     //private readonly IPasswordValidator _passwordValidator;

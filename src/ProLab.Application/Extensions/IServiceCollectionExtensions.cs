@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ProLab.Application.Auth;
 using ProLab.Application.Couriers;
 using ProLab.Application.Orders;
 using ProLab.Application.RouteSets;
@@ -14,6 +15,7 @@ public static class IServiceCollectionExtensions
         _ = services.AddScoped<IWarehouseService, WarehouseService>();
         _ = services.AddScoped<IOrderService, OrderService>();
         _ = services.AddScoped<IRouteSetService, RouteSetService>();
+        _ = services.AddScoped<IAuthService, AuthService>();
 
         return services;
     }

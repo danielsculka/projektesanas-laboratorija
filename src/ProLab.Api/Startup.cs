@@ -1,6 +1,7 @@
 ﻿using FastEndpoints;
 using FastEndpoints.Swagger;
 using ProLab.Api.Core;
+using ProLab.Application.Auth;
 using ProLab.Application.Extensions;
 using ProLab.Infrastructure.Extensions;
 
@@ -43,6 +44,8 @@ public class Startup
                     .AllowAnyMethod();
             });
         });
+
+        _ = services.Configure<JwtOptions>(Configuration.GetSection(nameof(JwtOptions)));
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -56,6 +59,9 @@ public class Startup
         }
 
         _ = app.UseMiddleware<GlobalExceptionMiddleware>();
+
+        _ = app.UseAuthentication();
+        _ = app.UseAuthorization();
 
         _ = app.UseHttpsRedirection();
 

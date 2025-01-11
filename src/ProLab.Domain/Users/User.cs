@@ -16,4 +16,5 @@ public class User : Entity<Guid>
     [MaxLength(100)]
     public string Name { get; set; }
     public UserRole Role { get; set; }
+    public string PasswordHash { get; set; }
 }

@@ -17,4 +17,5 @@ public interface IAppDbContext
     DbSet<RouteSet> RouteSets { get; }
     DbSet<Warehouse> Warehouses { get; }
     DbSet<User> Users { get; }
+    //DbSet<IdentityUserLogin> IdentityUserLogins { get; }
 }
