@@ -35,6 +35,30 @@ Izstrādāt algoritmisku risinājumu, kas optimizē preču piegādes maršrutus,
 # Tehniskais risinājums
 ## Prasības
 ## Algoritms
+BEGIN PROGRAM
+  Inicializēt noliktavu atrašanās vietas
+  Inicializēt piegādes punktus katrai noliktavai
+  Iestatīt darba laiku
+
+  FOR noliktavai DO
+    Inicializēt nepiegādāto punkti sarakstu
+    Inicializēt kurjera indeksu
+    WHILE ir nepiegādātie punkti DO
+      IF Piešķirt maršruts kurjeram:
+        Atrast tuvāko piegādes punktu, kuru var piegādāt, ievērojot laika ierobežojumu (logus)
+        Aprēķināt maršrutu no pašreizējās atrašanās vietas līdz piegādes punktam
+          IF kurjers var pabeigt piegādes maršrutu un atgriezties noliktavā darba laika ietvaros THEN
+            Piešķirt piegādes punktu kurjeram
+            Atjaunot kurjera pašreizējo atrašanās vietu un laiku
+          ELSE
+            Aprēķināt maršrutu atpakaļ uz noliktavu
+      ELSE
+        BREAK (ne visas pakas var piegādāt)
+    END WHILE
+  END FOR
+        
+END PROGRAM
+
 ## Konceptu modelis
 Piegādes kompānijai ir noliktavas kurās glābājās preces. Tās preces ir nepieciešams piegādāt klientiem  ko nodrošina kurjeri. Administrātors var saorganizēt kurjeru maršrutus vienai darba dienai. Administrātors var pārvaldīt noliktavas un pievienot sūtījumus. Kā arī saņemt informāciju par kurjeru noslodzi un vai ir nepieciešamība pievienot vel kādu kurjeru maiņai.
 
