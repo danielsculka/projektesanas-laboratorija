@@ -37,6 +37,7 @@ Izstrādāt algoritmisku risinājumu, kas optimizē preču piegādes maršrutus,
 ## Algoritms
 ### Apraksts
 ### Pseidokods
+```
 BEGIN PROGRAM
   Inicializēt noliktavu atrašanās vietas
   Inicializēt piegādes punktus katrai noliktavai
@@ -60,6 +61,7 @@ BEGIN PROGRAM
   END FOR
         
 END PROGRAM
+```
 
 ## Konceptu modelis
 Piegādes kompānijai ir noliktavas kurās glābājās preces. Tās preces ir nepieciešams piegādāt klientiem  ko nodrošina kurjeri. Administrātors var saorganizēt kurjeru maršrutus vienai darba dienai. Administrātors var pārvaldīt noliktavas un pievienot sūtījumus. Kā arī saņemt informāciju par kurjeru noslodzi un vai ir nepieciešamība pievienot vel kādu kurjeru maiņai.
