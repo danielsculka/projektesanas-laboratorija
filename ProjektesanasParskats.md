@@ -1,5 +1,4 @@
 # Ievads
-Preču piegādes maršrutēšana 
 ## Problēmas nostādne
 Loģistikas uzņēmumiem un preču piegādes pakalpojumu sniedzējiem efektīva maršrutēšana ir būtiska, lai samazinātu izdevumus, optimizētu piegādes laiku un uzlabotu klientu apmierinātību. Pārāk ilgi vai neefektīvi maršruti rada palielinātus degvielas izdevumus, resursu izšķērdēšanu un nepārskatāmību par piegāžu statusu. Optimizēta preču piegādes maršrutēšanas sistēma var palīdzēt uzņēmumam labāk izplānot piegādes maršrutus, pielāgojoties dažādiem klientu pieprasījumiem un piegādes apstākļiem.
 ### Lietotāju stāsti
@@ -109,22 +108,20 @@ Novērtēt skaitļošanas laiku atkarībā no pasūtījumu grūtības un kurjeru
 |-----|-------|----------|-------|--------|----|
 | 1   | 10    | 2        | 0.5   | 6.666  | 3
 | 2   | 20    | 2        | 0.5   | 23.687 | 4
-| 3   | 10    | 5        | 0.5   |  8.02  | 4
-| 4   | 20    | 5        | 0.5   |  23.53 | 6
-| 5   | 10    | 7        | 1     |        |
-| 6   | 20    | 7        | 1     |        | 
+| 3   | 10    | 5        | 0.5   | 8.02   | 4
+| 4   | 20    | 5        | 0.5   | 23.53  | 6
+| 5   | 10    | 7        | 1     | 5.844  | 3
+| 6   | 20    | 7        | 1     | 21.921 | 4
 | 7   | 10    | 2        | 1     | 6,621  | 2
 | 8   | 20    | 2        | 1     | 24.281 | 2
-| 9   | 10    | 5        | 1     |  6.21  | 2
+| 9   | 10    | 5        | 1     | 6.21   | 2
 | 10  | 20    | 5        | 1     | 21.824 | 4
-| 11  | 10    | 7        | 2     |        |
-| 12  | 20    | 7        | 2     |        | 
+| 11  | 10    | 7        | 2     | 5.571  | 2
+| 12  | 20    | 7        | 2     | 20.621 | 2 
 | 13  | 10    | 2        | 2     | 5.977  | 2
 | 14  | 20    | 2        | 2     | 22.904 | 2
 | 15  | 10    | 5        | 2     | 6.098  | 2
-| 16  | 20    | 5        | 2     |        | 
-| 17  | 10    | 7        | 3     |        |
-| 18  | 20    | 7        | 3     |        | 
+| 16  | 20    | 5        | 2     | 21.403 | 2 
 
 ## Novērtēšanas rezultāti
 # Secinājumi
