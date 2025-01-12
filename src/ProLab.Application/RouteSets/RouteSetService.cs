@@ -12,6 +12,7 @@ using ProLab.Domain.Couriers;
 using ProLab.Domain.Orders;
 using ProLab.Domain.Routes;
 using ProLab.Domain.Warehouses;
+using System.Diagnostics;
 
 namespace ProLab.Application.RouteSets;
 
@@ -30,6 +31,12 @@ public class RouteSetService : IRouteSetService
 
     public async Task<Result> GenerateAsync(GenerateRouteSetCommand command, CancellationToken cancellationToken)
     {
+        var stopwatch = new Stopwatch();
+
+        int timesCalledOpenRoute = 0;
+
+        stopwatch.Start();
+
         RouteSet entity = command.ToEntity(new RouteSet());
 
         Warehouse[] warehouses = await _db.Warehouses
@@ -78,6 +85,8 @@ public class RouteSetService : IRouteSetService
                             order.Address.Location,
                             warehouse.Address.Location,
                             cancellationToken);
+
+                        timesCalledOpenRoute += 2;
 
                         if (!routeResult.IsSuccess || !routeBackResult.IsSuccess)
                             continue;
@@ -149,6 +158,10 @@ public class RouteSetService : IRouteSetService
                 entity.Routes.Add(route);
             }
         }
+
+        stopwatch.Stop();
+
+        entity.GenerateDuration = stopwatch.Elapsed - TimeSpan.FromMilliseconds(timesCalledOpenRoute * 1500);
 
         _ = _db.RouteSets.Add(entity);
 

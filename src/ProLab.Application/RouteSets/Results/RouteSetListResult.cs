@@ -17,6 +17,7 @@ public class RouteSetListResult : PagedListResult<RouteSetListResult.ItemData>
         public DateOnly Date { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
+        public TimeSpan GenerateDuration { get; set; }
         public IEnumerable<RouteData> Routes { get; set; }
 
         public class RouteData
