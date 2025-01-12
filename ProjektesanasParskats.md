@@ -4,11 +4,11 @@ Loģistikas uzņēmumiem un preču piegādes pakalpojumu sniedzējiem efektīva 
 ### Lietotāju stāsti
 | Nr.   | Lietotāju stāsts <lietotājs> vēlas <sasniegt mērķi>, jo <ieguvums>   | Prioritāte |
 |--------------|----------------|--------------------|
-| 1. | Administrators vēlas nodrošināt efektīvu maršrutu plānošanu, jo tas palīdz samazināt izmaksas un uzlabot piegādes kvalitāti | |
-| 2. | Administrators vēlas nodrošināt kurjeru drošību uz ceļa, jo tas samazina negadījumu risku un palielina darbinieku apmierinātību | |
-| 3. | Kurjers vēlas piekļūt ērtai navigācijas sistēmai ar maršrutiem, jo tas palīdz viņam vieglāk orientēties un izvairīties no kļūdām | |
-| 4. | Kurjers vēlas, lai maršruts tiktu plānots, ņemot vērā laika logus, jo viņš varēs optimizēt savu laiku un piegādāt pasūtījumus ātrāk | |
-| 5. | Klients vēlas izvēlēties vēlamo piegādes laiku, jo tas padara pakalpojumu ērtāku un pielāgojamāku viņa grafikam | |
+| 1. | Administrators vēlas nodrošināt efektīvu maršrutu plānošanu, jo tas palīdz samazināt izmaksas un uzlabot piegādes kvalitāti | 2 |
+| 2. | Administrators vēlas nodrošināt kurjeru drošību uz ceļa, jo tas samazina negadījumu risku un palielina darbinieku apmierinātību | 5 |
+| 3. | Kurjers vēlas piekļūt ērtai navigācijas sistēmai ar maršrutiem, jo tas palīdz viņam vieglāk orientēties un izvairīties no kļūdām | 4 |
+| 4. | Kurjers vēlas, lai maršruts tiktu plānots, ņemot vērā laika logus, jo viņš varēs optimizēt savu laiku un piegādāt pasūtījumus ātrāk | 1 |
+| 5. | Klients vēlas izvēlēties vēlamo piegādes laiku, jo tas padara pakalpojumu ērtāku un pielāgojamāku viņa grafikam | 3 |
 
 ## Darba un novērtēšanas mērķis
 ### Mērķis
@@ -33,6 +33,17 @@ Izstrādāt algoritmisku risinājumu, kas optimizē preču piegādes maršrutus,
 |OptimoRoute|Mākoņrisinājums preču piegādes un servisa maršrutu optimizācijai ar reāllaika sekošanu un integrāciju.|Reāllaika sekošana, elastīgi maršrutu plāni, viegli lietojams interfeiss. Klientu paziņojumi|Katrs transportlīdzeklis var pārvadāt tikai noteiktu kravu|
 # Tehniskais risinājums
 ## Prasības
+### Funkcionālās prasības
+- Kurjeru pievienošana: Sistēmai jāļauj administratoram pievienot un pārvaldīt kurjerus, tostarp viņu pieejamību un darba stundas.
+- Noliktāvu pārvaldība: Administratoram jābūt iespējai pievienot un pārvaldīt informāciju par noliktavām, tostarp to atrašanās vietas un pieejamo inventāru.
+- Pasūtījumu pievienošana: Sistēmai jānodrošina saskarne pasūtījumu pievienošanai, tostarp piegādes detaļas un klientu ģeogrāfiskā atrašanās vieta.
+- Maršrutu ģenerēšana: Sistēmai jāspēj automātiski ģenerēt optimālus piegādes maršrutus, pamatojoties uz aktuālo informāciju par kurjeriem, noliktavām un pasūtījumiem.
+### Drošības prasības
+- Datu šifrēšana: Jutīgu datu, piemēram, kurjeru un klientu personas informācijas, paroles šifrēšana.
+- Auditēšana un žurnāli: Lietotāju darbību audita un žurnālu uzturēšana un glabāšana, lai nodrošinātu darbību izsekojamību un problēmu risināšanu.
+### Veiktspējas prasības
+- Sistēmas atsaucība: Sistēmai jāreaģē uz lietotāju pieprasījumiem ātri un jāģenerē maršruti reāllaikā.
+- Mērogojamība: Sistēmai jābūt pielāgojamai, lai spētu apstrādāt lielāku pasūtījumu, kurjeru un noliktavu skaitu bez veiktspējas zuduma.
 ## Algoritms
 ### Apraksts
 Šis algoritms ir izstrādāts, lai optimizētu piegādes operācijas vairākiem noliktavām, piešķirot piegādes maršrutus kurjeriem, ievērojot konkrētus laika ierobežojumus: Pasutijuma laika logi un kurjeru darba laiks. Algoritms izmanto Openrouteservice API, lai aprēķinātu maršrutus. Šo algoritmu var izmantot loģistikas un piegādes pārvaldības sistēmās.
@@ -89,6 +100,13 @@ Piegādes kompānijai ir noliktavas kurās glābājās preces. Tās preces ir ne
 ![Diagram](diagrams/TehnologijuSteks.svg)
 
 ## Programmatūras apraksts
+Preču piegādes maršrutēšanas procesu automatizācija un optimizācija, samazinot piegādes laiku un izmaksas.
+### Sistēmas galvenās funkcijas:
+- Kurjeru pārvaldība: sistēma ļauj administratoriem pievienot, rediģēt un dzēst kurjeru informāciju.
+- Noliktavas pārvaldība: administratori var pievienot un pārvaldīt noliktavas informāciju, tostarp to atrašanās vietu un pieejamos krājumus.
+- Pasūtījumu pievienošana: Sistēma nodrošina iespēju pievienot pasūtījumus, norādot klienta atrašanās vietu un nepieciešamos piegādes laika logus.
+- Maršruta izveide: Programmatūra automātiski ģenerē un attēlo optimālus piegādes maršrutus un optimālo kurjeru skaitu, pamatojoties uz noliktavu, piegādes adrešu atrašanās vietām un klienta izvēlētiem laika logiem. Maršruta kartes attēlošanai tiek izmantots OpenRouteService API, kas atspoguļojas pirmajā sistēmas lapā
+- Monitorings un analītika: Sistēma nodrošina rīkus pasūtījumu izpildes uzraudzībai un maršrutu un kurjeru darba efektivitātes analīzei, kā arī darbību sistēmā uzraudzība pateicoties pieslegtājām Grafana, kur varam uzraudzīt mūsu mājāslapu un sekot visam procesiem, sistemās noslogojumam, kļūdam un aizdomīgam darbībam reallaikā.
 # Novērtējums
 ## Novērtēšanas plāns
 ### Eksperimenta mērķis
@@ -124,6 +142,15 @@ Novērtēt skaitļošanas laiku atkarībā no pasūtījumu grūtības un kurjeru
 | 16  | 20    | 5        | 2     | 21.403 | 2 
 
 ## Novērtēšanas rezultāti
+Pēc algoritma darbošanas testiem un rezultātu fiksēšanās, tiek iegūti dati, kuri attēloti tabulā "Eksperimentu plāns". Ar šadiem rezultātiem iziet:
+- Pie lielāka preču daudzuma (PD) un vidējā pasūtījumu attāluma (VPA) novērojams ilgāks skaitļošanas laiks (W).
+- Mazāks vidējais laika logs (VLLI) arī ievērojami palielina skaitļošanas laiku.
+- Lielāks kurjeru skaits samazina skaitļošanas laiku, jo sistēma efektīvāk sadala maršrutus un pasūtījumus.
+- Tomēr pie zemāka PD un VPA šī ietekme ir mazāk izteikta.
+
+Korelācija starp parametriem:
+- VPA un VLLI būtiski ietekmē gan W, gan nepieciešamo kurjeru skaitu (N).
+- Pie lielākiem attālumiem un mazākiem laika logiem kurjeru skaits palielinās.
 # Secinājumi
 Izstrādātais algoritms ļauj ievērojami uzlabot preču piegādes maršrutēšanu, ņemot vērā svarīgākos loģistikas aspektus, piemēram, piegādes punktu ģeogrāfisko atrašanās vietu, kurjeru skaitu un pasūtījumu piegādes laika logus. Algoritms palīdz samazināt degvielas patēriņu, optimizēt piegādes laiku un nodrošināt augstu klientu apmierinātību, pielāgojoties piegādes apstākļiem.  
 Algoritms izmanto Openrouteservice API, kas ļauj aprēķināt ceļa garumus un laikus starp piegādes punktiem. Tas ļauj plānot maršrutus ar augstu precizitāti un pielāgot tos atbilstoši uzņēmuma vajadzībām.
