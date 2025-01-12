@@ -4,6 +4,7 @@ using ProLab.Application.RouteSets.Commands;
 using ProLab.Application.RouteSets.Query;
 using ProLab.Application.RouteSets.Results;
 using ProLab.Domain.Routes;
+using ProLab.Shared.Common;
 using ProLab.Shared.RouteSets.Requests;
 using ProLab.Shared.RouteSets.Response;
 
@@ -49,7 +50,25 @@ internal static class RouteSetMappingExtensions
                 Name = item.Name,
                 Date = item.Date,
                 StartTime = item.StartTime,
-                EndTime = item.EndTime
+                EndTime = item.EndTime,
+                Routes = item.Routes.Select(route => new GetRouteSetListResponse.ItemData.RouteData
+                {
+                    Id = route.Id,
+                    CourierId = route.CourierId,
+                    Sections = route.Sections.Select(section => new GetRouteSetListResponse.ItemData.RouteData.SectionData
+                    {
+                        Id = section.Id,
+                        OrderId = section.Id,
+                        ArrivalTime = section.ArrivalTime,
+                        Distance = section.Distance,
+                        Duration = section.Duration,
+                        Path = section.Path.Coordinates.Select(coordinate => new CoordinateData
+                        {
+                            Longitude = coordinate.X,
+                            Latitude = coordinate.Y
+                        })
+                    })
+                })
             }),
             TotalCount = result.TotalCount,
             PageSize = result.PageSize,

@@ -1,9 +1,16 @@
 ﻿using FisSst.BlazorMaps;
 using Microsoft.AspNetCore.Components;
+using ProLab.App.Features.Couriers;
+using ProLab.App.Features.Orders;
 using ProLab.App.Features.RouteSets.Dialogs;
+using ProLab.App.Features.Warehouses;
+using ProLab.App.Shared;
 using ProLab.Shared.Common;
+using ProLab.Shared.Couriers.Response;
+using ProLab.Shared.Orders.Response;
 using ProLab.Shared.RouteSets.Requests;
 using ProLab.Shared.RouteSets.Response;
+using ProLab.Shared.Warehouses.Response;
 using Radzen;
 using Radzen.Blazor;
 
@@ -15,14 +22,21 @@ public class RouteSetsBase : ComponentBase
     public required DialogService DialogService { get; set; }
 
     [Inject]
+    public required IWarehouseService WarehouseService { get; set; }
+    [Inject]
+    public required IOrderService OrderService { get; set; }
+    [Inject]
+    public required ICourierService CourierService { get; set; }
+    [Inject]
     public required IRouteSetService RouteSetService { get; set; }
 
     [Inject]
     public required MapOptions DefaultMapOptions { get; set; }
-    //[Inject]
-    //private IMarkerFactory MarkerFactory { get; init; }
-    //[Inject]
-    //private IPolygonFactory PolygonFactory { get; init; }
+
+    [Inject]
+    private ICircleMarkerFactory CircleMarkerFactory { get; set; }
+    [Inject]
+    private IPolylineFactory PolylineFactory { get; init; }
 
     public Map Map;
 
@@ -31,9 +45,27 @@ public class RouteSetsBase : ComponentBase
 
     public bool IsLoading = false;
 
-    public IEnumerable<GetRouteSetListResponse.ItemData> Items;
+    public IEnumerable<GetWarehouseListResponse.ItemData> Warehouses;
+    public IEnumerable<GetOrderListResponse.ItemData> Orders;
+    public IEnumerable<GetCourierListResponse.ItemData> Couriers;
+    public IEnumerable<GetRouteSetListResponse.ItemData> RouteSets;
     public int Count = 0;
     public int PageSize = 10;
+
+    private string[] _routeColors;
+    private string _warehouseColor = ColorGenerator.GenerateRandomColor();
+    private string _orderColor = ColorGenerator.GenerateRandomColor();
+    private List<Polyline> _routePolylines = new List<Polyline>();
+    private List<CircleMarker> _warehouseMarkers = new List<CircleMarker>();
+    private List<CircleMarker> _orderMarkers = new List<CircleMarker>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Load();
+
+        await DrawWarehouses();
+        await DrawOrders();
+    }
 
     public async Task LoadData(LoadDataArgs args)
     {
@@ -52,11 +84,11 @@ public class RouteSetsBase : ComponentBase
 
         GetRouteSetListResponse pagedList = await RouteSetService.GetListAsync(request);
 
-        Items = pagedList.Items;
+        RouteSets = pagedList.Items;
         Count = pagedList.TotalCount;
 
-        if (SelectedItem == null && Items.Any())
-            _ = Grid.SelectRow(Items.First());
+        if (SelectedItem == null && RouteSets.Any())
+            _ = Grid.SelectRow(RouteSets.First());
 
         IsLoading = false;
     }
@@ -69,17 +101,105 @@ public class RouteSetsBase : ComponentBase
             await Grid.RefreshDataAsync();
     }
 
-    public void OnRowSelect(GetRouteSetListResponse.ItemData item)
+    public async Task OnRowSelect(GetRouteSetListResponse.ItemData item)
     {
+        foreach (var polyline in _routePolylines)
+            _ = await polyline.RemoveFrom(Map);
+
+        _routePolylines.Clear();
+
         SelectedItem = item;
 
-        //// TODO: Create seperate map service that would have methods that allow to add polygons and delete them easelly
+        foreach (GetRouteSetListResponse.ItemData.RouteData route in SelectedItem.Routes)
+        {
+            GetCourierListResponse.ItemData courier = Couriers.First(courier => courier.Id == route.CourierId);
 
-        //LatLng FirstLatLng = new LatLng(50.2905456, 18.634743);
-        //LatLng SecondLatLng = new LatLng(50.287532, 18.615791);
-        //LatLng ThirdLatLng = new LatLng(50.295247, 18.579297);
+            var color = ColorGenerator.GenerateRandomColor();
 
-        //_ = await this.PolygonFactory.CreateAndAddToMap(new List<LatLng> { FirstLatLng, SecondLatLng, ThirdLatLng }, Map);
+            foreach (GetRouteSetListResponse.ItemData.RouteData.SectionData section in route.Sections)
+            {
+                IEnumerable<LatLng> c = section.Path
+                    .Select(coordinate => new LatLng(coordinate.Latitude, coordinate.Longitude));
+
+                Polyline polyline = await PolylineFactory.CreateAndAddToMap(c, Map, new PolylineOptions
+                {
+                    Color = color,
+                    Opacity = 0.8
+                });
+
+                _ = await polyline.BindTooltip(
+                    $"Courier: {courier.FirstName} {courier.LastName} " +
+                    $"Arrival time: {section.ArrivalTime:HH:mm} " +
+                    $"Duration: {Math.Round(section.Duration / 60, 2)} min " +
+                    $"Distance: {section.Distance} km");
+
+                _routePolylines.Add(polyline);
+            }
+        }
+    }
+
+    private async Task DrawWarehouses()
+    {
+        foreach (CircleMarker marker in _warehouseMarkers)
+            _ = await marker.RemoveFrom(Map);
+
+        _warehouseMarkers.Clear();
+
+        foreach (GetWarehouseListResponse.ItemData warehouse in Warehouses)
+        {
+            var point = new LatLng(warehouse.Address.Location.Latitude, warehouse.Address.Location.Longitude);
+
+            CircleMarker marker = await CircleMarkerFactory.CreateAndAddToMap(point, Map, new CircleMarkerOptions
+            {
+                Radius = 5,
+                Color = _warehouseColor
+            });
+
+            _ = await marker.BindTooltip(
+                $"Warehouse: {warehouse.Name} " +
+                $"Address: {warehouse.Address}");
+
+            _warehouseMarkers.Add(marker);
+        }
+    }
+
+    private async Task DrawOrders()
+    {
+        foreach (CircleMarker marker in _orderMarkers)
+            _ = await marker.RemoveFrom(Map);
+
+        _orderMarkers.Clear();
+
+        foreach (GetOrderListResponse.ItemData order in Orders)
+        {
+            var point = new LatLng(order.Address.Location.Latitude, order.Address.Location.Longitude);
+
+            CircleMarker marker = await CircleMarkerFactory.CreateAndAddToMap(point, Map, new CircleMarkerOptions
+            {
+                Radius = 5,
+                Color = _orderColor
+            });
+
+            _ = await marker.BindTooltip(
+                $"Order: {order.Number} " +
+                $"Address: {order.Address} " +
+                $"Warehouse: {order.Warehouse.Name}");
+
+            _orderMarkers.Add(marker);
+        }
+    }
+
+    private async Task Load()
+    {
+        Task<GetWarehouseListResponse> warehousesTask = WarehouseService.GetListAsync();
+        Task<GetOrderListResponse> ordersTask = OrderService.GetListAsync();
+        Task<GetCourierListResponse> couriersTask = CourierService.GetListAsync();
+
+        await Task.WhenAll(warehousesTask, ordersTask, couriersTask);
+
+        Warehouses = (await warehousesTask).Items;
+        Orders = (await ordersTask).Items;
+        Couriers = (await couriersTask).Items;
     }
 }
 

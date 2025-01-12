@@ -8,6 +8,7 @@ using ProLab.Application.OpenRoute;
 using ProLab.Application.OpenRoute.Results;
 using ProLab.Application.RouteSets.Commands;
 using ProLab.Application.RouteSets.Results;
+using ProLab.Domain.Couriers;
 using ProLab.Domain.Orders;
 using ProLab.Domain.Routes;
 using ProLab.Domain.Warehouses;
@@ -29,85 +30,129 @@ public class RouteSetService : IRouteSetService
 
     public async Task<Result> GenerateAsync(GenerateRouteSetCommand command, CancellationToken cancellationToken)
     {
-        IEnumerable<Warehouse> warehouses = await _db.Warehouses
-            .Include(warehouse => warehouse.Orders)
+        RouteSet entity = command.ToEntity(new RouteSet());
+
+        Warehouse[] warehouses = await _db.Warehouses
+            .Include(warehouse => warehouse.Orders
+                .Where(order => order.Date == command.Date))
             .ToArrayAsync(cancellationToken);
 
-        int totalCouriersNeeded = 0;
-        DateOnly currentDate = command.Date;
-        var results = new Dictionary<int, List<RouteAssignment>>();
+        Courier[] couriers = await _db.Couriers
+            .Where(courier => courier.IsActive)
+            .ToArrayAsync(cancellationToken);
 
         foreach (Warehouse warehouse in warehouses)
         {
-            var unassignedOrders = warehouse.Orders.ToList();
+            List<Order> unassignedOrders = warehouse.Orders.ToList();
 
-            int courierIndex = 1;
-            var warehouseResults = new List<RouteAssignment>();
-
-            while (unassignedOrders.Count != 0)
+            while (unassignedOrders.Count > 0 && couriers.Length > entity.Routes.Count)
             {
-                var assignedOrders = new List<Order>();
-                double totalDistance = 0;
-                double totalTime = 0;
-                Point currentCoordinate = warehouse.Address.Location;
-
-                while (unassignedOrders.Count != 0)
+                var route = new Route
                 {
-                    Order? nearestOrder = null;
-                    Result<OpenRouteDirectionsResult> routeResult;
-                    OpenRouteDirectionsResult route;
+                    Courier = couriers[entity.Routes.Count]
+                };
 
-                    foreach (Order order in unassignedOrders)
+                Result<OpenRouteDirectionsResult> routeResult;
+                Result<OpenRouteDirectionsResult>? routeBackResult = null;
+                Point fromLocation;
+                TimeOnly currentTime = command.StartTime;
+
+                while (unassignedOrders.Count > 0)
+                {
+                    fromLocation = route.Sections.Count != 0
+                        ? route.Sections.Last().Order.Address.Location
+                        : warehouse.Address.Location;
+
+                    Order? bestOrder = null;
+                    TimeOnly arrivalTime = currentTime;
+                    OpenRouteDirectionsResult? bestRoute = null;
+
+                    foreach (Order order in unassignedOrders.Where(order => currentTime < order.EndTime))
                     {
-                        routeResult = await _openRouteService.GetDirectionsAsync(currentCoordinate, order.Address.Location, cancellationToken);
+                        routeResult = await _openRouteService.GetDirectionsAsync(
+                            fromLocation,
+                            order.Address.Location,
+                            cancellationToken);
 
-                        if (routeResult.IsSuccess)
+                        routeBackResult = await _openRouteService.GetDirectionsAsync(
+                            order.Address.Location,
+                            warehouse.Address.Location,
+                            cancellationToken);
+
+                        if (!routeResult.IsSuccess || !routeBackResult.IsSuccess)
+                            continue;
+
+                        arrivalTime = currentTime
+                            .AddMinutes(routeResult.Value.Duration / 60);
+
+                        if (arrivalTime > order.EndTime)
+                            continue;
+
+                        arrivalTime = arrivalTime > order.StartTime
+                            ? arrivalTime
+                            : order.StartTime;
+
+                        if (arrivalTime.AddMinutes(routeBackResult.Value.Duration / 60) > command.EndTime)
+                            continue;
+
+                        if (bestRoute == null)
                         {
-                            route = routeResult.Value;
-
-                            //DateTime arrivalDate = currentDate.AddSeconds(route.Duration);
-
-                            //if (arrivalDate >= order.StartTime && arrivalDate <= order.EndTime && route.Distance < minDistance)
-                            //{
-                            //    minDistance = route.Distance;
-                            //    nearestOrder = order;
-                            //}
+                            bestRoute = routeResult.Value;
+                            bestOrder = order;
+                        }
+                        else if (routeResult.Value.Distance < bestRoute.Distance)
+                        {
+                            bestRoute = routeResult.Value;
+                            bestOrder = order;
                         }
                     }
 
-                    if (nearestOrder == null)
+                    if (bestOrder != null && bestRoute != null)
+                    {
+                        _ = unassignedOrders.Remove(bestOrder);
+
+                        arrivalTime = currentTime
+                            .AddMinutes(bestRoute.Duration / 60);
+
+                        arrivalTime = arrivalTime > bestOrder.StartTime
+                            ? arrivalTime
+                            : bestOrder.StartTime;
+
+                        route.Sections.Add(new RouteSection
+                        {
+                            Order = bestOrder,
+                            ArrivalTime = arrivalTime,
+                            Distance = bestRoute.Distance,
+                            Duration = bestRoute.Duration,
+                            Path = bestRoute.Path
+                        });
+
+                        currentTime = arrivalTime;
+                    }
+                    else
+                    {
                         break;
-
-                    routeResult = await _openRouteService.GetDirectionsAsync(currentCoordinate, nearestOrder.Address.Location, cancellationToken);
-
-                    if (routeResult.IsFailed)
-                        break;
-
-                    route = routeResult.Value;
-
-                    //currentDate = currentDate.AddSeconds(route.Duration);
-                    totalDistance += route.Distance;
-                    totalTime += route.Duration;
-
-                    assignedOrders.Add(nearestOrder);
-                    currentCoordinate = nearestOrder.Address.Location;
-                    _ = unassignedOrders.Remove(nearestOrder);
+                    }
                 }
 
-                warehouseResults.Add(
-                    new RouteAssignment
-                    {
-                        AssignedOrders = assignedOrders,
-                        TotalDistance = totalDistance,
-                        TotalTime = totalTime
-                    });
+                if (route.Sections.Count == 0 || (routeBackResult != null && !routeBackResult.IsSuccess))
+                    break;
 
-                courierIndex++;
+                route.Sections.Add(new RouteSection
+                {
+                    ArrivalTime = route.Sections.Last().ArrivalTime.AddMinutes(routeBackResult!.Value.Duration / 60),
+                    Distance = routeBackResult.Value.Distance,
+                    Duration = routeBackResult.Value.Duration,
+                    Path = routeBackResult.Value.Path
+                });
+
+                entity.Routes.Add(route);
             }
-
-            totalCouriersNeeded += courierIndex - 1;
-            results[warehouse.Id] = warehouseResults;
         }
+
+        _ = _db.RouteSets.Add(entity);
+
+        _ = await _db.SaveChangesAsync(cancellationToken);
 
         return Result.Ok();
     }
@@ -136,12 +181,5 @@ public class RouteSetService : IRouteSetService
             parameters.Paging?.PageSize,
             parameters.Paging?.CurrentPage
             );
-    }
-
-    class RouteAssignment
-    {
-        public IEnumerable<Order> AssignedOrders { get; set; }
-        public double TotalDistance { get; set; }
-        public double TotalTime { get; set; }
     }
 }

@@ -12,6 +12,8 @@ public class RouteSetGenerateDialogBase : ComponentBase
     [Inject]
     public IRouteSetService RouteSetService { get; set; }
 
+    public bool IsGenerating = false;
+
     public GenerateRouteSetRequest RouteSet { get; set; } = new GenerateRouteSetRequest
     {
         Date = DateOnly.FromDateTime(DateTime.Now),
@@ -26,7 +28,11 @@ public class RouteSetGenerateDialogBase : ComponentBase
 
     protected async Task Generate()
     {
+        IsGenerating = true;
+
         await RouteSetService.GenerateAsync(RouteSet);
+
+        IsGenerating = false;
 
         DialogService.Close(true);
     }

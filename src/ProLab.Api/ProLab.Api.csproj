@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>26c6914a-c0ba-41db-81dc-98a9087d5e7a</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..\.build</DockerfileContext>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FastEndpoints" Version="5.32.0" />

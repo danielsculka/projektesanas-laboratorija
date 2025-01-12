@@ -14,7 +14,8 @@ public static class IServiceCollectionExtensions
     {
         _ = services.AddScoped(sp => new HttpClient
         {
-            BaseAddress = new Uri(configuration["Api:Url"]!)
+            BaseAddress = new Uri(configuration["Api:Url"]!),
+            Timeout = TimeSpan.FromSeconds(300)
         });
 
         _ = services.AddSingleton(new MapOptions

@@ -23,11 +23,6 @@ public class WarehouseListBoxBase : ComponentBase
     public IEnumerable<GetWarehouseListResponse.ItemData> Items;
     public int PageSize = 3;
 
-    protected async Task OnChange()
-    {
-        await WarehouseIdChanged.InvokeAsync(WarehouseId);
-    }
-
     protected async Task LoadData(LoadDataArgs args)
     {
         if (string.IsNullOrEmpty(args.Filter) && WarehouseId != 0)
@@ -58,6 +53,12 @@ public class WarehouseListBoxBase : ComponentBase
         Items = pagedList.Items;
 
         if (WarehouseId == 0)
+        {
             WarehouseId = Items.First().Id;
+
+            await OnChange();
+        }
     }
+
+    protected async Task OnChange() => await WarehouseIdChanged.InvokeAsync(WarehouseId);
 }

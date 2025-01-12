@@ -60,9 +60,12 @@
 						<AddressForm @bind-Address=@Order.Address />
 					</RadzenColumn>
 
-					<RadzenColumn>
-						<WarehouseListBox @bind-WarehouseId=@Order.WarehouseId />
-					</RadzenColumn>
+					@if (Order.WarehouseId != 0)
+					{
+						<RadzenColumn >
+							<WarehouseListBox @bind-WarehouseId=@Order.WarehouseId />
+						</RadzenColumn>
+					}
 				</Body>
 			</FormLayout>
 		</Body>

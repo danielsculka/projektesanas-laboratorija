@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using ProLab.Infrastructure.Database;
@@ -12,9 +13,11 @@ using ProLab.Infrastructure.Database;
 namespace ProLab.Infrastructure.Database.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250111150925_RemoveRouteSectionFromOrder")]
+    partial class RemoveRouteSectionFromOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,27 +136,18 @@ namespace ProLab.Infrastructure.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<TimeOnly>("ArrivalTime")
-                        .HasColumnType("time");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Distance")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Duration")
-                        .HasColumnType("float");
+                    b.Property<string>("IntermediatePoints")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Modified")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
-
-                    b.Property<LineString>("Path")
-                        .IsRequired()
-                        .HasColumnType("geography");
 
                     b.Property<int>("RouteId")
                         .HasColumnType("int");

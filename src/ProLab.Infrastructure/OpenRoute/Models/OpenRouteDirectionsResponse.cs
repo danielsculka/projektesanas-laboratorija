@@ -7,6 +7,7 @@ public class OpenRouteDirectionsResponse
     public class RouteData
     {
         public SummaryData Summary { get; set; }
+        public string Geometry { get; set; }
 
         public class SummaryData
         {
