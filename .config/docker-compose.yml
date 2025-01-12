@@ -1,56 +1,23 @@
 name: pro-lab
+
 networks:
-  loki:
+  pro-lab:
 
 services:
   db:
     container_name: db
-    image: mcr.microsoft.com/mssql/server
-    ports:
-      - "1433:1433"
-    environment:
-      - ACCEPT_EULA=y
-      - MSSQL_SA_PASSWORD=Pass@word
-      - MSSQL_PID=Express
-
-  loki:
-    image: grafana/loki:latest
-    container_name: loki
-    ports:
-      - "3100:3100"
-    volumes: 
-      - ./loki-config.yaml:/etc/loki/loki-config.yaml
-    command: -config.file=/etc/loki/local-config.yaml
+    image: mcr.microsoft.com/mssql/server:latest
     networks:
-      - loki
+      - pro-lab
 
   grafana:
-    container_name: grafana-loki
-    environment:
-      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    entrypoint:
-      - sh
-      - -euc
-      - |
-        mkdir -p /etc/grafana/provisioning/datasources
-        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
-        apiVersion: 1
-        datasources:
-        - name: Loki
-          type: loki
-          access: proxy 
-          orgId: 1
-          url: http://loki:3100
-          basicAuth: false
-          isDefault: true
-          version: 1
-          editable: false
-        EOF
-        /run.sh
+    container_name: grafana
     image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
     networks:
-      - loki
+      - pro-lab
+
+  loki:
+    container_name: loki
+    image: grafana/loki:latest
+    networks:
+      - pro-lab

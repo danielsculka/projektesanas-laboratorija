@@ -12,7 +12,8 @@ public static class IServiceCollectionExtensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        var connectionString = configuration.GetConnectionString("Default");
+        var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING")
+            ?? configuration.GetConnectionString("Default");
 
         _ = services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString, o => o.UseNetTopologySuite()));
@@ -24,7 +25,8 @@ public static class IServiceCollectionExtensions
             IConfigurationSection openRoute = configuration.GetSection("OpenRoute");
 
             options.Url = openRoute.GetValue<string>("Url")!;
-            options.UserToken = openRoute.GetValue<string>("UserToken")!;
+            options.UserToken = Environment.GetEnvironmentVariable("OPENROUTE_USER_TOKEN")
+                ?? openRoute.GetValue<string>("UserToken")!;
         });
 
         _ = services.AddHttpClient<IOpenRouteClient, OpenRouteClient>();

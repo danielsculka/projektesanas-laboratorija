@@ -12,19 +12,12 @@ public static class IServiceCollectionExtensions
 {
     public static IServiceCollection AddApp(this IServiceCollection services, IConfiguration configuration)
     {
-        _ = services.AddScoped(sp => new HttpClient
-        {
-            BaseAddress = new Uri(configuration["Api:Url"]!),
-            Timeout = TimeSpan.FromSeconds(300)
-        });
-
         _ = services.AddSingleton(new MapOptions
         {
             DivId = "mapId",
             Center = new LatLng(56.9496, 24.1052),
             Zoom = 11,
-            UrlTileLayer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-
+            UrlTileLayer = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         });
 
         _ = services.AddScoped<ICourierService, CourierService>();
