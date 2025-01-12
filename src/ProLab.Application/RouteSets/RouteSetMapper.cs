@@ -1,4 +1,5 @@
-﻿using ProLab.Application.RouteSets.Results;
+﻿using ProLab.Application.RouteSets.Commands;
+using ProLab.Application.RouteSets.Results;
 using ProLab.Domain.Routes;
 using System.Linq.Expressions;
 
@@ -6,41 +7,39 @@ namespace ProLab.Application.RouteSets;
 
 internal static class RouteSetMapper
 {
-    //public static Order ToEntity(this CreateOrderCommand command, Order entity)
-    //{
-    //    entity.Number = command.Number;
-    //    entity.Date = command.Date;
-    //    entity.StartTime = command.StartTime;
-    //    entity.EndTime = command.EndTime;
-    //    entity.WarehouseId = command.WarehouseId;
+    public static RouteSet ToEntity(this GenerateRouteSetCommand command, RouteSet entity)
+    {
+        entity.Name = command.Name;
+        entity.Date = command.Date;
+        entity.StartTime = command.StartTime;
+        entity.EndTime = command.EndTime;
 
-    //    entity.Address = command.Address.ToEntity(new Address());
-
-    //    return entity;
-    //}
-
-    //public static Order ToEntity(this UpdateOrderCommand command, Order entity)
-    //{
-    //    entity.Number = command.Number;
-    //    entity.Date = command.Date;
-    //    entity.StartTime = command.StartTime;
-    //    entity.EndTime = command.EndTime;
-    //    entity.WarehouseId = command.WarehouseId;
-
-    //    _ = command.Address.ToEntity(entity.Address);
-
-    //    return entity;
-    //}
+        return entity;
+    }
 
     public static Expression<Func<RouteSet, RouteSetListResult.ItemData>> ProjectList()
     {
-        return order => new RouteSetListResult.ItemData
+        return routeSet => new RouteSetListResult.ItemData
         {
-            Id = order.Id,
-            Name = order.Name,
-            Date = order.Date,
-            StartTime = order.StartTime,
-            EndTime = order.EndTime
+            Id = routeSet.Id,
+            Name = routeSet.Name,
+            Date = routeSet.Date,
+            StartTime = routeSet.StartTime,
+            EndTime = routeSet.EndTime,
+            Routes = routeSet.Routes.Select(route => new RouteSetListResult.ItemData.RouteData
+            {
+                Id = route.Id,
+                CourierId = route.CourierId,
+                Sections = route.Sections.Select(section => new RouteSetListResult.ItemData.RouteData.SectionData
+                {
+                    Id = section.Id,
+                    OrderId = section.OrderId,
+                    ArrivalTime = section.ArrivalTime,
+                    Distance = section.Distance,
+                    Duration = section.Duration,
+                    Path = section.Path
+                })
+            })
         };
     }
 }
