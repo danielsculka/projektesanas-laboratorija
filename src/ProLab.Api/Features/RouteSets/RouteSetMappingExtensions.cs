@@ -51,6 +51,7 @@ internal static class RouteSetMappingExtensions
                 Date = item.Date,
                 StartTime = item.StartTime,
                 EndTime = item.EndTime,
+                GenerateDuration = item.GenerateDuration,
                 Routes = item.Routes.Select(route => new GetRouteSetListResponse.ItemData.RouteData
                 {
                     Id = route.Id,

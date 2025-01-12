@@ -11,6 +11,7 @@ public class RouteSet : Entity<int>
     public DateOnly Date { get; set; }
     public TimeOnly StartTime { get; set; }
     public TimeOnly EndTime { get; set; }
+    public TimeSpan GenerateDuration { get; set; }
 
     public virtual ICollection<Route> Routes { get; set; } = new List<Route>();
 }

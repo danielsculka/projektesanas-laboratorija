@@ -26,6 +26,7 @@ internal static class RouteSetMapper
             Date = routeSet.Date,
             StartTime = routeSet.StartTime,
             EndTime = routeSet.EndTime,
+            GenerateDuration = routeSet.GenerateDuration,
             Routes = routeSet.Routes.Select(route => new RouteSetListResult.ItemData.RouteData
             {
                 Id = route.Id,

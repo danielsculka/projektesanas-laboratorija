@@ -36,6 +36,11 @@
 
                 <Columns>
                     <RadzenDataGridColumn Property="@nameof(GetRouteSetListResponse.ItemData.Name)" Title="Name" />
+                    <RadzenDataGridColumn Title="Generation duration">
+                        <Template Context="data">
+                            @($"{Math.Round(((TimeSpan)data.GenerateDuration).TotalSeconds, 3)} s")
+                        </Template>
+                    </RadzenDataGridColumn>
                     <RadzenDataGridColumn Property="@nameof(GetRouteSetListResponse.ItemData.Date)" Title="Date" FormatString="{0:dd.MM.yyyy}" />
                     <RadzenDataGridColumn Property="@nameof(GetRouteSetListResponse.ItemData.StartTime)" Title="Start time" FormatString="{0:HH:mm}" />
                     <RadzenDataGridColumn Property="@nameof(GetRouteSetListResponse.ItemData.EndTime)" Title="End time" FormatString="{0:HH:mm}" />
