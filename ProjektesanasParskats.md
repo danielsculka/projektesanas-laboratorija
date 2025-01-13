@@ -163,4 +163,11 @@ Savukārt, ņemot vērā visus ierobežojumus un sistēmas izveidošanu maksimā
 ### Ieteikumi turpmākajam darbam
 Turpmākajā izstrādē būtu ieteicams ieviest iespēju dinamiski mainīt maršrutus, reaģējot uz ceļu apstākļiem vai izmaiņām piegādes laika logu prasībās. Tāpat varētu tikt izstrādāta integrācija ar reāllaika datiem par satiksmes apstākļiem, kas vēl vairāk uzlabotu maršruta precizitāti. Piemēram, integrēt uzģenerēto maršrutu (piegādes punktus) atsūtīšanu uz Waze vai Google Maps aplikācijām, kas automātiski vēl optimizēs maršrutus.
 
-
+## Dalībnieku paveiktais
+| Dalībnieks | Paveiktais |
+|-----|-------|
+| Martins Boikovs | Lidzīgie risinājumi; Tehnoloģiju steks; Konceptu modeļa konstruēšana; Autentifikācijas loģika Back-end daļā (pašlaik nav iedarbināta); Dokumentācija; Plakāts (to īstenošāna) | 
+| Daniels Čulka | Lidzīgie risinājumi; Konceptu modeļa konstruēšana; Tehnoloģiju steks; GitHub reprozitorija izveidošana; Datu bāze un migrācijas; Azure; Lielāka Back-End daļa. | 
+| Kirills Vasiljevs | Lidzīgie risinājumi; Tehnoloģiju steks; Konceptu modeļa konstruēšana; OpenRouteService API integrēšāna, Algoritma izveide un testēšāna; Grafana pievienošāna. | 
+| Emīlija Ostaševska | Lidzīgie risinājumi; Tehnoloģiju steks; Konceptu modeļa konstruēšana; Dokumentācijas papildināšana; Plakāts; Front-End daļa. | 
+| Karina Andžāne | Lidzīgie risinājumi; Tehnoloģiju steks; Konceptu modeļa konstruēšana; Algoritma izveide, testēšāna un novērtēšāna. | 
